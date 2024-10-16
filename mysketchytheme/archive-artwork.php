@@ -1,0 +1,2 @@
+<?php
+echo "PAGE D'ARCHIVE 'ARTWORKS'";
