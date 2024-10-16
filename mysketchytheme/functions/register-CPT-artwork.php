@@ -1,9 +1,10 @@
 <?php
 
 /*
- * Création du Custom Post Type 'Artworks'
+ * CUSTOM POST TYPE ARTWORK
  */
 
+// I - CRÉATION DU CUSTOM POST TYPE 'ARTWORK'
 function artwork_custom_post_type()
 {
 
@@ -51,5 +52,34 @@ function artwork_custom_post_type()
     register_post_type('artwork', $args);
 
 }
-
 add_action('init', 'artwork_custom_post_type', 0);
+
+
+// II - AJOUT DES CHAMPS DU CPT
+
+// 1 - Le champs Image
+// 1.1 - Enregistrer le champs "Image"
+function add_artwork_image_metabox()
+{
+    add_meta_box(
+        "artwork_image_metabox", // ID de la metabow
+        "Image", // Titre de la metabox
+        "display_artwork_image_metabox", // Fonction callback
+        "artwork", // Post type cible
+        "normal", // Emplacement de la metabox
+        "high" // Priorité
+    );
+}
+add_action('add_meta_boxes', 'add_artwork_image_metabox');
+
+// 2.1 - Afficher le champs en back-office : enregistrement d'un artwork
+function display_artwork_image_metabox($post)
+{
+    // Récupère la valeur actuelle du champ personnalisé
+    $artwork_image_url = get_post_meta($post->ID, '_artwork_image_url', true);
+    ?>
+    <label for="artwork_image_url">URL de l'image :</label>
+    <input type="text" name="artwork_image_url" id="artwork_image_url" value="<?php echo esc_attr($artwork_image_url); ?>"
+        size="50" />
+    <?php
+}
