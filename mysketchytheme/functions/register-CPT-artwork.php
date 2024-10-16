@@ -72,14 +72,22 @@ function add_artwork_image_metabox()
 }
 add_action('add_meta_boxes', 'add_artwork_image_metabox');
 
-// 2.1 - Afficher le champs en back-office : enregistrement d'un artwork
+// 2.1 - Afficher le champs en back-office : enregistrement d'un artwork, avec un bouton pour ouvrir la galerie de média
 function display_artwork_image_metabox($post)
 {
-    // Récupère la valeur actuelle du champ personnalisé
-    $artwork_image_url = get_post_meta($post->ID, '_artwork_image_url', true);
+    // Récupère l'ID de l'image actuelle
+    $artwork_image_id = get_post_meta($post->ID, '_artwork_image_id', true);
+    $image_url = $artwork_image_id ? wp_get_attachment_url($artwork_image_id) : '';
+
     ?>
-    <label for="artwork_image_url">URL de l'image :</label>
-    <input type="text" name="artwork_image_url" id="artwork_image_url" value="<?php echo esc_attr($artwork_image_url); ?>"
-        size="50" />
+    <div>
+        <img id="artwork_image_preview" src="<?php echo esc_url($image_url); ?>" style="max-width: 100%; height: auto;">
+        <input type="hidden" id="artwork_image_id" name="artwork_image_id"
+            value="<?php echo esc_attr($artwork_image_id); ?>">
+        <br>
+        <button type="button" class="button" id="upload_artwork_image_button">Selectionner une Image</button>
+        <button type="button" class="button" id="remove_artwork_image_button"
+            style="<?php echo $artwork_image_id ? '' : 'display:none;'; ?>">Supprimer l' Image</button>
+    </div>
     <?php
 }
