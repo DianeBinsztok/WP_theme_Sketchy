@@ -33,11 +33,14 @@ function artwork_custom_post_type()
         'label' => __('Artworks'),
         'description' => __('Tout les travaux'),
         'labels' => $labels,
-        // Options disponibles dans l'éditeur d'Artwork'
-        'supports' => array('title', 'editor', 'category', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields', ),
-        /* 
-         * Différentes options supplémentaires
-         */
+
+        // Taxonomies liée à un artworks
+        'taxonomies' => array('category', 'post_tag'),
+
+        // Fonctionnalités disponibles dans l'éditeur d'Artwork'
+        'supports' => array('title', 'thumbnail', 'excerpt', 'comments', 'custom-fields'),
+
+        // Options supplémentaires
         'menu_icon' => 'dashicons-art',
         'show_in_rest' => true,
         'hierarchical' => false,
@@ -56,38 +59,65 @@ add_action('init', 'artwork_custom_post_type', 0);
 
 
 // II - AJOUT DES CHAMPS DU CPT
+// Année de réalisation
+// Techniques
 
-// 1 - Le champs Image
-// 1.1 - Enregistrer le champs "Image"
-function add_artwork_image_metabox()
+// 1 - Le champs "Année de réalisation"
+// 1.1 - Enregistrer le champs "year"
+function add_artwork_year_metabox()
 {
     add_meta_box(
-        "artwork_image_metabox", // ID de la metabow
-        "Image", // Titre de la metabox
-        "display_artwork_image_metabox", // Fonction callback
+        "artwork_year_metabox", // ID de la metabow
+        "Année de réalisation", // Titre de la metabox
+        "display_artwork_year_metabox", // Fonction callback
         "artwork", // Post type cible
         "normal", // Emplacement de la metabox
         "high" // Priorité
     );
 }
-add_action('add_meta_boxes', 'add_artwork_image_metabox');
+add_action('add_meta_boxes', 'add_artwork_year_metabox');
 
-// 2.1 - Afficher le champs en back-office : enregistrement d'un artwork, avec un bouton pour ouvrir la galerie de média
-function display_artwork_image_metabox($post)
+// 1.2 - Afficher le champs en back-office :
+function display_artwork_year_metabox($post)
 {
-    // Récupère l'ID de l'image actuelle
-    $artwork_image_id = get_post_meta($post->ID, '_artwork_image_id', true);
-    $image_url = $artwork_image_id ? wp_get_attachment_url($artwork_image_id) : '';
+    // Générer un champ nonce (Number Used Once) dans un formulaire HTML
+    wp_nonce_field(basename(__FILE__), 'artwork_year_nonce');
 
-    ?>
-    <div>
-        <img id="artwork_image_preview" src="<?php echo esc_url($image_url); ?>" style="max-width: 100%; height: auto;">
-        <input type="hidden" id="artwork_image_id" name="artwork_image_id"
-            value="<?php echo esc_attr($artwork_image_id); ?>">
-        <br>
-        <button type="button" class="button" id="upload_artwork_image_button">Selectionner une Image</button>
-        <button type="button" class="button" id="remove_artwork_image_button"
-            style="<?php echo $artwork_image_id ? '' : 'display:none;'; ?>">Supprimer l' Image</button>
-    </div>
-    <?php
+    // Récupérer l'année déjà enregistrée, s'il y en a une
+    $artwork_year = get_post_meta($post->ID, 'artwork_year', true);
+
+    echo '<label for="year">Année de réalisation : </label>';
+    echo '<input id="artwork_year_metabox" type="number" min="1900" max="2099" step="1" name="artwork_year" value="' . esc_attr($artwork_year) . '"/>';
 }
+
+
+// 1.3 - Sauvegarder la date
+function save_artwork_year_meta($post_id)
+{
+    // Vérifie le nonce pour la sécurité
+    if (!isset($_POST['artwork_year_nonce']) || !wp_verify_nonce($_POST['artwork_year_nonce'], basename(__FILE__))) {
+        return $post_id;
+    }
+
+    // Évite la sauvegarde automatique
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return $post_id;
+    }
+
+    // Vérifie les permissions de l'utilisateur
+    if ('artwork' === $_POST['post_type']) {
+        if (!current_user_can('edit_post', $post_id)) {
+            return $post_id;
+        }
+    }
+
+    // Vérifie si l'année a été envoyée et sauvegarde la post-meta
+    if (isset($_POST['artwork_year'])) {
+        $artwork_year = sanitize_text_field($_POST['artwork_year']);
+        update_post_meta($post_id, 'artwork_year', $artwork_year);
+    } else {
+        // Si aucune année n'est soumise, supprime la meta
+        delete_post_meta($post_id, 'artwork_year');
+    }
+}
+add_action('save_post', 'save_artwork_year_meta');
