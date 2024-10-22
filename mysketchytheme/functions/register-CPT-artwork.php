@@ -144,7 +144,7 @@ function display_artwork_techniques_metabox($post)
 
     // Récupérer les techniques existantes
     $existing_techniques = get_post_meta($post->ID, 'artwork_techniques', true) ?: [];
-    $techniques_list = ['feutre', 'encre', 'crayola', 'pastel', 'aquarelle', 'huile', 'acrylique'];
+    $techniques_list = ['Feutre', 'Encre', 'Crayola', 'Pastel', 'Aquarelle', 'Huile', 'Acrylique'];
 
     echo '<fieldset id="artwork_techniques_metabox">';
     echo '<legend>Techniques:</legend>';
@@ -161,7 +161,7 @@ function display_artwork_techniques_metabox($post)
     echo '</fieldset>';
 }
 
-// 1.3 - Sauvegarder la date
+// 1.3 - Sauvegarder les techniques
 function save_artwork_techniques_meta($post_id)
 {
     // Vérifie le nonce pour la sécurité
