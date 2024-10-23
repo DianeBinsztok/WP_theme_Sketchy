@@ -15,11 +15,14 @@ if ($artworks_query->have_posts()) {
 
     // Récupérer les propriétés de chaque artwork
     $artworks = [];
+    // Pour l'ordre d'affichage des images
+    $indexInLoop = 1;
     while (have_posts()) {
         the_post();
         $post = get_post();
         $artwork = [
             "id" => $post->ID,
+            "indexInLoop" => $indexInLoop,
             "title" => $post->post_title,
             "image" => get_the_post_thumbnail_url($post->ID),
             "year" => get_post_meta($post->ID, "artwork_year", true),
@@ -28,8 +31,8 @@ if ($artworks_query->have_posts()) {
             "techniques" => get_post_meta($post->ID, "artwork_techniques", true),
             "tags" => get_the_tags()
         ];
-
         array_push($artworks, $artwork);
+        $indexInLoop++;
     }
 
     // Affichage en deux parties : les images et les popups. Chaque image est cliquable et déclenche une popup qui affichera des propriétés en plus : le titre, l'année, les techniques, etc.
@@ -37,9 +40,11 @@ if ($artworks_query->have_posts()) {
     // Les images
     echo "<section id='gallery_clickable-artworks'>";
     foreach ($artworks as $artwork) {
-        echo "<a class='clickable-artwork' href='#" . esc_attr($artwork['slug'] . "-" . $artwork['id']) . "'>
-        <img class='' src='" . esc_url($artwork['image']) . "' alt='" . esc_attr($artwork['title']) . "' style='max-width:450px'/>
-        </a>";
+        echo "<a class='clickable-artwork' href='#" . $artwork['indexInLoop'] . "'>";
+
+        echo "<img id ='" . esc_attr($artwork['slug'] . "-" . $artwork['id']) . "' src='" . esc_url($artwork['image']) . "' alt='" . esc_attr($artwork['title']) . "'/>";
+
+        echo "</a>";
     }
     echo "</section>";
 
@@ -48,13 +53,13 @@ if ($artworks_query->have_posts()) {
     foreach ($artworks as $artwork) {
 
         // popup_overlay : pour le fond noir
-        echo "<div id='" . esc_attr($artwork['slug'] . "-" . $artwork['id']) . "' src='" . esc_url($artwork['image']) . "' class='popup_overlay'>";
+        echo "<div id='" . $artwork['indexInLoop'] . "' class='popup_overlay " . esc_attr($artwork['slug'] . "-" . $artwork['id']) . "' src='" . esc_url($artwork['image']) . "'>";
 
         // popup_close : pour fermer la popup
         echo "<a class='popup_close' href='#'>&times;</a>";
 
         // popup_arrow : pour passer à l'image précédente dans la galerie
-        echo "<a href='#' class='popup_arrow'>&lt;</a>";
+        echo "<a href='#" . ($artwork['indexInLoop'] - 1) . "' class='popup_arrow'>&lt;</a>";
 
 
         // popup_content : l'image et les informations
@@ -105,7 +110,7 @@ if ($artworks_query->have_posts()) {
         echo "</div>";
 
         // popup_arrow : pour passer à l'image suivante dans la galerie
-        echo "<a href='#' class='popup_arrow'>&gt;</a>";
+        echo "<a href='#" . ($artwork['indexInLoop'] + 1) . "' class='popup_arrow'>&gt;</a>";
 
         // Fermer popup_overlay
         echo "</div>";

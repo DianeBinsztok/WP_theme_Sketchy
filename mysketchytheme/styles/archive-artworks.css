@@ -1,3 +1,19 @@
+/*LA GALERIE*/
+#gallery_clickable-artworks{
+    display: flex;
+    flex-wrap: wrap;
+}
+/*Les vignettes cliquables*/
+
+.clickable-artwork{
+    width : 25%;
+}
+.clickable-artwork img{
+    width : 100%;
+}
+
+/*LES POPUPS*/
+
 /*Le fond noir de la popup*/
 .popup_overlay {
     position: fixed;
