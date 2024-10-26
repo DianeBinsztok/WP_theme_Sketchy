@@ -1,18 +1,24 @@
 /*LA GALERIE*/
 #gallery_clickable-artworks{
     display: flex;
+    /*flex-direction: column;*/
     flex-wrap: wrap;
 }
 /*Les vignettes cliquables*/
-
 .clickable-artwork{
-    width : 25%;
+    max-width : 25%;
 }
 .clickable-artwork img{
-    width : 100%;
+    max-width : 100%;
+    height: auto;
 }
 
+
 /*LES POPUPS*/
+.hide{
+    visibility: hidden;
+    display: none;
+}
 
 /*Le fond noir de la popup*/
 .popup_overlay {
@@ -22,18 +28,11 @@
     left: 0;
     right: 0;
     background: rgba(0, 0, 0, 0.85);
-    visibility: hidden;
-    opacity: 0;
     display: flex;
     padding: 0 5rem 0 5rem;
 }
-/*Apparition de la popup*/
-.popup_overlay:target {
-    visibility: visible;
-    opacity: 1;
-}
 
-/*L'image et les info*/
+/*L'image et les infos*/
 .popup_content {
     /*background-color: yellow;*/
     position: relative;
@@ -88,7 +87,7 @@
     right: 0;
 }
 
-/* Pour fermer la popup*/
+/* Bouton pour fermer la popup*/
 .popup_close {
     position: absolute;
     top: 20px;

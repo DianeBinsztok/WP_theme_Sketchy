@@ -40,26 +40,24 @@ if ($artworks_query->have_posts()) {
     // Les images
     echo "<section id='gallery_clickable-artworks'>";
     foreach ($artworks as $artwork) {
-        echo "<a class='clickable-artwork' href='#" . $artwork['indexInLoop'] . "'>";
-
-        echo "<img id ='" . esc_attr($artwork['slug'] . "-" . $artwork['id']) . "' src='" . esc_url($artwork['image']) . "' alt='" . esc_attr($artwork['title']) . "'/>";
-
-        echo "</a>";
+        echo "<img class='opens-" . $artwork['indexInLoop'] . " clickable-artwork' id ='" . esc_attr($artwork['slug'] . "-" . $artwork['id']) . "' src='" . esc_url($artwork['image']) . "' alt='" . esc_attr($artwork['title']) . "'/>";
     }
     echo "</section>";
 
+
     // Les popups
+
     echo "<section id='gallery_artworks-popups'>";
     foreach ($artworks as $artwork) {
 
         // popup_overlay : pour le fond noir
-        echo "<div id='" . $artwork['indexInLoop'] . "' class='popup_overlay " . esc_attr($artwork['slug'] . "-" . $artwork['id']) . "' src='" . esc_url($artwork['image']) . "'>";
+        echo "<div id='" . $artwork['indexInLoop'] . "' class='popup-artwork popup_overlay hide " . esc_attr($artwork['slug'] . "-" . $artwork['id']) . "'>";
 
         // popup_close : pour fermer la popup
-        echo "<a class='popup_close' href='#'>&times;</a>";
+        echo "<div class='popup_close'>&times;</div>";
 
         // popup_arrow : pour passer à l'image précédente dans la galerie
-        echo "<a href='#" . ($artwork['indexInLoop'] - 1) . "' class='popup_arrow'>&lt;</a>";
+        echo "<div id='goto-" . ($artwork['indexInLoop'] - 1) . "' class='popup_arrow'>&lt;</div>";
 
 
         // popup_content : l'image et les informations
@@ -102,7 +100,7 @@ if ($artworks_query->have_posts()) {
             }
             echo "</p>";
         }
-
+        // Fermer popup_info
         echo "</div>";
 
 
@@ -110,12 +108,13 @@ if ($artworks_query->have_posts()) {
         echo "</div>";
 
         // popup_arrow : pour passer à l'image suivante dans la galerie
-        echo "<a href='#" . ($artwork['indexInLoop'] + 1) . "' class='popup_arrow'>&gt;</a>";
+        echo "<div id='goto-" . ($artwork['indexInLoop'] + 1) . "' class='popup_arrow'>&gt;</div>";
 
         // Fermer popup_overlay
         echo "</div>";
-
-
     }
     echo "</section>";
+    // FIN DU TEST
+
+
 }
