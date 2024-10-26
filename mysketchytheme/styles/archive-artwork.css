@@ -1,7 +1,6 @@
 /*LA GALERIE*/
 #gallery_clickable-artworks{
     display: flex;
-    /*flex-direction: column;*/
     flex-wrap: wrap;
 }
 /*Les vignettes cliquables*/
@@ -33,19 +32,19 @@
 }
 
 /*L'image et les infos*/
-.popup_content {
-    /*background-color: yellow;*/
+.popup_content_container {
     position: relative;
     display: flex;
     justify-content: center;
     width: 80%;
-    max-height: 100vh;
+    box-sizing: content-box;
+    max-height: 90vh;
     margin: auto;
 }
 
 /* La flèche pour passer à l'image précédente ou suivante*/
 .popup_arrow {
-    font-size: 2rem;
+    font-size: 3rem;
     color: #ffffff;
     font-family: Tahoma, Arial, sans-serif;
     margin-top: auto;
@@ -57,17 +56,20 @@
 .popup_info{
     /*background-color: rgb(166, 77, 255);*/
     color: white;
-    width: 50%;
+    max-width: 50%;
+    min-width: 30%;
     height: 100%;
     max-height: 90vh;
     padding-left: 3rem;
+    align-items: center;
 }
+
 /*L'image*/
-.popup_image {
+.popup_image_container {
     /*background-color: orange;*/
     position : relative;
-    width: 50%;
-    height: 100%;
+    box-sizing: content-box;
+    /*height: 100%;*/
     max-height: 90vh;
     right: 0;
     margin: 0;
@@ -78,7 +80,7 @@
     justify-content: flex-start;
 
 }
-.popup_image img{
+.popup_image{
     position : relative;
     max-height: 90vh;
     max-width: 100%;

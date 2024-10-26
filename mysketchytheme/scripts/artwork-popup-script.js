@@ -5,6 +5,7 @@ window.onload = function() {
     // 1 - Au clic sur une vignette, afficher la popup ciblée
 
     // Les images visibles : 
+    let clickableArtworksGallery = document.getElementById("gallery_clickable-artworks");
     let clickableArtworks = Array.from(document.getElementsByClassName("clickable-artwork"));
 
     // Pour toutes les images cliquables :
@@ -15,6 +16,7 @@ window.onload = function() {
             targetedPopupId = event.target.classList[0].split("opens-").pop();
             // Afficher la popup ciblée et fermer toutes les autres
             displayTargetedPopupAndHideOthers(targetedPopupId, popups);
+            changeBackGroundScroll("no-scroll");
         })
     }
 
@@ -28,14 +30,17 @@ window.onload = function() {
 
             // Au clic sur chaque image,
             popup.addEventListener("click", (event)=>{     
-                // Si le clic est en dehors de la zone d'infos ou de l'image,           
-                if(!event.target.classList.contains("popup_image")||!event.target.classList.contains("popup_info")){
+                // Si le clic est en dehors de la zone d'infos ou de l'image,  
+                if(!event.target.classList.contains("popup_content")){
                     // Fermer la popup
                     closePopup(popup);
+                    changeBackGroundScroll("scroll");
                 }
+
+                // Au clic sur les flèches,
                 if(event.target.classList.contains("popup_arrow")){
 
-                    // Repérer la popup suivante avec l'id "goto-" sur la flèche
+                    // Repérer la popup suivante ou précédente avec l'id "goto-" sur la flèche
                     targetedPopupId = event.target.id.split("goto-").pop();
                     
                     // Afficher la popup ciblée et fermer toutes les autres
@@ -58,7 +63,16 @@ function displayTargetedPopupAndHideOthers(targetPopupId, allPopups){
     }
 }
 
-// 2 - fermer la popup au clic hors de l'image et des infos
+// 2 - Fermer la popup au clic hors de l'image et des infos
 function closePopup(popup){
     popup.classList.add("hide");
+}
+
+// 3 - Empêcher ou rétablir le scroll de l'arrière-plan
+function changeBackGroundScroll(directive){
+    if(directive === "scroll"){
+        document.styleSheets[0].deleteRule("body { overflow: hidden }");
+    }else if(directive === "no-scroll"){
+        document.styleSheets[0].insertRule("body { overflow: hidden }", 0)
+    }
 }
