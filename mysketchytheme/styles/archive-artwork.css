@@ -1,45 +1,214 @@
 /*LA GALERIE*/
-#gallery_clickable-artworks{
-    display: flex;
-    flex-wrap: wrap;
-}
-/*Les vignettes cliquables*/
-.clickable-artwork{
-    max-width : 25%;
-}
-.clickable-artwork img{
-    max-width : 100%;
-    height: auto;
+/*GLOBAL*/
+
+/* PETITS ÉCRANS (600px et moins) */
+@media only screen and (max-width: 600px) {
+
+    /*LA GALERIE*/
+    #gallery_clickable-artworks{
+        column-count: 2;
+        column-gap: 0.4rem;
+    }
+    /*LES VIGNETTES CLIQUABLES*/
+    .clickable-artwork{
+        width: 100%;
+        display: block;
+        margin-bottom: 0.4rem;
+    }
+    /*LE FOND NOIR DE LA POPUP*/
+    .popup_overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        padding: 1rem;
+        overflow: scroll!important;
+    }
+    /*L'IMAGE ET LES INFOS'*/
+    .popup_content_container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        box-sizing:border-box;
+        max-height: 80vh;
+        margin: auto;
+    }
+    /*LE CONTENEUR DE L'IMAGE*/
+    .popup_image_container {
+        /*background-color: rgb(217, 255, 0);*/
+        position : relative;
+        box-sizing: content-box;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    /*L'IMAGE*/
+    .popup_image{
+        position : relative;
+        max-height: 90vh;
+        max-width: 100%;
+        object-fit: contain;
+    }
+    /*LES INFOS*/
+    .popup_info{
+        color: white;
+        width: 90%;
+        height: 100%;
+        max-height: 90vh;
+        align-items: center;
+    }
+    /*Le titre*/
+    .popup_title{
+        text-align: center;
+    }
+    /* PAS DE FLECHE EN VERSION MOBILE*/
+    .popup_arrow {
+        visibility: hidden;
+    }
 }
 
+
+/* ÉCRANS MOYENS (tablettes en format portrait et grands smartphones, 600px et plus) */
+@media only screen and (min-width: 601px)and (max-width: 991px) {
+
+    /*LA GALERIE*/
+    #gallery_clickable-artworks{
+        column-count: 3;
+        column-gap: 0.6rem;
+        row-gap: 0.6rem;
+    }
+    /*LES VIGNETTES CLIQUABLES*/
+    .clickable-artwork{
+        width: 100%;
+        display: block;
+        margin-bottom: 0.6rem;
+    }
+    /*LE FOND NOIR DE LA POPUP*/
+    .popup_overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        padding: 2rem;
+        overflow: scroll!important;
+    }
+    /*L'IMAGE ET LES INFOS'*/
+    .popup_content_container {
+        /*background: rgba(255, 41, 41, 0.85);*/
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        box-sizing: content-box;
+        /*max-height: 90vh;*/
+        margin: auto;
+    }
+    /*LE CONTENEUR DE L'IMAGE*/
+    .popup_image_container {
+        /*background-color: rgb(217, 255, 0);*/
+        position : relative;
+        box-sizing: content-box;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content:center;
+    }
+     /*L'IMAGE*/
+     .popup_image{
+        position : relative;
+        width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+    }
+    /*LES INFOS*/
+    .popup_info{
+        color: white;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        box-sizing: border-box;
+        width: fit-content; 
+    }
+    /*Le titre*/
+    .popup_title{
+        text-align: center;
+    }
+}
+
+
+/* GRANDS ÉCRANS (laptops et desktops, 992px et plus) */
+@media only screen and (min-width: 992px) {
+
+    /*LA GALERIE*/
+    #gallery_clickable-artworks{
+        column-count: 4;
+        column-gap: 1rem;
+        row-gap: 1rem;
+    }
+    /*LES VIGNETTES CLIQUABLES*/
+    .clickable-artwork{
+        width: 100%;
+        display: block;
+        margin-bottom: 1rem;
+    }
+    /*LE FOND NOIR DE LA POPUP*/
+    .popup_overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        padding: 0 5rem 0 5rem;
+        overflow: scroll!important;
+    }
+    /*L'IMAGE ET LES INFOS'*/
+    .popup_content_container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        width: 80%;
+        box-sizing: content-box;
+        max-height: 90vh;
+        margin: auto;
+    }
+     /*L'IMAGE*/
+    .popup_image{
+        position : relative;
+        max-height: 90vh;
+        max-width: 100%;
+        object-fit: contain;
+        top: 0;
+        right: 0;
+    }
+    /*LES INFOS*/
+    .popup_info{
+        color: white;
+        max-width: 50%;
+        min-width: 30%;
+        height: 100%;
+        max-height: 90vh;
+        padding-left: 3rem;
+        align-items: center;
+    }
+}
 
 /*LES POPUPS*/
 .hide{
     visibility: hidden;
     display: none;
-}
-
-/*Le fond noir de la popup*/
-.popup_overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.85);
-    display: flex;
-    padding: 0 5rem 0 5rem;
-}
-
-/*L'image et les infos*/
-.popup_content_container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 80%;
-    box-sizing: content-box;
-    max-height: 90vh;
-    margin: auto;
 }
 
 /* La flèche pour passer à l'image précédente ou suivante*/
@@ -52,49 +221,12 @@
     text-decoration: none;
 }
 
-/*Les infos*/
-.popup_info{
-    /*background-color: rgb(166, 77, 255);*/
-    color: white;
-    max-width: 50%;
-    min-width: 30%;
-    height: 100%;
-    max-height: 90vh;
-    padding-left: 3rem;
-    align-items: center;
-}
-
-/*L'image*/
-.popup_image_container {
-    /*background-color: orange;*/
-    position : relative;
-    box-sizing: content-box;
-    /*height: 100%;*/
-    max-height: 90vh;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    justify-content: flex-start;
-
-}
-.popup_image{
-    position : relative;
-    max-height: 90vh;
-    max-width: 100%;
-    object-fit: contain;
-    top: 0;
-    right: 0;
-}
-
 /* Bouton pour fermer la popup*/
 .popup_close {
-    position: absolute;
-    top: 20px;
+    position: fixed;
+    top: 30px;
     right: 30px;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
     text-decoration: none;
     color: #ffffff;

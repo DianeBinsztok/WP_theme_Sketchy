@@ -7,18 +7,18 @@ $args = array(
     'post_type' => 'artwork',
     'post_status' => 'publish',
     'orderby' => 'rand',
+    'posts_per_page' => -1
 );
 $artworks_query = new WP_Query($args);
 
 // Parcourir les résultats
 if ($artworks_query->have_posts()) {
-
     // Récupérer les propriétés de chaque artwork
     $artworks = [];
     // Pour l'ordre d'affichage des images
     $indexInLoop = 1;
-    while (have_posts()) {
-        the_post();
+    while ($artworks_query->have_posts()) {
+        $artworks_query->the_post();
         $post = get_post();
         $artwork = [
             "id" => $post->ID,
@@ -38,7 +38,7 @@ if ($artworks_query->have_posts()) {
     // Affichage en deux parties : les images et les popups. Chaque image est cliquable et déclenche une popup qui affichera des propriétés en plus : le titre, l'année, les techniques, etc.
 
     // Les images
-    echo "<section id='gallery_clickable-artworks' class='no-scroll'>";
+    echo "<section id='gallery_clickable-artworks'>";
     foreach ($artworks as $artwork) {
         echo "<img class='opens-" . $artwork['indexInLoop'] . " clickable-artwork' id ='" . esc_attr($artwork['slug'] . "-" . $artwork['id']) . "' src='" . esc_url($artwork['image']) . "' alt='" . esc_attr($artwork['title']) . "'/>";
     }
@@ -72,7 +72,7 @@ if ($artworks_query->have_posts()) {
         echo "<div class='popup_info popup_content'/>";
 
         // Titre
-        echo "<h2 class='popup_content'>" . $artwork['title'] . "</h2>";
+        echo "<h2 class='popup_title popup_content'>" . $artwork['title'] . "</h2>";
 
         // Année de réalisation
         echo "<p class='popup_content'>" . $artwork['year'] . "</p>";

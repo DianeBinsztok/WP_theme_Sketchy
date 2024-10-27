@@ -5,7 +5,6 @@ window.onload = function() {
     // 1 - Au clic sur une vignette, afficher la popup ciblée
 
     // Les images visibles : 
-    let clickableArtworksGallery = document.getElementById("gallery_clickable-artworks");
     let clickableArtworks = Array.from(document.getElementsByClassName("clickable-artwork"));
 
     // Pour toutes les images cliquables :
@@ -71,8 +70,8 @@ function closePopup(popup){
 // 3 - Empêcher ou rétablir le scroll de l'arrière-plan
 function changeBackGroundScroll(directive){
     if(directive === "scroll"){
-        document.styleSheets[0].deleteRule("body { overflow: hidden }");
+        document.styleSheets[0].deleteRule("body:not(.popup_overlay) { overflow: hidden }");
     }else if(directive === "no-scroll"){
-        document.styleSheets[0].insertRule("body { overflow: hidden }", 0)
+        document.styleSheets[0].insertRule("body:not(.popup_overlay) { overflow: hidden }", 0)
     }
 }

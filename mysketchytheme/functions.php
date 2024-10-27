@@ -10,6 +10,8 @@ require_once(get_stylesheet_directory() . '/functions/register-CPT-artwork.php')
 add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
 function theme_enqueue_styles()
 {
+    wp_enqueue_style('global-style', get_template_directory_uri() . '/styles/global.css');
+
     if (is_archive()) {
         wp_enqueue_style('archive-artworks-style', get_template_directory_uri() . '/styles/archive-artwork.css');
     }

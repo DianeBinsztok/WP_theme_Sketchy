@@ -1,0 +1,43 @@
+body{
+    background-color: rgb(230, 223, 215);
+}
+
+/* Très petits écrans (600px et moins) */
+@media only screen and (max-width: 600px) {
+    header,main, footer{
+        width: 100%;
+        margin: auto;
+    }
+}
+
+/* Petits écrans (tablettes en format portrait et grands smartphones, 600px et plus) */
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+    header,main, footer{
+        width: 95%;
+        margin: auto;
+    }
+}
+
+/* Écrans moyens (Tablettes en format paysage, 768px et plus) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    header,main, footer{
+        width: 85%;
+        margin: auto;
+    }
+}
+
+/* Grands écrans (laptops et desktops, 992px et plus) */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    header,main, footer{
+        width: 70%;
+        margin: auto;
+    }
+}
+
+/* Écrans extra larges (1200px et plus) */
+@media only screen and (min-width: 1200px) {
+    header,main, footer{
+        width: 65%;
+        margin: auto;
+    }
+}
