@@ -75,29 +75,33 @@ if ($artworks_query->have_posts()) {
         echo "<h2 class='popup_title popup_content'>" . $artwork['title'] . "</h2>";
 
         // Année de réalisation
-        echo "<p class='popup_content'>" . $artwork['year'] . "</p>";
+        echo "<p class='popup_year popup_content'>" . $artwork['year'] . "</p>";
 
         // Court descriptif
-        echo "<p class='popup_content'>" . $artwork['excerpt'] . "</p>";
+        echo "<p class='popup_excerpt popup_content'>" . $artwork['excerpt'] . "</p>";
 
         // Techniques
         if ($artwork['techniques']) {
-            echo "<h3 class='popup_content'>Techniques</h3>";
-            echo "<p class='popup_content'>";
+            echo "<div class='popup_bloc popup_content'>";
+            echo "<h3 class='popup_bloc_title popup_content'>Techniques</h3>";
+            echo "<p>";
             foreach ($artwork['techniques'] as $technique) {
                 echo $technique . " ";
             }
             echo "</p>";
+            echo "</div>";
         }
 
         // Tags
         if ($artwork['tags']) {
-            echo "<h3 class='popup_content'>Tags</h3>";
-            echo "<p class='popup_content'>";
+            echo "<div class='popup_bloc popup_content'>";
+            echo "<h3 class='popup_bloc_title'>Tags</h3>";
+            echo "<p>";
             foreach ($artwork['tags'] as $tag) {
                 echo $tag->name . " ";
             }
             echo "</p>";
+            echo "</div>";
         }
         // Fermer popup_info
         echo "</div>";

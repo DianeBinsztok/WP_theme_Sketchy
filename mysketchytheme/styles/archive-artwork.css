@@ -231,3 +231,30 @@
     text-decoration: none;
     color: #ffffff;
 }
+
+/*LE CONTENU*/
+/*Le titre*/
+.popup_title{
+    font-size: 2.3em;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+/*L'année*/
+.popup_year{
+    font-size: 2em;
+    font-weight: bold;
+}
+/*Le texte*/
+.popup_content p{
+    font-size: 1.2em;
+    line-height: 1.5em;
+}
+/*Les bloc techniques et tags*/
+.popup_bloc{
+    margin: 3rem 0;
+}
+.popup_bloc_title{
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: -0.6rem;
+}

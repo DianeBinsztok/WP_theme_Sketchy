@@ -47,6 +47,37 @@ window.onload = function() {
                 }
             });
         }
+
+        /* TEST */
+        // Pour toutes les popups :
+        for(let popup of popups){
+
+            // Au swipe,
+            
+            let next = popup.addEventListener("touchmove", (event)=>{     
+
+                    // Repérer la popup suivante ou précédente avec l'id "goto-" sur la flèche
+
+                    //event.preventDefault();
+                    //event.stopImmediatePropagation();
+                    //event.stopPropagation();
+                   
+                    let popupId = parseInt(popup.id);
+                    let targetedPopupId = popupId +=1;
+                    //console.log(targetedPopupId);
+
+                    console.log(event);
+                    // Afficher la popup ciblée et fermer toutes les autres
+                    //displayTargetedPopupAndHideOthers(targetedPopupId, popups);
+                
+            });
+            /*
+            popup.ontouchmove = (event)=>{
+                console.log(event);
+            }
+            */
+        }
+        /* TEST - FIN */
 }
 
 // II - LES FONCTIONS
