@@ -7,7 +7,7 @@ $args = array(
     'post_type' => 'artwork',
     'post_status' => 'publish',
     'orderby' => 'rand',
-    'posts_per_page' => -1
+    'posts_per_page' => -1,
 );
 $artworks_query = new WP_Query($args);
 
@@ -29,7 +29,8 @@ if ($artworks_query->have_posts()) {
             "slug" => $post->post_name,
             "excerpt" => $post->post_excerpt,
             "techniques" => get_post_meta($post->ID, "artwork_techniques", true),
-            "tags" => get_the_tags()
+            "tags" => get_the_tags(),
+            "categories" => get_the_terms($post, "category")
         ];
         array_push($artworks, $artwork);
         $indexInLoop++;
@@ -40,7 +41,19 @@ if ($artworks_query->have_posts()) {
     // Les images
     echo "<section id='gallery_clickable-artworks'>";
     foreach ($artworks as $artwork) {
-        echo "<img class='opens-" . $artwork['indexInLoop'] . " clickable-artwork' id ='" . esc_attr($artwork['slug'] . "-" . $artwork['id']) . "' src='" . esc_url($artwork['image']) . "' alt='" . esc_attr($artwork['title']) . "'/>";
+        //var_dump($artwork["categories"][0]->name);
+        echo "<div class='clickable-artwork'>";
+
+        /* En version desktop : les informations qui apparaissent au survol de la souris*/
+        echo "<img id ='" . esc_attr($artwork['slug'] . "-" . $artwork['id']) . "' src='" . esc_url($artwork['image']) . "' alt='" . esc_attr($artwork['title']) . "'/>";
+
+        /* En version desktop : les informations qui apparaissent au survol de la souris. Portent aussi la class 'open-', pour ouvrir la poupu en cas de clic sur le texte*/
+        echo "<div class='opens-" . $artwork['indexInLoop'] . " artwork_overlay'>";
+        echo "<p class='opens-" . $artwork['indexInLoop'] . " artwork_title'>" . $artwork['title'] . "</p>";
+        echo "<p class='opens-" . $artwork['indexInLoop'] . " artwork_year'>" . $artwork['year'] . "</p>";
+        echo "</div>";
+
+        echo "</div>";
     }
     echo "</section>";
 
@@ -54,7 +67,6 @@ if ($artworks_query->have_posts()) {
 
         // popup_close : pour fermer la popup
         echo "<div class='popup_close'>&times;</div>";
-
         // popup_arrow : pour passer à l'image précédente dans la galerie
         echo "<div id='goto-" . ($artwork['indexInLoop'] - 1) . "' class='popup_arrow popup_content'>&lt;</div>";
 
@@ -84,9 +96,21 @@ if ($artworks_query->have_posts()) {
         if ($artwork['techniques']) {
             echo "<div class='popup_bloc popup_content'>";
             echo "<h3 class='popup_bloc_title popup_content'>Techniques</h3>";
-            echo "<p>";
+            echo "<p class='popup_content'>";
             foreach ($artwork['techniques'] as $technique) {
                 echo $technique . " ";
+            }
+            echo "</p>";
+            echo "</div>";
+        }
+
+        // Techniques
+        if ($artwork['categories']) {
+            echo "<div class='popup_bloc popup_content'>";
+            echo "<h3 class='popup_bloc_title popup_content'>Catégories</h3>";
+            echo "<p class='popup_content'>";
+            foreach ($artwork['categories'] as $category) {
+                echo $category->name . " ";
             }
             echo "</p>";
             echo "</div>";
@@ -95,8 +119,8 @@ if ($artworks_query->have_posts()) {
         // Tags
         if ($artwork['tags']) {
             echo "<div class='popup_bloc popup_content'>";
-            echo "<h3 class='popup_bloc_title'>Tags</h3>";
-            echo "<p>";
+            echo "<h3 class='popup_bloc_title popup_content'>Tags</h3>";
+            echo "<p class='popup_content'>";
             foreach ($artwork['tags'] as $tag) {
                 echo $tag->name . " ";
             }

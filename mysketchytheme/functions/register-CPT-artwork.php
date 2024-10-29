@@ -57,6 +57,19 @@ function artwork_custom_post_type()
 }
 add_action('init', 'artwork_custom_post_type', 0);
 
+// TEST - CREER UNE URL POUR LES CATÉGORIES : sketchy/artworks/nom-de-categorie
+function add_artwork_category_to_permalink($post_link, $post)
+{
+    if ($post->post_type === 'artwork') {
+        $terms = wp_get_post_terms($post->ID, 'category');
+        if ($terms && !is_wp_error($terms)) {
+            $post_link = str_replace('%category%', $terms[0]->slug, $post_link);
+        }
+    }
+    return $post_link;
+}
+add_filter('post_type_link', 'add_artwork_category_to_permalink', 10, 2);
+// TEST - FIN
 
 // II - AJOUT DES CHAMPS DU CPT
 // 1 - Année de réalisation

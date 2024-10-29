@@ -10,7 +10,7 @@
         column-gap: 0.4rem;
     }
     /*LES VIGNETTES CLIQUABLES*/
-    .clickable-artwork{
+    .clickable-artwork img{
         width: 100%;
         display: block;
         margin-bottom: 0.4rem;
@@ -84,7 +84,7 @@
         row-gap: 0.6rem;
     }
     /*LES VIGNETTES CLIQUABLES*/
-    .clickable-artwork{
+    .clickable-artwork img{
         width: 100%;
         display: block;
         margin-bottom: 0.6rem;
@@ -157,7 +157,7 @@
         row-gap: 1rem;
     }
     /*LES VIGNETTES CLIQUABLES*/
-    .clickable-artwork{
+    .clickable-artwork img{
         width: 100%;
         display: block;
         margin-bottom: 1rem;
@@ -232,7 +232,52 @@
     color: #ffffff;
 }
 
-/*LE CONTENU*/
+/*LA GALERIE : LES IMAGES CLIQUABLES*/
+.artwork_overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    /*Apparaîtra au hover sur le conteneur*/
+    transition: .5s ease;
+    background-color: rgba(0, 0, 0, 0.85);
+    /*Disposer le texte*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.artwork_overlay p{
+    color: #ffffff;
+    text-align: center;
+    display: block;
+}
+/*Dans l'overlay : le titre et l'année*/
+.artwork_title{
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1.4em;
+}
+/*Dans l'overlay : le titre*/
+.artwork_year{
+    font-size: 1.2em;
+}
+.clickable-artwork{
+    position: relative;
+}
+.clickable-artwork:hover .artwork_overlay {
+    opacity: 1;
+}
+.clickable-artwork:hover{
+    cursor: pointer;
+}
+
+
+/*LE CONTENU DE LA POPUP*/
 /*Le titre*/
 .popup_title{
     font-size: 2.3em;

@@ -5,12 +5,14 @@ window.onload = function() {
     // 1 - Au clic sur une vignette, afficher la popup ciblée
 
     // Les images visibles : 
-    let clickableArtworks = Array.from(document.getElementsByClassName("clickable-artwork"));
-
+    //let clickableArtworks = Array.from(document.getElementsByClassName("clickable-artwork"));
+    let clickableArtworks = Array.from(document.getElementsByClassName("artwork_overlay"));
+    
     // Pour toutes les images cliquables :
     for(let artwork of clickableArtworks){
         // Au clic sur chaque image,
         artwork.addEventListener("click", (event)=>{
+            console.log(event.target);
             // Repérer la popup avec l'id correspondant (mentionné dans la classe 'opens-')
             targetedPopupId = event.target.classList[0].split("opens-").pop();
             // Afficher la popup ciblée et fermer toutes les autres
