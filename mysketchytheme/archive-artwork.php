@@ -160,7 +160,7 @@ if ($artworks_query->have_posts()) {
         echo "<h2 class='popup_title popup_content'>" . $artwork['title'] . "</h2>";
 
         // Année de réalisation
-        echo "<p class='popup_year popup_content'>" . $artwork['year'] . "</p>";
+        echo "<a class='popup_year popup_content' href='" . site_url('/artworks/?annee=' . $artwork['year']) . "'>" . $artwork['year'] . "</a>";
 
         // Court descriptif
         echo "<p class='popup_excerpt popup_content'>" . $artwork['excerpt'] . "</p>";
@@ -171,19 +171,19 @@ if ($artworks_query->have_posts()) {
             echo "<h3 class='popup_bloc_title popup_content'>Techniques</h3>";
             echo "<p class='popup_content'>";
             foreach ($artwork['techniques'] as $technique) {
-                echo $technique . " ";
+                echo "<a href=" . site_url('/artworks/?techniques=' . $technique) . ">" . $technique . "</a> ";
             }
             echo "</p>";
             echo "</div>";
         }
 
-        // Techniques
+        // Catégories
         if ($artwork['categories']) {
             echo "<div class='popup_bloc popup_content'>";
             echo "<h3 class='popup_bloc_title popup_content'>Catégories</h3>";
             echo "<p class='popup_content'>";
             foreach ($artwork['categories'] as $category) {
-                echo $category->name . " ";
+                echo "<a href=" . site_url('/artworks/?categorie=' . $category->slug) . ">" . $category->name . "</a> ";
             }
             echo "</p>";
             echo "</div>";
@@ -195,7 +195,8 @@ if ($artworks_query->have_posts()) {
             echo "<h3 class='popup_bloc_title popup_content'>Tags</h3>";
             echo "<p class='popup_content'>";
             foreach ($artwork['tags'] as $tag) {
-                echo $tag->name . " ";
+                //echo $tag->name . " ";
+                echo "<a href=" . site_url('/artworks/?tags=' . $tag->slug) . ">" . $tag->name . "</a> ";
             }
             echo "</p>";
             echo "</div>";
