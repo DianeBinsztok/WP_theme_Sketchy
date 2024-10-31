@@ -2,6 +2,7 @@
 
 get_header();
 
+// I - LES ARGUMENTS DE LA QUERY, EN FONCTION DE PARAMÈTRES D'URL
 // La requête
 $args = array(
     'post_type' => 'artwork',
@@ -9,8 +10,81 @@ $args = array(
     'orderby' => 'rand',
     'posts_per_page' => -1,
 );
+// Si l'url contient un paramètre dynamique
+if ($_GET) {
+
+    $query_key = array_keys($_GET)[0];
+    $query_slug = $_GET[$query_key];
+
+    if ($query_key) {
+        $args = match ((string) $query_key) {
+            "categorie" => array(
+                'post_type' => 'artwork',
+                'post_status' => 'publish',
+                'orderby' => 'rand',
+                'posts_per_page' => -1,
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'category',
+                        'field' => 'slug',
+                        'terms' => $query_slug,
+                    ),
+                ),
+            ),
+            "tags" => array(
+                'post_type' => 'artwork',
+                'post_status' => 'publish',
+                'orderby' => 'rand',
+                'posts_per_page' => -1,
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'post_tag',
+                        'field' => 'slug',
+                        'terms' => $query_slug,
+                    ),
+                ),
+            ),
+            "annee" => $args = array(
+                'post_type' => 'artwork',
+                'post_status' => 'publish',
+                'orderby' => 'rand',
+                'posts_per_page' => -1,
+                'meta_query' => array(
+                    array(
+                        'key' => 'artwork_year',
+                        'value' => $query_slug,
+                        'compare' => '='
+                    )
+                )
+            ),
+            "techniques" => $args = array(
+                'post_type' => 'artwork',
+                'post_status' => 'publish',
+                'orderby' => 'rand',
+                'posts_per_page' => -1,
+                'meta_query' => array(
+                    array(
+                        'key' => 'artwork_techniques',
+                        'value' => $query_slug,
+                        'compare' => 'LIKE'
+                    )
+                )
+            ),
+            default => $args = array(
+                'post_type' => 'artwork',
+                'post_status' => 'publish',
+                'orderby' => 'rand',
+                'posts_per_page' => -1,
+            ),
+        };
+    }
+}
+
+// II - LA QUERY
 $artworks_query = new WP_Query($args);
 
+
+// III - LE TEMPLATE
 // Parcourir les résultats
 if ($artworks_query->have_posts()) {
     // Récupérer les propriétés de chaque artwork
@@ -41,7 +115,6 @@ if ($artworks_query->have_posts()) {
     // Les images
     echo "<section id='gallery_clickable-artworks'>";
     foreach ($artworks as $artwork) {
-        //var_dump($artwork["categories"][0]->name);
         echo "<div class='clickable-artwork'>";
 
         /* En version desktop : les informations qui apparaissent au survol de la souris*/
