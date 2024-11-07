@@ -156,24 +156,33 @@ if ($artworks_query->have_posts()) {
         // popup_info : les infos
         echo "<div class='popup_info popup_content'/>";
 
+        // bloc 1 : titre, année de réalisation et excerpt
+        echo "<div class='popup_head_bloc'>";
+
         // Titre
         echo "<h2 class='popup_title popup_content'>" . $artwork['title'] . "</h2>";
 
         // Année de réalisation
-        echo "<a class='popup_year popup_content' href='" . site_url('/artworks/?annee=' . $artwork['year']) . "'>" . $artwork['year'] . "</a>";
+        echo "<a class='popup_filter_link popup_year popup_content' href='" . site_url('/artworks/?annee=' . $artwork['year']) . "'>" . displaySvg("year") . " " . $artwork['year'] . "</a>";
 
         // Court descriptif
         echo "<p class='popup_excerpt popup_content'>" . $artwork['excerpt'] . "</p>";
 
+        // Fermer bloc 1
+        echo "</div>";
+
         // Techniques
         if ($artwork['techniques']) {
+
             echo "<div class='popup_bloc popup_content'>";
+
             echo "<h3 class='popup_bloc_title popup_content'>Techniques</h3>";
             echo "<p class='popup_content'>";
             foreach ($artwork['techniques'] as $technique) {
-                echo "<a href=" . site_url('/artworks/?techniques=' . $technique) . ">" . $technique . "</a> ";
+                echo "<a class='popup_filter_link' href=" . site_url('/artworks/?techniques=' . $technique) . ">" . displaySvg("techniques") . " " . $technique . "</a> ";
             }
             echo "</p>";
+
             echo "</div>";
         }
 
@@ -183,7 +192,8 @@ if ($artworks_query->have_posts()) {
             echo "<h3 class='popup_bloc_title popup_content'>Catégories</h3>";
             echo "<p class='popup_content'>";
             foreach ($artwork['categories'] as $category) {
-                echo "<a href=" . site_url('/artworks/?categorie=' . $category->slug) . ">" . $category->name . "</a> ";
+                echo "<a class='popup_filter_link' href=" . site_url('/artworks/?categorie=' . $category->slug) . ">" . displaySvg("categories") . " " . $category->name . "</a> ";
+
             }
             echo "</p>";
             echo "</div>";
@@ -195,8 +205,7 @@ if ($artworks_query->have_posts()) {
             echo "<h3 class='popup_bloc_title popup_content'>Tags</h3>";
             echo "<p class='popup_content'>";
             foreach ($artwork['tags'] as $tag) {
-                //echo $tag->name . " ";
-                echo "<a href=" . site_url('/artworks/?tags=' . $tag->slug) . ">" . $tag->name . "</a> ";
+                echo "<a class='popup_filter_link' href=" . site_url('/artworks/?tags=' . $tag->slug) . ">" . displaySvg("tags") . " " . $tag->name . "</a> ";
             }
             echo "</p>";
             echo "</div>";

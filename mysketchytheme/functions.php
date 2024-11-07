@@ -5,6 +5,8 @@ add_theme_support('post-thumbnails');
 
 // Prendre en compte le type de contenu personnalisé: Artisan
 require_once(get_stylesheet_directory() . '/functions/register-CPT-artwork.php');
+require_once(get_stylesheet_directory() . '/functions/display-svg.php');
+
 
 // Les styles
 add_action('wp_enqueue_scripts', 'theme_enqueue_styles');

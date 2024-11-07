@@ -15,28 +15,19 @@
         display: block;
         margin-bottom: 0.4rem;
     }
+        
     /*LE FOND NOIR DE LA POPUP*/
     .popup_overlay {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.85);
-        display: flex;
-        padding: 1rem;
-        overflow: scroll!important;
+        padding: 0;
+        background-color: rgb(25, 25, 25);
     }
+    
     /*L'IMAGE ET LES INFOS'*/
     .popup_content_container {
-        position: relative;
-        display: flex;
         flex-direction: column;
-        width: 100%;
-        box-sizing:border-box;
-        max-height: 80vh;
-        margin: auto;
+        /*box-sizing:border-box;*/
     }
+
     /*LE CONTENEUR DE L'IMAGE*/
     .popup_image_container {
         /*background-color: rgb(217, 255, 0);*/
@@ -57,7 +48,6 @@
     }
     /*LES INFOS*/
     .popup_info{
-        color: white;
         width: 90%;
         height: 100%;
         max-height: 90vh;
@@ -67,15 +57,15 @@
     .popup_title{
         text-align: center;
     }
-    /* PAS DE FLECHE EN VERSION MOBILE*/
+    /* FLECHE*/
     .popup_arrow {
-        visibility: hidden;
+        font-size: 1rem;
     }
 }
 
 
 /* ÉCRANS MOYENS (tablettes en format portrait et grands smartphones, 600px et plus) */
-@media only screen and (min-width: 601px)and (max-width: 991px) {
+@media only screen and (min-width: 601px)and (max-width: 994px) {
 
     /*LA GALERIE*/
     #gallery_clickable-artworks{
@@ -91,34 +81,22 @@
     }
     /*LE FOND NOIR DE LA POPUP*/
     .popup_overlay {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.85);
-        display: flex;
         padding: 2rem;
-        overflow: scroll!important;
+        background-color: rgba(0, 0, 0, 0.45);
+    }
+    /* FLECHE*/
+    .popup_arrow {
+        font-size: 1.5rem;
     }
     /*L'IMAGE ET LES INFOS'*/
     .popup_content_container {
-        /*background: rgba(255, 41, 41, 0.85);*/
-        position: relative;
-        display: flex;
         flex-direction: column;
         align-items: center;
-        width: 90%;
-        box-sizing: content-box;
-        /*max-height: 90vh;*/
-        margin: auto;
+        /*box-sizing: content-box;*/
     }
     /*LE CONTENEUR DE L'IMAGE*/
     .popup_image_container {
-        /*background-color: rgb(217, 255, 0);*/
         position : relative;
-        box-sizing: content-box;
-        max-height: 90vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -128,18 +106,15 @@
      .popup_image{
         position : relative;
         width: 100%;
-        max-height: 90vh;
-        object-fit: contain;
+        height: 100%;
     }
     /*LES INFOS*/
     .popup_info{
-        color: white;
         width: 100%;
-        height: 100%;
         align-items: center;
         box-sizing: border-box;
-        width: fit-content; 
     }
+
     /*Le titre*/
     .popup_title{
         text-align: center;
@@ -148,7 +123,7 @@
 
 
 /* GRANDS ÉCRANS (laptops et desktops, 992px et plus) */
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 995px) {
 
     /*LA GALERIE*/
     #gallery_clickable-artworks{
@@ -164,61 +139,33 @@
     }
     /*LE FOND NOIR DE LA POPUP*/
     .popup_overlay {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.85);
-        display: flex;
-        padding: 0 5rem 0 5rem;
-        overflow: scroll!important;
+        background-color: rgba(0, 0, 0, 0.45);
+        padding: 3rem;
+    }
+    /* FLECHE*/
+    .popup_arrow {
+        font-size: 3rem;
     }
     /*L'IMAGE ET LES INFOS'*/
     .popup_content_container {
-        position: relative;
-        display: flex;
         justify-content: center;
-        width: 80%;
-        box-sizing: content-box;
-        max-height: 90vh;
-        margin: auto;
+        height: 100%;
+        border-radius: 10px;
     }
      /*L'IMAGE*/
-    .popup_image{
-        position : relative;
-        max-height: 90vh;
-        max-width: 100%;
-        object-fit: contain;
-        top: 0;
-        right: 0;
+    .popup_image_container{
+        text-align: center;
+        width: 70%;
     }
+
     /*LES INFOS*/
     .popup_info{
-        color: white;
-        max-width: 50%;
-        min-width: 30%;
         height: 100%;
-        max-height: 90vh;
-        padding-left: 3rem;
-        align-items: center;
+        top: 0;
+        width:30%;
+        border-left: 1px solid grey;
+        overflow-y: scroll;
     }
-}
-
-/*LES POPUPS*/
-.hide{
-    visibility: hidden;
-    display: none;
-}
-
-/* La flèche pour passer à l'image précédente ou suivante*/
-.popup_arrow {
-    font-size: 3rem;
-    color: #ffffff;
-    font-family: Tahoma, Arial, sans-serif;
-    margin-top: auto;
-    margin-bottom: auto;
-    text-decoration: none;
 }
 
 /* Bouton pour fermer la popup*/
@@ -242,9 +189,9 @@
     height: 100%;
     width: 100%;
     opacity: 0;
+    background-color: rgba(0, 0, 0, 0.85);
     /*Apparaîtra au hover sur le conteneur*/
     transition: .5s ease;
-    background-color: rgba(0, 0, 0, 0.85);
     /*Disposer le texte*/
     display: flex;
     flex-direction: column;
@@ -256,6 +203,7 @@
     text-align: center;
     display: block;
 }
+
 /*Dans l'overlay : le titre et l'année*/
 .artwork_title{
     font-size: 1.5em;
@@ -276,8 +224,80 @@
     cursor: pointer;
 }
 
+/*LA POPUP*/
+
+/*LE FOND NOIR DE LA POPUP*/
+.popup_overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    vertical-align: middle;
+    margin: auto;
+    overflow: scroll!important;
+}
+.popup_content_container{
+    position: relative;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    background-color: rgb(25, 25, 25);
+}
+.hide{
+    visibility: hidden;
+    display: none;
+}
+
+/* La flèche pour passer à l'image précédente ou suivante*/
+.popup_arrow {
+    color: #ffffff;
+    font-family: Tahoma, Arial, sans-serif;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-decoration: none;
+}
+
+    /*L'IMAGE*/
+.popup_image_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.popup_image{
+    max-width: 95%;
+    max-height: 95%;
+}
+/*Les blocs de contenu : tags, categories, techniques*/
+
+
+/*Les liens qui mènent à la galerie filtrée*/
+.popup_filter_link, .popup_close, .popup_arrow{
+    color: #ffffff;
+    display: inline-block;
+    text-align: center;
+    align-items: baseline;
+    box-sizing: content-box;
+    border: 1px solid #ffffff23;
+    border-radius: 7px;
+    padding: 0.3rem 0.6rem;
+    text-decoration: none;
+}
+.popup_filter_link:hover, .popup_close:hover, .popup_arrow:hover{
+    background-color: #ffffff33;
+}
+.popup_filter_link svg{
+    margin-right: 1rem;
+}
 
 /*LE CONTENU DE LA POPUP*/
+.popup_info{
+    color: white;
+    height: 100%;
+    padding: 0 2rem;
+}
 /*Le titre*/
 .popup_title{
     font-size: 2.3em;
@@ -295,11 +315,13 @@
     line-height: 1.5em;
 }
 /*Les bloc techniques et tags*/
-.popup_bloc{
-    margin: 3rem 0;
-}
+
 .popup_bloc_title{
     font-size: 1.2em;
     font-weight: bold;
-    margin-bottom: -0.6rem;
+    margin-bottom: 1rem;
+}
+
+.popup_bloc{
+    border-top: 1px solid grey;
 }
