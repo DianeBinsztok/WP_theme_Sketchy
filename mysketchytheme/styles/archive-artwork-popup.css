@@ -1,0 +1,239 @@
+/*I - GLOBAL*/
+.hide{
+    visibility: hidden;
+    display: none;
+}
+/*LE FOND NOIR DE LA POPUP*/
+.popup_overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    overflow: scroll!important;
+}
+
+/* Bouton pour fermer la popup*/
+.popup_close {
+    position: fixed;
+    z-index: 3;
+    top: 0.6rem;
+    right: 0.6rem;
+    font-size: 40px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.popup_content_container{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.popup_nav{
+    width: 3rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.popup_arrow{
+    position: fixed;
+    text-align: center;
+    top:50%;
+    z-index: 3;
+    font-size: 40px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.popup_content{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+/*L'IMAGE*/
+.popup_image_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    height: 100%;
+}
+
+.popup_image{
+    max-width: 95%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.popup_info{
+    height: 100%;
+    color: #ffffff;
+}
+
+/*Les blocs de contenu : tags, categories, techniques*/
+.popup_bloc{
+    margin: 3rem 0;
+}
+/*Les liens qui mènent à la galerie filtrée*/
+
+.popup_filter_link, .popup_close{
+    color: #ffffff;
+    display: inline-block;
+    text-align: center;
+    align-items: baseline;
+    box-sizing: content-box;
+    border: 1px solid #ffffff23;
+    border-radius: 7px;
+    padding: 0.2rem 0.5rem;
+    text-decoration: none;
+}
+
+.popup_filter_link svg{
+    margin-right: 0.7rem;
+    margin-top: 0.3rem;
+}
+
+/*LE CONTENU DE LA POPUP*/
+.popup_info{
+    color: white;
+    height: 100%;
+    padding: 0 2rem;
+}
+
+/*L'année*/
+.popup_year{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+/*Les bloc techniques et tags*/
+.popup_bloc_title{
+    font-weight: bold;
+    margin-bottom: 1rem;
+    background-color: rgb(25, 25, 25);
+    width:fit-content;
+    padding:0 1rem;  
+    margin-top: -1.3rem;
+}
+
+.popup_bloc{
+    margin-top: 2.5rem;
+    border-top: 1px solid grey;
+}
+.popup_title{
+    font-size: 2em;
+}
+.popup_excerpt{
+    line-height: 2em;
+}
+.popup_bloc_title{
+    font-family: 'Roboto'!important;
+    font-size: 1.5rem;
+}
+
+
+/*II - MEDIA QUERIES*/
+/*1 - MOBILES VERTICAUX*/
+@media only screen and (max-width: 430px) {
+    .popup_overlay{
+        background-color: rgb(25, 25, 25);
+    }
+    .popup_content_container{
+        margin-top: 1rem;
+        align-items: center;        
+        height: 100%;
+        width: 100%;
+    }
+    .popup_content{
+        flex-direction: column;
+    }
+    .popup_info{
+        padding: 0 1.5rem;
+    }
+    
+    .popup_title{
+        text-align: center;
+    }
+}
+
+/*2 - MOBILES HORIZONTAUX*/
+@media only screen and (max-height : 430px){
+    .popup_overlay{
+        background-color: rgb(25, 25, 25);
+    }
+    .popup_content_container{
+        height: 100%;
+        width: 100%;
+    }
+    /*L'IMAGE*/
+    .popup_image_container{
+        width: 50%;
+    }
+
+    .popup_info{
+        width: 50%;
+        overflow-y: scroll;
+        border-left: 1px solid grey;
+        padding: 0 1.5rem;
+    }
+}
+
+/*3 - TABLETTES VERTICALES*/
+@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 999px) {
+    .popup_overlay{
+        background-color: rgba(25, 25, 25);
+    }
+    .popup_content_container{
+        align-items: flex-start;
+        height: 100%;
+        width: 100%;
+    }
+    .popup_content{
+        flex-direction: column;
+    }
+    .popup_info{
+        padding: 0 2rem;
+    }
+    .popup_title{
+        text-align: center;
+    }
+}
+
+/*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
+@media only screen and (min-width : 1000px) {
+    .popup_overlay {
+        background-color: rgba(25, 25, 25, 0.50);
+        padding: 4rem;
+        align-items: center;
+    }
+
+    .popup_content_container{
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+    .popup_content{
+        background-color: rgba(25, 25, 25);
+        border-radius: 10px;
+    }
+
+    /*Répartir popup_content entre l'image à gauche et les infos à droite*/
+    .popup_image-container{
+        width: 70%;
+    }
+    .popup_info{
+        width: 30%;
+        overflow-y: scroll;
+        border-left: 1px solid grey;
+        padding: 3rem;
+    }
+    .popup_filter_link:hover, .popup_close:hover, .popup_arrow:hover{
+        background-color: #ffffff33;
+    }
+}

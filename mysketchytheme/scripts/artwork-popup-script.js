@@ -2,14 +2,16 @@
 
 window.onload = function() {
 
+
     // 1 - Au clic sur une vignette, afficher la popup ciblée
 
     // Les images visibles : 
     //let clickableArtworks = Array.from(document.getElementsByClassName("clickable-artwork"));
     let clickableArtworks = Array.from(document.getElementsByClassName("artwork_overlay"));
-    
+
     // Pour toutes les images cliquables :
     for(let artwork of clickableArtworks){
+
         // Au clic sur chaque image,
         artwork.addEventListener("click", (event)=>{
             console.log(event.target);
@@ -51,6 +53,7 @@ window.onload = function() {
         }
 
         /* TEST */
+        /*
         // Pour toutes les popups :
         for(let popup of popups){
 
@@ -73,12 +76,8 @@ window.onload = function() {
                     //displayTargetedPopupAndHideOthers(targetedPopupId, popups);
                 
             });
-            /*
-            popup.ontouchmove = (event)=>{
-                console.log(event);
-            }
-            */
         }
+        */
         /* TEST - FIN */
 }
 

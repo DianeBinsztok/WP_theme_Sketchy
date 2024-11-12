@@ -1,185 +1,10 @@
-/*LA GALERIE*/
-/*GLOBAL*/
-
-/* PETITS ÉCRANS (600px et moins) */
-@media only screen and (max-width: 600px) {
-
-    /*LA GALERIE*/
-    #gallery_clickable-artworks{
-        column-count: 2;
-        column-gap: 0.4rem;
-    }
-    /*LES VIGNETTES CLIQUABLES*/
-    .clickable-artwork img{
-        width: 100%;
-        display: block;
-        margin-bottom: 0.4rem;
-    }
-        
-    /*LE FOND NOIR DE LA POPUP*/
-    .popup_overlay {
-        padding: 0;
-        background-color: rgb(25, 25, 25);
+/*I - GLOBAL*/
+    /*Positionner les vignettes par rapport à l'overlay*/
+    .clickable-artwork{
+        position: relative;
     }
     
-    /*L'IMAGE ET LES INFOS'*/
-    .popup_content_container {
-        flex-direction: column;
-        /*box-sizing:border-box;*/
-    }
-
-    /*LE CONTENEUR DE L'IMAGE*/
-    .popup_image_container {
-        /*background-color: rgb(217, 255, 0);*/
-        position : relative;
-        box-sizing: content-box;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    /*L'IMAGE*/
-    .popup_image{
-        position : relative;
-        max-height: 90vh;
-        max-width: 100%;
-        object-fit: contain;
-    }
-    /*LES INFOS*/
-    .popup_info{
-        width: 90%;
-        height: 100%;
-        max-height: 90vh;
-        align-items: center;
-    }
-    /*Le titre*/
-    .popup_title{
-        text-align: center;
-    }
-    /* FLECHE*/
-    .popup_arrow {
-        font-size: 1rem;
-    }
-}
-
-
-/* ÉCRANS MOYENS (tablettes en format portrait et grands smartphones, 600px et plus) */
-@media only screen and (min-width: 601px)and (max-width: 994px) {
-
-    /*LA GALERIE*/
-    #gallery_clickable-artworks{
-        column-count: 3;
-        column-gap: 0.6rem;
-        row-gap: 0.6rem;
-    }
-    /*LES VIGNETTES CLIQUABLES*/
-    .clickable-artwork img{
-        width: 100%;
-        display: block;
-        margin-bottom: 0.6rem;
-    }
-    /*LE FOND NOIR DE LA POPUP*/
-    .popup_overlay {
-        padding: 2rem;
-        background-color: rgba(0, 0, 0, 0.45);
-    }
-    /* FLECHE*/
-    .popup_arrow {
-        font-size: 1.5rem;
-    }
-    /*L'IMAGE ET LES INFOS'*/
-    .popup_content_container {
-        flex-direction: column;
-        align-items: center;
-        /*box-sizing: content-box;*/
-    }
-    /*LE CONTENEUR DE L'IMAGE*/
-    .popup_image_container {
-        position : relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content:center;
-    }
-     /*L'IMAGE*/
-     .popup_image{
-        position : relative;
-        width: 100%;
-        height: 100%;
-    }
-    /*LES INFOS*/
-    .popup_info{
-        width: 100%;
-        align-items: center;
-        box-sizing: border-box;
-    }
-
-    /*Le titre*/
-    .popup_title{
-        text-align: center;
-    }
-}
-
-
-/* GRANDS ÉCRANS (laptops et desktops, 992px et plus) */
-@media only screen and (min-width: 995px) {
-
-    /*LA GALERIE*/
-    #gallery_clickable-artworks{
-        column-count: 4;
-        column-gap: 1rem;
-        row-gap: 1rem;
-    }
-    /*LES VIGNETTES CLIQUABLES*/
-    .clickable-artwork img{
-        width: 100%;
-        display: block;
-        margin-bottom: 1rem;
-    }
-    /*LE FOND NOIR DE LA POPUP*/
-    .popup_overlay {
-        background-color: rgba(0, 0, 0, 0.45);
-        padding: 3rem;
-    }
-    /* FLECHE*/
-    .popup_arrow {
-        font-size: 3rem;
-    }
-    /*L'IMAGE ET LES INFOS'*/
-    .popup_content_container {
-        justify-content: center;
-        height: 100%;
-        border-radius: 10px;
-    }
-     /*L'IMAGE*/
-    .popup_image_container{
-        text-align: center;
-        width: 70%;
-    }
-
-    /*LES INFOS*/
-    .popup_info{
-        height: 100%;
-        top: 0;
-        width:30%;
-        border-left: 1px solid grey;
-        overflow-y: scroll;
-    }
-}
-
-/* Bouton pour fermer la popup*/
-.popup_close {
-    position: fixed;
-    top: 30px;
-    right: 30px;
-    font-size: 40px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #ffffff;
-}
-
-/*LA GALERIE : LES IMAGES CLIQUABLES*/
+/*L'overlay sur les vignettes*/
 .artwork_overlay {
     position: absolute;
     top: 0;
@@ -196,132 +21,91 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
 }
 .artwork_overlay p{
     color: #ffffff;
     text-align: center;
-    display: block;
 }
 
-/*Dans l'overlay : le titre et l'année*/
-.artwork_title{
-    font-size: 1.5em;
-    font-weight: bold;
-    line-height: 1.4em;
-}
 /*Dans l'overlay : le titre*/
 .artwork_year{
     font-size: 1.2em;
 }
-.clickable-artwork{
-    position: relative;
-}
-.clickable-artwork:hover .artwork_overlay {
-    opacity: 1;
-}
-.clickable-artwork:hover{
-    cursor: pointer;
+
+/*II - MEDIA QUERIES*/
+
+/*1 - MOBILES VERTICAUX*/
+@media only screen and (max-width: 430px) {
+    /*La galerie*/
+    #gallery_clickable-artworks{
+        column-count: 2;
+        column-gap: 0.5rem;
+    }
+    /*Les vignettes cliquables*/
+    .clickable-artwork img{
+        max-width: 100%;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
 }
 
-/*LA POPUP*/
-
-/*LE FOND NOIR DE LA POPUP*/
-.popup_overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    vertical-align: middle;
-    margin: auto;
-    overflow: scroll!important;
-}
-.popup_content_container{
-    position: relative;
-    margin: auto;
-    width: 100%;
-    display: flex;
-    background-color: rgb(25, 25, 25);
-}
-.hide{
-    visibility: hidden;
-    display: none;
+/*2 - MOBILES HORIZONTAUX*/
+@media only screen and (max-height : 430px){
+    /*La galerie*/
+    #gallery_clickable-artworks{
+        column-count: 4;
+        column-gap: 0.6rem;
+        row-gap: 0.6rem;
+    }
+    /*Les vignettes cliquables*/
+    .clickable-artwork img{
+        width: 100%;
+        display: block;
+        margin-bottom: 0.6rem;
+    }
 }
 
-/* La flèche pour passer à l'image précédente ou suivante*/
-.popup_arrow {
-    color: #ffffff;
-    font-family: Tahoma, Arial, sans-serif;
-    margin-top: auto;
-    margin-bottom: auto;
-    text-decoration: none;
+/*3 - TABLETTES VERTICALES*/
+@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 999px) {
+    /*La galerie*/
+    #gallery_clickable-artworks{
+        column-count: 3;
+        column-gap: 0.6rem;
+        row-gap: 0.6rem;
+    }
+    /*Les vignettes cliquables*/
+    .clickable-artwork img{
+        width: 100%;
+        display: block;
+        margin-bottom: 0.6rem;
+    }
 }
 
-    /*L'IMAGE*/
-.popup_image_container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/*3 - GRANDES TABLETTES*/
+@media only screen and (min-width : 821px){
+    /*La galerie*/
+    #gallery_clickable-artworks{
+        column-count: 4;
+        column-gap: 0.6rem;
+        row-gap: 0.6rem;
+    }
+    .clickable-artwork img{
+        width: 100%;
+        display: block;
+        margin-bottom: 0.6rem;
+    }
 }
-.popup_image{
-    max-width: 95%;
-    max-height: 95%;
-}
-/*Les blocs de contenu : tags, categories, techniques*/
+/*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
+@media only screen and (min-width : 1000px) {
 
-
-/*Les liens qui mènent à la galerie filtrée*/
-.popup_filter_link, .popup_close, .popup_arrow{
-    color: #ffffff;
-    display: inline-block;
-    text-align: center;
-    align-items: baseline;
-    box-sizing: content-box;
-    border: 1px solid #ffffff23;
-    border-radius: 7px;
-    padding: 0.3rem 0.6rem;
-    text-decoration: none;
-}
-.popup_filter_link:hover, .popup_close:hover, .popup_arrow:hover{
-    background-color: #ffffff33;
-}
-.popup_filter_link svg{
-    margin-right: 1rem;
-}
-
-/*LE CONTENU DE LA POPUP*/
-.popup_info{
-    color: white;
-    height: 100%;
-    padding: 0 2rem;
-}
-/*Le titre*/
-.popup_title{
-    font-size: 2.3em;
-    font-weight: bold;
-    line-height: 1.5em;
-}
-/*L'année*/
-.popup_year{
-    font-size: 2em;
-    font-weight: bold;
-}
-/*Le texte*/
-.popup_content p{
-    font-size: 1.2em;
-    line-height: 1.5em;
-}
-/*Les bloc techniques et tags*/
-
-.popup_bloc_title{
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 1rem;
-}
-
-.popup_bloc{
-    border-top: 1px solid grey;
+    /*Faire apparaître l'overlay au survol*/
+    .clickable-artwork:hover .artwork_overlay {
+        opacity: 1;
+    }
+    /*Indiquer que les vignettes sont cliquables*/
+    .clickable-artwork:hover{
+        cursor: pointer;
+    }
 }

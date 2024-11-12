@@ -1,43 +1,140 @@
+/*
 body{
     background-color: rgb(230, 223, 215);
 }
+*/
+/*I - GLOBAL*/
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+main{
+    height: 100%;
+    margin: 0 auto;
+}
 
-/* Très petits écrans (600px et moins) */
-@media only screen and (max-width: 600px) {
-    header,main, footer{
+/*II - MEDIA QUERIES*/
+
+/*1 - MOBILES VERTICAUX*/
+@media only screen and (max-width: 430px) {
+    /*Repères temporaires*/
+    body{
+        background-color: blueviolet;
+    }
+    header, footer{
+        background-color: purple;
+    }
+    main{
+        background-color: violet;
+    }
+    /*Repères temporaires - fin*/
+
+    main{
         width: 100%;
-        margin: auto;
     }
 }
 
-/* Petits écrans (tablettes en format portrait et grands smartphones, 600px et plus) */
-@media only screen and (min-width: 600px) and (max-width: 767px) {
-    header,main, footer{
-        width: 95%;
+/*2 - MOBILES HORIZONTAUX*/
+@media only screen and (max-height : 430px){
+    /*Repères temporaires*/
+    body{
+        background-color: darkcyan;
+    }
+    
+    header, footer{
+        background-color: cyan;
+    }
+        
+    main{
+        background-color: turquoise;
+    }
+    /*Repères temporaires - fin*/
+
+    main{
+        width: 80%;
+    }
+    footer{
+        bottom: 0;
+        right: 0;
+        left: 0;
         margin: auto;
+        width: 100%;
     }
 }
 
-/* Écrans moyens (Tablettes en format paysage, 768px et plus) */
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    header,main, footer{
-        width: 85%;
-        margin: auto;
+/*3 - TABLETTES VERTICALES*/
+
+/*Marges*/
+/*Petites tablettes - type iPad Mini*/
+@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 770px) {
+    /*Repères temporaires*/
+    main{
+        width: 90%;
+    }
+}
+/*Autres tablettes*/
+@media only screen and (min-height: 431px) and (min-width: 771px) and (max-width : 999px) {
+    main{
+        width: 80%;
     }
 }
 
-/* Grands écrans (laptops et desktops, 992px et plus) */
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-    header,main, footer{
-        width: 70%;
-        margin: auto;
+/*Toutes tablettes, orientation portrait*/
+@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 999px) {
+    /*Repères temporaires*/
+    body{
+        background-color: green;
+    }
+    header, footer{
+        background-color: yellowgreen;
+    }
+    main{
+        background-color: lightgreen;
+    }
+    /*Repères temporaires - fin*/
+
+    header, footer{
+        padding:0 10%;
     }
 }
 
-/* Écrans extra larges (1200px et plus) */
-@media only screen and (min-width: 1200px) {
-    header,main, footer{
-        width: 65%;
-        margin: auto;
+/*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
+@media only screen and (min-width : 1000px) {
+        /*Repères temporaires*/
+        body{
+            background-color: orangered;
+        }
+        header, footer{
+            background-color: orange;
+        }
+        main{
+            background-color: yellow;
+        }
+        /*Repères temporaires - fin*/
+
+        header, footer{
+            padding:0 12%;
+        }
+        main{
+            width: 75%;
+        }
+}
+
+/*ÉCRANS PLIABLES - pli vertical*/
+/*
+@media (horizontal-viewport-segments: 2) and (vertical-viewport-segments: 1) {
+    body{
+        background-color: greenyellow;
     }
 }
+*/
+/*ÉCRANS PLIABLES - pli horizontal*/
+/*
+@media (vertical-viewport-segments: 2)and (horizontal-viewport-segments: 1) {
+    body{
+        background-color: yellow;
+    }
+}
+*/

@@ -1,0 +1,79 @@
+/*0 - GLOBAL*/
+#header-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+#site-title_full, #site-title_mini{
+    font-family: 'Abril Fatface';
+    text-decoration: none;
+    color: black;
+}
+
+/*1 - MOBILES VERTICAUX*/
+@media only screen and (max-width: 430px) {
+    #header-container{
+        padding: 3% 0;
+    }
+    #site-title_full{
+        font-size: 3em;
+    }
+    #site-title_mini{
+        visibility: hidden;
+        display: none;
+    }
+}
+
+/*2 - MOBILES HORIZONTAUX*/
+@media only screen and (max-height : 430px){
+    header{
+        height: 75%;
+        top: 0;
+    }
+    /*
+    header svg{
+        position: sticky;
+        top:0;
+        right: 0;
+    }
+    #site-title_mini{
+        position: sticky;
+        top:0;
+        left: 0;
+    }
+    */
+    #site-title_full{
+        visibility: hidden;
+        display: none;
+    }
+    #site-title_mini{
+        font-size: 3em;
+    }
+}
+
+/*3 - TABLETTES VERTICALES*/
+@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 999px) {
+    #site-title_full{
+        padding: 5% 0;
+        font-size: 3.5em;
+    }
+    #site-title_mini{
+        visibility: hidden;
+        display: none;
+    }
+}
+
+/*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
+@media only screen and (min-width : 1000px) {
+    #header-container{
+        padding: 5% 0;
+    }
+    #site-title_full{
+        font-size: 5em;
+    }
+    #site-title_mini{
+        visibility: hidden;
+        display: none;
+    }
+}
