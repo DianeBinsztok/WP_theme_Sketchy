@@ -2,112 +2,115 @@
 
 window.onload = function() {
 
-
-    // 1 - Au clic sur une vignette, afficher la popup ciblée
-
     // Les images visibles : 
-    //let clickableArtworks = Array.from(document.getElementsByClassName("clickable-artwork"));
     let clickableArtworks = Array.from(document.getElementsByClassName("artwork_overlay"));
+
+    // Les popups (cachées par défaut): 
+    let popups = Array.from(document.getElementsByClassName("popup-artwork"));
+
+
+    // Au clic sur un artwork, afficher la popup correspondante
 
     // Pour toutes les images cliquables :
     for(let artwork of clickableArtworks){
 
         // Au clic sur chaque image,
         artwork.addEventListener("click", (event)=>{
-            console.log(event.target);
             // Repérer la popup avec l'id correspondant (mentionné dans la classe 'opens-')
-            targetedPopupId = event.target.classList[0].split("opens-").pop();
-            // Afficher la popup ciblée et fermer toutes les autres
+            let targetedPopupId = event.target.classList[0].split("opens-").pop();
             displayTargetedPopupAndHideOthers(targetedPopupId, popups);
-            changeBackGroundScroll("no-scroll");
         })
     }
 
-    // 2 - Au clic sur la popup, hors de l'image ou sur l'onglet de fermeture : fermer la popup
-
-        // Les popups (cachées par défaut): 
-        let popups = Array.from(document.getElementsByClassName("popup-artwork"));
-
-        // Pour toutes les popups :
-        for(let popup of popups){
-
-            // Au clic sur chaque image,
-            popup.addEventListener("click", (event)=>{     
-                // Si le clic est en dehors de la zone d'infos ou de l'image,  
-                if(!event.target.classList.contains("popup_content")){
-                    // Fermer la popup
-                    closePopup(popup);
-                    changeBackGroundScroll("scroll");
-                }
-
-                // Au clic sur les flèches,
-                if(event.target.classList.contains("popup_arrow")){
-
-                    // Repérer la popup suivante ou précédente avec l'id "goto-" sur la flèche
-                    targetedPopupId = event.target.id.split("goto-").pop();
-                    
-                    // Afficher la popup ciblée et fermer toutes les autres
-                    displayTargetedPopupAndHideOthers(targetedPopupId, popups);
-                }
-            });
-        }
-
-        /* TEST */
-        /*
-        // Pour toutes les popups :
-        for(let popup of popups){
-
-            // Au swipe,
-            
-            let next = popup.addEventListener("touchmove", (event)=>{     
-
-                    // Repérer la popup suivante ou précédente avec l'id "goto-" sur la flèche
-
-                    //event.preventDefault();
-                    //event.stopImmediatePropagation();
-                    //event.stopPropagation();
-                   
-                    let popupId = parseInt(popup.id);
-                    let targetedPopupId = popupId +=1;
-                    //console.log(targetedPopupId);
-
-                    console.log(event);
-                    // Afficher la popup ciblée et fermer toutes les autres
-                    //displayTargetedPopupAndHideOthers(targetedPopupId, popups);
-                
-            });
-        }
-        */
-        /* TEST - FIN */
 }
 
 // II - LES FONCTIONS
 
-// 1 - Afficher la popup ciblée et fermer toutes les autres
-function displayTargetedPopupAndHideOthers(targetPopupId, allPopups){
-    for(let popup of allPopups){
+// Activer la popup ciblée s'il y en a une et cacher les autres
+function displayTargetedPopupAndHideOthers(targetPopupId, popupsArray){
+
+    let foundTargetedPopup = false;
+
+    // Chercher la popup cible par son id
+    for(let popup of popupsArray){
+
+        // Si on trouve une correspondance
         if(popup.id === targetPopupId){
+
+            // Rendre la popup ciblée visible
             popup.classList.remove("hide");
+
+            // Activer la popup ciblée : 
+            // a - les flèches de navigation
+            activatePopupNavArrows(popup, popupsArray);
+            // b - le bouton de fermeture
+            activatePopupCloseButton(popup);
+            // c - la fermeture de la popup si on clique hors du contenu
+            activatePopupCloseWhenClickOutsideContent(popup)
+
+            foundTargetedPopup = true;
+
         }else{
+            // Cacher les popups non-ciblées
             popup.classList.add("hide");
         }
     }
+    // Si l'id donné en param mène bien à une popup : bloquer le body en arrière plan 
+    changeBackGroundScroll(foundTargetedPopup);
 }
 
-// 2 - Fermer la popup au clic hors de l'image et des infos
-function closePopup(popup){
-    popup.classList.add("hide");
-}
+// Empêcher ou rétablir le scroll de l'arrière-plan
+function changeBackGroundScroll(aPopupIsDisplayed){
 
-// 3 - Empêcher ou rétablir le scroll de l'arrière-plan
-function changeBackGroundScroll(directive){
+    let body = document.body;
 
-    let firstAppliedRule = document.styleSheets[0].cssRules.item(0).cssText;
-    if(directive === "scroll"){
-        if(firstAppliedRule == "body:not(.popup_overlay) { overflow: hidden }"){
-            document.styleSheets[0].deleteRule("body:not(.popup_overlay) { overflow: hidden }");
-        }
-    }else if(directive === "no-scroll"){
-        document.styleSheets[0].insertRule("body:not(.popup_overlay) { overflow: hidden }", 0)
+    // Si une popup est ouverte : bloquer le scroll sur le body, en arrière plan
+    if(aPopupIsDisplayed){
+        body.classList.add("no-scroll");
+    }
+    // Sinon, rétablir le scroll sur le body
+    else{
+        body.classList.remove("no-scroll");
     }
 }
+
+// Activer les flèches de navigation sur la popup active
+function activatePopupNavArrows(activePopup, popupsArray){
+
+    let navArrows = activePopup.getElementsByClassName("popup_arrow");
+    //let popupNavArrows = Array.from(document.getElementsByClassName("popup_arrow"));
+    for(let navArrow of navArrows){
+
+        // Repérer la popup suivante ou précédente avec l'id "goto-" sur la flèche
+        let targetedPopupId = navArrow.id.split("goto-").pop();
+
+        navArrow.addEventListener(("click"), ()=>{
+
+            //Afficher la popup ciblée et masquer les autres
+            displayTargetedPopupAndHideOthers(targetedPopupId, popupsArray);
+        });
+    }
+};
+
+// Activer le bouton de fermeture sur la popup active
+function activatePopupCloseButton(activePopup){
+    let closePopupBtn = activePopup.getElementsByClassName("popup_close")[0];
+    closePopupBtn.addEventListener("click", ()=>{
+        activePopup.classList.add("hide");
+        changeBackGroundScroll(false);
+    });
+};
+
+// Activer la fermeture de la popup au clique en dehors du contenu
+function activatePopupCloseWhenClickOutsideContent(activePopup){
+
+    let popupContent = activePopup.getElementsByClassName("popup_content")[0];
+    
+    activePopup.addEventListener("click", (event)=>{
+        if(!popupContent.contains(event.target)){
+            activePopup.classList.add("hide");
+            changeBackGroundScroll(false);
+        }
+    })
+};
+

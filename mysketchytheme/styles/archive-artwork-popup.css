@@ -1,4 +1,7 @@
 /*I - GLOBAL*/
+.no-scroll{
+    overflow: hidden;
+}
 .hide{
     visibility: hidden;
     display: none;
