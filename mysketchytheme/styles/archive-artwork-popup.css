@@ -73,8 +73,8 @@
 }
 
 .popup_info{
-    height: 100%;
-    color: #ffffff;
+    color: white;
+    max-height: 100%;
 }
 
 /*Les blocs de contenu : tags, categories, techniques*/
@@ -98,13 +98,6 @@
 .popup_filter_link svg{
     margin-right: 0.7rem;
     margin-top: 0.3rem;
-}
-
-/*LE CONTENU DE LA POPUP*/
-.popup_info{
-    color: white;
-    height: 100%;
-    padding: 0 2rem;
 }
 
 /*L'année*/

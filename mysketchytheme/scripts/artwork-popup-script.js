@@ -101,8 +101,12 @@ function closePopup(popup){
 
 // 3 - Empêcher ou rétablir le scroll de l'arrière-plan
 function changeBackGroundScroll(directive){
+
+    let firstAppliedRule = document.styleSheets[0].cssRules.item(0).cssText;
     if(directive === "scroll"){
-        document.styleSheets[0].deleteRule("body:not(.popup_overlay) { overflow: hidden }");
+        if(firstAppliedRule == "body:not(.popup_overlay) { overflow: hidden }"){
+            document.styleSheets[0].deleteRule("body:not(.popup_overlay) { overflow: hidden }");
+        }
     }else if(directive === "no-scroll"){
         document.styleSheets[0].insertRule("body:not(.popup_overlay) { overflow: hidden }", 0)
     }
