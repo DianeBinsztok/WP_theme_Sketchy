@@ -223,11 +223,16 @@
     .popup_image-container{
         width: 70%;
     }
+    .popup_image{
+        width: 100%;
+        box-sizing: border-box;
+    }
     .popup_info{
         width: 30%;
         overflow-y: scroll;
         border-left: 1px solid grey;
         padding: 3rem;
+        box-sizing: border-box;
     }
     .popup_filter_link:hover, .popup_close:hover, .popup_arrow:hover{
         background-color: #ffffff33;

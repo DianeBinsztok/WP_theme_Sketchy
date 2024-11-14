@@ -18,13 +18,24 @@ window.onload = function() {
         artwork.addEventListener("click", (event)=>{
             // Repérer la popup avec l'id correspondant (mentionné dans la classe 'opens-')
             let targetedPopupId = event.target.classList[0].split("opens-").pop();
-            displayTargetedPopupAndHideOthers(targetedPopupId, popups);
+            let targetedPopup = findPopupById(targetedPopupId);
+
+            // Si une popup existe avec cet id : 
+            if(targetedPopup){
+                // Afficher la popup et cacher les autres
+                displayTargetedPopupAndHideOthers(targetedPopupId, popups);
+            }
         })
     }
-
 }
 
 // II - LES FONCTIONS
+
+// Vérifier si l'id de popup ciblée existe
+function findPopupById(targetedPopupId){
+    let targetedPopup = document.getElementById(targetedPopupId);
+    return targetedPopup;
+}
 
 // Activer la popup ciblée s'il y en a une et cacher les autres
 function displayTargetedPopupAndHideOthers(targetPopupId, popupsArray){
@@ -35,18 +46,19 @@ function displayTargetedPopupAndHideOthers(targetPopupId, popupsArray){
     for(let popup of popupsArray){
 
         // Si on trouve une correspondance
-        if(popup.id === targetPopupId){
+        if(popup.id == targetPopupId){
 
             // Rendre la popup ciblée visible
             popup.classList.remove("hide");
-
             // Activer la popup ciblée : 
             // a - les flèches de navigation
             activatePopupNavArrows(popup, popupsArray);
             // b - le bouton de fermeture
             activatePopupCloseButton(popup);
             // c - la fermeture de la popup si on clique hors du contenu
-            activatePopupCloseWhenClickOutsideContent(popup)
+            activatePopupCloseWhenClickOutsideContent(popup);
+            // d - activer touchmove pour les versions tactiles
+            activatePopupNavigationWithTouchmoveEvents(popup, popupsArray);
 
             foundTargetedPopup = true;
 
@@ -60,12 +72,12 @@ function displayTargetedPopupAndHideOthers(targetPopupId, popupsArray){
 }
 
 // Empêcher ou rétablir le scroll de l'arrière-plan
-function changeBackGroundScroll(aPopupIsDisplayed){
+function changeBackGroundScroll(boolAPopupIsOpened){
 
     let body = document.body;
 
     // Si une popup est ouverte : bloquer le scroll sur le body, en arrière plan
-    if(aPopupIsDisplayed){
+    if(boolAPopupIsOpened){
         body.classList.add("no-scroll");
     }
     // Sinon, rétablir le scroll sur le body
@@ -114,3 +126,64 @@ function activatePopupCloseWhenClickOutsideContent(activePopup){
     })
 };
 
+// Activer la navigation au touchmove pour les versions tactiles
+function activatePopupNavigationWithTouchmoveEvents(activePopup, popupsArray){
+
+    let startX = 0;
+    let startY = 0;
+    const swipeThreshold = 30; // Seuil en pixels pour détecter un mouvement significatif
+    
+    activePopup.addEventListener("touchstart", (event) => {
+        // Enregistrer les coordonnées de départ
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+    });
+    
+    activePopup.addEventListener("touchend", (event) => {
+        // Calculer les coordonnées de fin
+        const endX = event.changedTouches[0].clientX;
+        const endY = event.changedTouches[0].clientY;
+    
+        // Déterminer le déplacement
+        const deltaX = endX - startX;
+        const deltaY = endY - startY;
+    
+        // Si le swipe est principalement horizontal
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > swipeThreshold) {
+            // Si on swipe à droite
+            if (deltaX > 0) {
+                swipe(activePopup, "previous", popupsArray);
+            // Si on swipe à gauche
+            } else {
+                swipe(activePopup, "next", popupsArray);
+            }
+        }
+        
+        // On fait quelque chose pour un swipe vertical ?
+        /*
+        else if (Math.abs(deltaY) > swipeThreshold) {
+            if (deltaY > 0) {
+                console.log("Swipe bas détecté");
+            } else {
+                console.log("Swipe haut détecté");
+            }
+        }     
+        */
+    });
+}
+
+// Décider de la prochaine popup au swipe
+function swipe(activePopup, direction, popupsArray){
+    
+    let activePopupIdNumber = parseInt(activePopup.id);
+    let nextPopupIdNumber = activePopupIdNumber;
+
+    
+    if(direction == "previous"){
+        nextPopupIdNumber = activePopupIdNumber -=1;
+    }else if(direction == "next"){
+        nextPopupIdNumber = activePopupIdNumber +=1;
+    }
+    
+    displayTargetedPopupAndHideOthers(nextPopupIdNumber, popupsArray);
+}
