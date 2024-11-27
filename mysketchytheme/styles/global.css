@@ -1,0 +1,155 @@
+/*
+body{
+    background-color: rgb(230, 223, 215);
+}
+*/
+/*I - GLOBAL*/
+.hide{
+    visibility: hidden;
+    display: none;
+}
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    font-family: "Poppins";
+}
+main{
+    flex: 1 0 auto;
+    overflow-y: auto;
+    margin: 0 auto;
+}
+footer{
+    position: relative;
+    bottom: 0;
+}
+
+/*II - MEDIA QUERIES*/
+
+/*1 - MOBILES VERTICAUX*/
+@media only screen and (max-width: 430px) {
+    /*Repères temporaires*/
+    body{
+        background-color: blueviolet;
+    }
+    header, footer{
+        background-color: purple;
+    }
+    main{
+        background-color: violet;
+    }
+    /*Repères temporaires - fin*/
+
+    main{
+        width: 100%;
+    }
+    header, footer{
+        padding:0 3%;
+    }
+}
+
+/*2 - MOBILES HORIZONTAUX*/
+@media only screen and (max-height : 430px){
+    /*Repères temporaires*/
+    body{
+        background-color: darkcyan;
+    }
+    
+    header, footer{
+        background-color: cyan;
+    }
+        
+    main{
+        background-color: turquoise;
+    }
+    /*Repères temporaires - fin*/
+
+    main{
+        width: 80%;
+    }
+
+    header, footer{
+        padding:0 3%;
+    }
+}
+
+/*3 - TABLETTES VERTICALES*/
+
+/*Marges*/
+/*Petites tablettes - type iPad Mini*/
+@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 770px) {
+    main{
+        width: 80%;
+    }
+    header, footer{
+        padding:0 10%;
+    }
+}
+/*Autres tablettes*/
+@media only screen and (min-height: 431px) and (min-width: 771px) and (max-width : 999px) {
+    main{
+        width: 70%;
+    }
+    header, footer{
+        padding:0 15%;
+    }
+}
+
+/*Toutes tablettes, orientation portrait*/
+@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 999px) {
+    /*Repères temporaires*/
+    body{
+        background-color: green;
+    }
+    header, footer{
+        background-color: yellowgreen;
+    }
+    main{
+        background-color: lightgreen;
+    }
+    /*Repères temporaires - fin*/
+}
+
+/*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
+@media only screen and (min-width : 1000px) {
+        /*Repères temporaires*/
+        body{
+            background-color: orangered;
+        }
+        header, footer{
+            background-color: orange;
+        }
+        main{
+            background-color: yellow;
+        }
+        /*Repères temporaires - fin*/
+
+        main{
+            width: 70%;
+        }
+        header, footer{
+            padding:0 15%;
+        }
+}
+
+/*ÉCRANS PLIABLES - pli vertical*/
+/*
+@media (horizontal-viewport-segments: 2) and (vertical-viewport-segments: 1) {
+    body{
+        background-color: greenyellow;
+    }
+}
+*/
+/*ÉCRANS PLIABLES - pli horizontal*/
+/*
+@media (vertical-viewport-segments: 2)and (horizontal-viewport-segments: 1) {
+    body{
+        background-color: yellow;
+    }
+}
+*/

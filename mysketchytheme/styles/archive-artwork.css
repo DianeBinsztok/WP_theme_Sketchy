@@ -1,0 +1,111 @@
+/*I - GLOBAL*/
+    /*Positionner les vignettes par rapport à l'overlay*/
+    .clickable-artwork{
+        position: relative;
+    }
+    
+/*L'overlay sur les vignettes*/
+.artwork_overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    /*Apparaîtra au hover sur le conteneur*/
+    transition: .5s ease;
+    /*Disposer le texte*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.artwork_overlay p{
+    color: #ffffff;
+    text-align: center;
+}
+
+/*Dans l'overlay : le titre*/
+.artwork_year{
+    font-size: 1.2em;
+}
+
+/*II - MEDIA QUERIES*/
+
+/*1 - MOBILES VERTICAUX*/
+@media only screen and (max-width: 430px) {
+    /*La galerie*/
+    #gallery_clickable-artworks{
+        column-count: 2;
+        column-gap: 0.5rem;
+    }
+    /*Les vignettes cliquables*/
+    .clickable-artwork img{
+        max-width: 100%;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/*2 - MOBILES HORIZONTAUX*/
+@media only screen and (max-height : 430px){
+    /*La galerie*/
+    #gallery_clickable-artworks{
+        column-count: 4;
+        column-gap: 0.6rem;
+        row-gap: 0.6rem;
+    }
+    /*Les vignettes cliquables*/
+    .clickable-artwork img{
+        width: 100%;
+        display: block;
+        margin-bottom: 0.6rem;
+    }
+}
+
+/*3 - TABLETTES VERTICALES*/
+@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 999px) {
+    /*La galerie*/
+    #gallery_clickable-artworks{
+        column-count: 3;
+        column-gap: 0.6rem;
+        row-gap: 0.6rem;
+    }
+    /*Les vignettes cliquables*/
+    .clickable-artwork img{
+        width: 100%;
+        display: block;
+        margin-bottom: 0.6rem;
+    }
+}
+
+/*3 - GRANDES TABLETTES*/
+@media only screen and (min-width : 821px){
+    /*La galerie*/
+    #gallery_clickable-artworks{
+        column-count: 4;
+        column-gap: 0.6rem;
+        row-gap: 0.6rem;
+    }
+    .clickable-artwork img{
+        width: 100%;
+        display: block;
+        margin-bottom: 0.6rem;
+    }
+}
+/*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
+@media only screen and (min-width : 1000px) {
+
+    /*Faire apparaître l'overlay au survol*/
+    .clickable-artwork:hover .artwork_overlay {
+        opacity: 1;
+    }
+    /*Indiquer que les vignettes sont cliquables*/
+    .clickable-artwork:hover{
+        cursor: pointer;
+    }
+}
