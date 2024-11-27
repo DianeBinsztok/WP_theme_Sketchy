@@ -25,4 +25,4 @@
             <span class="bar"></span>
         </div>
     </header>
-    <main>
+    <main></main>
