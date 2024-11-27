@@ -1,6 +1,6 @@
 
 // I - ACTIONS AU CHARGEMENT DE LA PAGE
-window.onload = function() {
+window.addEventListener("load", function() {
 
     // Les images visibles : 
     let clickableArtworks = Array.from(document.getElementsByClassName("artwork_overlay"));
@@ -20,7 +20,7 @@ window.onload = function() {
             findDisplayActivatePopup(targetedPopupId)
         });
     }
-}
+}) 
 
 // II - LES FONCTIONS
 

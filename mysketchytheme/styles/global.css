@@ -4,15 +4,29 @@ body{
 }
 */
 /*I - GLOBAL*/
+.hide{
+    visibility: hidden;
+    display: none;
+}
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
 body{
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    height: 100%;
+    font-family: "Poppins";
 }
 main{
-    height: 100%;
+    flex: 1 0 auto;
+    overflow-y: auto;
     margin: 0 auto;
+}
+footer{
+    position: relative;
+    bottom: 0;
 }
 
 /*II - MEDIA QUERIES*/
@@ -33,6 +47,9 @@ main{
 
     main{
         width: 100%;
+    }
+    header, footer{
+        padding:0 3%;
     }
 }
 
@@ -55,12 +72,9 @@ main{
     main{
         width: 80%;
     }
-    footer{
-        bottom: 0;
-        right: 0;
-        left: 0;
-        margin: auto;
-        width: 100%;
+
+    header, footer{
+        padding:0 3%;
     }
 }
 
@@ -69,15 +83,20 @@ main{
 /*Marges*/
 /*Petites tablettes - type iPad Mini*/
 @media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 770px) {
-    /*Repères temporaires*/
     main{
-        width: 90%;
+        width: 80%;
+    }
+    header, footer{
+        padding:0 10%;
     }
 }
 /*Autres tablettes*/
 @media only screen and (min-height: 431px) and (min-width: 771px) and (max-width : 999px) {
     main{
-        width: 80%;
+        width: 70%;
+    }
+    header, footer{
+        padding:0 15%;
     }
 }
 
@@ -94,10 +113,6 @@ main{
         background-color: lightgreen;
     }
     /*Repères temporaires - fin*/
-
-    header, footer{
-        padding:0 10%;
-    }
 }
 
 /*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
@@ -114,11 +129,11 @@ main{
         }
         /*Repères temporaires - fin*/
 
-        header, footer{
-            padding:0 12%;
-        }
         main{
-            width: 75%;
+            width: 70%;
+        }
+        header, footer{
+            padding:0 15%;
         }
 }
 

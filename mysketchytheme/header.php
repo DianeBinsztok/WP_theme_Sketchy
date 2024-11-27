@@ -12,13 +12,17 @@
 
     <?php wp_body_open(); ?>
     <header>
-        <div id="header-container">
-            <a id="site-title_full" href="<?php echo home_url(); ?>" ?>Sketchy</a>
-            <a id="site-title_mini" href="<?php echo home_url(); ?>" ?>S</a>
-            <div id="menu">
-                <?php wp_nav_menu() ?>
-            </div>
-            <?= displaySvg('burger') ?>
+
+        <a id="site-title_full" href="<?php echo home_url(); ?>" ?>Sketchy</a>
+
+        <a id="site-title_mini" href="<?php echo home_url(); ?>" ?>S</a>
+
+        <?php wp_nav_menu() ?>
+
+        <div id="menu_toggle-btn">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
     </header>
     <main>
