@@ -11,11 +11,17 @@
 <body <?php body_class(); ?>>
 
     <?php wp_body_open(); ?>
-    <header>
+    <?php
+    $headerId = "";
+    if (is_home()) {
+        $headerId = "home-header";
+    } else {
+        $headerId = "global-header";
+    } ?>
 
-        <a id="site-title_full" href="<?php echo home_url(); ?>" ?>Sketchy</a>
+    <header id="<?php echo $headerId ?>" class="onstart">
 
-        <a id="site-title_mini" href="<?php echo home_url(); ?>" ?>S</a>
+        <a id="site-title" href="<?php echo home_url(); ?>" ?>Sketchy</a>
 
         <?php wp_nav_menu() ?>
 

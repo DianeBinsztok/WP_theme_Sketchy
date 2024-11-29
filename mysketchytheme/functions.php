@@ -14,7 +14,7 @@ function theme_enqueue_styles()
 {
     wp_enqueue_style('global-style', get_template_directory_uri() . '/styles/global.css');
     wp_enqueue_style('header-style', get_template_directory_uri() . '/styles/header.css');
-    //wp_enqueue_style('menu-style', get_template_directory_uri() . '/styles/menu.css');
+    wp_enqueue_style('menu-style', get_template_directory_uri() . '/styles/menu.css');
 
 
     if (is_archive()) {
@@ -32,7 +32,9 @@ function register_and_enqueue_scripts()
 {
     wp_register_script("artwork-popup-script", get_stylesheet_directory_uri() . '/scripts/artwork-popup-script.js');
     wp_register_script("burger-menu-script", get_stylesheet_directory_uri() . '/scripts/burger-menu-script.js');
+    wp_register_script("header-onscroll-script", get_stylesheet_directory_uri() . '/scripts/header-onscroll-script.js');
 
+    wp_enqueue_script("header-onscroll-script");
     wp_enqueue_script("burger-menu-script");
     if (is_archive()) {
         wp_enqueue_script("artwork-popup-script");

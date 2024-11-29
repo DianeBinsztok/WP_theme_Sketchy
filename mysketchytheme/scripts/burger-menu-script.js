@@ -5,8 +5,8 @@ window.addEventListener("load", function() {
 
     let menu = document.querySelector(".menu-menu-principal-container");
     let menuToggleBtn = document.querySelector("#menu_toggle-btn");
-    let header = document.getElementsByTagName("header")[0];
-    let title = document.querySelector("#site-title_full");
+    let header = document.querySelector("header");
+    let title = document.querySelector("#site-title");
 
     menuToggleBtn.addEventListener("click", ()=>{
 

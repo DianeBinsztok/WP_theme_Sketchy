@@ -16,147 +16,52 @@ header{
 }
 
 /*Le logo*/
-#site-title_full, #site-title_mini{
+#site-title{
     font-family: 'Abril Fatface';
     text-decoration: none;
     color: black;
 }
-/*Le burger-menu*/
-#menu_toggle-btn{
-    margin: auto 1rem;
-    z-index: 2;
-}
-/*Les barres*/
-.bar{
-    display: block;
-    width: 25px;
-    height: 10px;
-}
-/*Les idems de menu*/
-.menu-item{
-    list-style-type: none;
-    margin-top:1rem ;
-}
-.menu-item a{
-    text-decoration: none;
-}
-
 
 /*II - MEDIA QUERIES*/
 /*1 - TOUS DEVICES EN DESSOUS DE 1000 PX*/
 @media only screen and (max-width: 1023px) {
-    /*Le titre-logo*/
-    /*
-    #site-title_full{
-        display: none;
-        visibility: hidden;
-    }
-    */
-    #site-title_mini{
-        display: none;
-        visibility: hidden;
-    }
-    #site-title_full{
-        font-size: 2em;
-    }
+    /* Quand le drawer menu est ouvert*/
     header.on-top-of-drawer-menu{
         background-color: black!important;
         transition: all 0.5s ease-in-out;
     }
-    #site-title_full.on-top-of-drawer-menu{
+    #site-title.on-top-of-drawer-menu{
         color: white!important;
         transition: all 0.5s ease-in-out;
     }
-    /*
-    .menu-menu-principal-container:not(.menu-menu-principal-container.active){
-        display: none;
-        visibility: hidden;
-    }
-    */
-    /*
-    .menu-menu-principal-container{
-        background-color: black;
-        position: absolute;
-        height: 100vh;
-        width: 100vw;
-        top: 4rem;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        transform: translateX(100%);
-        transition: all 0.5s ease-in-out;
-    }
-    */
-    .menu-menu-principal-container {
-        background-color: black;
-        position: fixed; /* Utilise fixed pour qu'il ne crée pas de scroll */
-        height: calc(100vh - 2.5rem); /* Ajuste en tenant compte du top */
-        width: 100vw;
-        top: 2.5rem;
-        left: 0;
-        transform: translateX(100%);
-        transition: transform 0.5s ease-in-out;
-    }
-    .menu-menu-principal-container.active{
-        transform: translateX(0);
-    }
-
-    #menu_toggle-btn .bar{
-        border-top: 2px solid black;
-        transition: all 0.5s ease-in-out;
-
-    }
-    #menu_toggle-btn.active .bar{
-        border-top: 2px solid white;
-    }
-
-    .menu-item:nth-child(1)::before{
-        content:attr("#site-title_full")
-    }
-
-    .menu-item a{
-        color: white;
-    }
-    
 }
 /*2 - MOBILES VERTICAUX*/
 @media only screen and (max-width : 430px){
-    #menu-menu-principal{
-        padding:0 3%;
+    /*Le titre-logo*/
+    #site-title{
+        font-size: 2em;
     }
 }
 /*3 - MOBILES HORIZONTAUX*/
 @media only screen and (max-height : 430px){
-    #menu-menu-principal{
-        padding:0 3%;
+    /*Le titre-logo*/
+    #site-title{
+        font-size: 2em;
     }
 }
 
 /*4 - TABLETTES VERTICALES*/
 @media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 1023px) {
+    /*Le titre-logo*/
+    #site-title{
+        font-size: 4em;
+    }
 }
 
 /*5 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
 @media only screen and (min-width : 1024px) {
     /*Le titre-logo*/
-    #site-title_mini{
-        display: none;
-        visibility: hidden;
-    }
-    /*Le menu burger : invisible sur desktop*/
-    #menu_toggle-btn{
-        visibility: hidden;
-        display: none;
-    }
-    .menu-menu-principal-container{
-        width: 55%;
-    }
-    #menu-menu-principal{
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-    }
-    #menu-menu-principal .menu-item a{
-        color: black;
+    #site-title{
+        font-size: 5em;
     }
 }
