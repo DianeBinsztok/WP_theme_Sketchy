@@ -21,6 +21,9 @@ function theme_enqueue_styles()
         wp_enqueue_style('archive-artwork-style', get_template_directory_uri() . '/styles/archive-artwork.css');
         wp_enqueue_style('archive-artwork-popup-style', get_template_directory_uri() . '/styles/archive-artwork-popup.css');
     }
+    if (is_home()) {
+        wp_enqueue_style('homepage-style', get_template_directory_uri() . '/styles/homepage.css');
+    }
 }
 
 
