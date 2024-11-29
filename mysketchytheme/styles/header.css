@@ -1,6 +1,6 @@
 /*I - GLOBAL*/
 header{
-   position: fixed;
+    /*position: fixed;*/
     z-index: 1;
     margin:0;
     top:0;
@@ -67,6 +67,13 @@ header{
         color: white!important;
         transition: all 0.5s ease-in-out;
     }
+    /*
+    .menu-menu-principal-container:not(.menu-menu-principal-container.active){
+        display: none;
+        visibility: hidden;
+    }
+    */
+    /*
     .menu-menu-principal-container{
         background-color: black;
         position: absolute;
@@ -79,7 +86,20 @@ header{
         transform: translateX(100%);
         transition: all 0.5s ease-in-out;
     }
-
+    */
+    .menu-menu-principal-container {
+        background-color: black;
+        position: fixed; /* Utilise fixed pour qu'il ne crée pas de scroll */
+        height: calc(100vh - 2.5rem); /* Ajuste en tenant compte du top */
+        width: 100vw;
+        top: 2.5rem;
+        left: 0;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in-out;
+    }
+    #menu-menu-principal{
+        align-items: center;
+    }
     .menu-menu-principal-container.active{
         transform: translateX(0);
     }

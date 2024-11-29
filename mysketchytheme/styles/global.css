@@ -1,33 +1,26 @@
-/*
-body{
-    background-color: rgb(230, 223, 215);
-}
-*/
 /*I - GLOBAL*/
-.hide{
-    visibility: hidden;
-    display: none;
-}
-html, body{
+
+body, html {
+    /* Éviter que le scroll horizontal sur le burger-menu*/
+    overflow-x: hidden; 
     margin: 0;
     padding: 0;
-    height: 100%;
 }
-body{
+
+body {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    font-family: "Poppins";
+    justify-content: space-between;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
-main{
-    flex: 1 0 auto;
-    overflow-y: auto;
+
+main {
+    /* Étendre sur tout l'espace entre header et footer */
     margin: 0 auto;
+    flex: 1; 
 }
-footer{
-    position: relative;
-    bottom: 0;
-}
+
 
 /*II - MEDIA QUERIES*/
 
