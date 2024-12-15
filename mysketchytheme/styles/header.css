@@ -1,67 +1,72 @@
 /*I - GLOBAL*/
 header{
-    /*position: fixed;*/
-    z-index: 1;
-    margin:0;
-    top:0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    vertical-align: bottom;
-    box-sizing: border-box;
-    transition: all 0.5s ease-in-out;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    z-index: 2;
 }
 
-/*Le logo*/
+#above-menu-zone{
+    height: 15vh;
+}
+#menu-zone{
+    height: 70px;
+    display:flex;
+    align-items : end;
+}
+#menu-zone.onscroll{
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    background-color: #fcfce7;;
+}
+#title-menu_container{
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+    align-items : end;
+    border-bottom:1px solid black;
+}
+#menu-zone.onscroll #title-menu_container{
+    align-items : center;
+}
 #site-title{
-    font-family: 'Abril Fatface';
-    text-decoration: none;
-    color: black;
+    font-size:6rem;
+    font-weight:bold;
+    color:black;
+    text-decoration:none;
+    transition: font-size 0.5s ease-in-out;
+}
+#site-title.reduced {
+    font-size:2rem;
+    transition: font-size 0.5s ease-in-out;
 }
 
 /*II - MEDIA QUERIES*/
-/*1 - TOUS DEVICES EN DESSOUS DE 1000 PX*/
-@media only screen and (max-width: 1023px) {
-    /* Quand le drawer menu est ouvert*/
-    header.on-top-of-drawer-menu{
-        background-color: black!important;
-        transition: all 0.5s ease-in-out;
-    }
-    #site-title.on-top-of-drawer-menu{
-        color: white!important;
-        transition: all 0.5s ease-in-out;
-    }
-}
-/*2 - MOBILES VERTICAUX*/
-@media only screen and (max-width : 430px){
-    /*Le titre-logo*/
+
+/*1 - MOBILES VERTICAUX*/
+@media only screen and (max-width: 430px) {
     #site-title{
-        font-size: 2em;
+        font-size:1.6rem;
+    }
+    #menu-zone.onscroll #site-title{
+        font-size:1.6rem;
     }
 }
-/*3 - MOBILES HORIZONTAUX*/
+
+/*2 - MOBILES HORIZONTAUX*/
 @media only screen and (max-height : 430px){
-    /*Le titre-logo*/
-    #site-title{
-        font-size: 2em;
-    }
 }
 
-/*4 - TABLETTES VERTICALES*/
-@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 1023px) {
-    /*Le titre-logo*/
-    #site-title{
-        font-size: 4em;
-    }
+/*3 - TABLETTES VERTICALES*/
+@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 999px) {
+
 }
 
-/*5 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
-@media only screen and (min-width : 1024px) {
-    /*Le titre-logo*/
-    #site-title{
-        font-size: 5em;
+/*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
+@media only screen and (min-width : 1000px) {
+    #menu-zone.onscroll{
+        padding: 0 15%;
     }
 }

@@ -1,5 +1,4 @@
 /*I - GLOBAL*/
-
 body, html {
     /* Éviter que le scroll horizontal sur le burger-menu*/
     overflow-x: hidden; 
@@ -8,6 +7,7 @@ body, html {
 }
 
 body {
+    background-color: #fcfce7;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -20,17 +20,23 @@ main {
     margin: 0 auto;
     flex: 1; 
 }
-
+.hide{
+    visibility: hidden;
+    display: none;
+}
+section{
+    padding: 3% 0;
+}
 
 /*II - MEDIA QUERIES*/
 
 /*1 - MOBILES VERTICAUX*/
 @media only screen and (max-width: 430px) {
-    /*Repères temporaires*/
+    /*Repères temporaires
     body{
         background-color: blueviolet;
     }
-    header, footer{
+    header, footer, #home-onscroll-header{
         background-color: purple;
     }
     main{
@@ -48,12 +54,12 @@ main {
 
 /*2 - MOBILES HORIZONTAUX*/
 @media only screen and (max-height : 430px){
-    /*Repères temporaires*/
+    /*Repères temporaires
     body{
         background-color: darkcyan;
     }
     
-    header, footer{
+    header, footer, #home-onscroll-header{
         background-color: cyan;
     }
         
@@ -95,7 +101,7 @@ main {
 
 /*Toutes tablettes, orientation portrait*/
 @media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 999px) {
-    /*Repères temporaires*/
+    /*Repères temporaires
     body{
         background-color: green;
     }
@@ -110,11 +116,11 @@ main {
 
 /*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
 @media only screen and (min-width : 1000px) {
-        /*Repères temporaires*/
+        /*Repères temporaires
         body{
             background-color: orangered;
         }
-        header, footer{
+        header, #home-onscroll-header, footer{
             background-color: orange;
         }
         main{

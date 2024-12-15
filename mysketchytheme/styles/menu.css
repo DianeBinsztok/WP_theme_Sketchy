@@ -1,7 +1,9 @@
 /*I - GLOBAL*/
 /*Le drawer-menu*/
 #menu_toggle-btn{
-    margin: auto 1rem;
+    position:fixed;
+    top:10px;
+    right:10px;
     z-index: 2;
 }
 /*Les barres de l'icone de menu*/
@@ -13,7 +15,7 @@
 /*Les idems de menu*/
 .menu-item{
     list-style-type: none;
-    margin-top:1rem ;
+    margin-left: 1rem;
 }
 .menu-item a{
     text-decoration: none;
@@ -26,8 +28,10 @@
     /*Le drawer menu*/
     .menu-menu-principal-container {
         background-color: black;
-        position: fixed; /* Utilise fixed pour qu'il ne crée pas de scroll */
-        height: calc(100vh - 2.5rem); /* Ajuste en tenant compte du top */
+        /* Empêcher le scroll sur le menu */
+        position: fixed; 
+        /* laisser de la place au header */
+        height: calc(100vh - 2.5rem);
         width: 100vw;
         top: 2.5rem;
         left: 0;
@@ -41,7 +45,6 @@
     #menu_toggle-btn .bar{
         border-top: 2px solid black;
         transition: all 0.5s ease-in-out;
-
     }
     #menu_toggle-btn.active .bar{
         border-top: 2px solid white;
@@ -76,12 +79,11 @@
         display: none;
     }
     .menu-menu-principal-container{
-        width: 55%;
+        align-self: end;
     }
     #menu-menu-principal{
         display: flex;
-        width: 100%;
-        justify-content: space-between;
+        justify-content: end;
     }
     #menu-menu-principal .menu-item a{
         color: black;

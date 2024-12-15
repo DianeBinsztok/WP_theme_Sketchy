@@ -1,15 +1,11 @@
 /*I - GLOBAL*/
-/*Cacher les popups avant le clic sur les artworks*/
-.hide{
-    visibility: hidden;
-    display: none;
-}
 .no-scroll{
     overflow: hidden;
 }
 
 /*LE FOND NOIR DE LA POPUP*/
 .popup_overlay {
+    z-index: 3;
     position: fixed;
     top: 0;
     bottom: 0;

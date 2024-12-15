@@ -2,7 +2,6 @@
 /*
  * Template Name: Sketchy
  */
-
 get_header();
 
 //the_content();

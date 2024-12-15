@@ -11,22 +11,24 @@
 <body <?php body_class(); ?>>
 
     <?php wp_body_open(); ?>
-    <header id="header">
+    <?php
+    $headerId = "";
+    if (is_home()) {
+        $headerId = "home-header";
+    } else {
+        $headerId = "global-header";
+    } ?>
+
+    <header id="<?php echo $headerId ?>" class="onstart">
+
+        <a id="site-title" class="onstart" href="<?php echo home_url(); ?>" ?>Sketchy</a>
+
+        <?php wp_nav_menu() ?>
+
         <div id="menu_toggle-btn">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-        <div id="above-menu-zone">
-        </div>
-
-        <div id="menu-zone">
-            <div id="title-menu_container">
-                <div id="site-title_container">
-                    <a id="site-title" href="<?php echo home_url(); ?>">My Site Title</a>
-                </div>
-                <?php wp_nav_menu() ?>
-            </div>
         </div>
 
     </header>
