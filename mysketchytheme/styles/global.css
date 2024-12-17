@@ -32,7 +32,7 @@ section{
 
 /*1 - MOBILES VERTICAUX*/
 @media only screen and (max-width: 430px) {
-    /*Repères temporaires
+    /*Repères temporaires*/
     body{
         background-color: blueviolet;
     }
@@ -54,7 +54,7 @@ section{
 
 /*2 - MOBILES HORIZONTAUX*/
 @media only screen and (max-height : 430px){
-    /*Repères temporaires
+    /*Repères temporaires*/
     body{
         background-color: darkcyan;
     }
@@ -73,7 +73,7 @@ section{
     }
 
     header, footer{
-        padding:0 3%;
+        padding:0 10%;
     }
 }
 
@@ -83,10 +83,10 @@ section{
 /*Petites tablettes - type iPad Mini*/
 @media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 770px) {
     main{
-        width: 80%;
+        width: 90%;
     }
     header, footer{
-        padding:0 10%;
+        padding:0 5%;
     }
 }
 /*Autres tablettes*/
@@ -101,7 +101,7 @@ section{
 
 /*Toutes tablettes, orientation portrait*/
 @media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 999px) {
-    /*Repères temporaires
+    /*Repères temporaires*/
     body{
         background-color: green;
     }
@@ -116,7 +116,7 @@ section{
 
 /*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
 @media only screen and (min-width : 1000px) {
-        /*Repères temporaires
+        /*Repères temporaires*/
         body{
             background-color: orangered;
         }

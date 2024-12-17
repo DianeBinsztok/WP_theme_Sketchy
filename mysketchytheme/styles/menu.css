@@ -20,8 +20,24 @@
 .menu-item a{
     text-decoration: none;
 }
-
-
+/*Le sous-menu*/
+.menu-item .sub-menu{
+    display: none;
+}
+.menu-item:hover .sub-menu, .sub-menu:hover{
+    position: absolute;
+    width: 100%;
+    padding: 0 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    left: 0;
+    background-color: black;
+    height: 70px;
+}
+.menu-item:hover .sub-menu .menu-item a{
+    color: white!important;
+}
 /*II - MEDIA QUERIES*/
 /*1 - TOUS DEVICES EN DESSOUS DE 1000 PX*/
 @media only screen and (max-width: 1023px) {

@@ -31,18 +31,17 @@ window.addEventListener("DOMContentLoaded", function () {
               console.log(main.getBoundingClientRect().top);
               
 
-                  // 1 - Remettre le titre à sa taille de départ
+                  // 1 - Rétablir le style du header
                   if(main.getBoundingClientRect().top >= 0){
                     main.style.paddingTop = "0";
+                    menuZone.classList.remove("onscroll");
+                  }
+                  // 2 - Remettre le titre à sa taille de départ 
+                  
+                  if(header.getBoundingClientRect().bottom >= 100){
                     title.classList.remove("reduced");
-                    menuZone.classList.remove("onscroll");
                   }
-                  // 2 - Rétablir le style du header
-                  /*
-                  if(main.getBoundingClientRect().top >= 70){
-                    menuZone.classList.remove("onscroll");
-                  }
-                    */
+                    
                 // Mettre à jour la dernière position du scroll
                 lastScrollPosition = currentScrollPosition;
             }
