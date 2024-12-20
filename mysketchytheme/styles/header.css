@@ -1,13 +1,27 @@
 /*I - GLOBAL*/
+/*TEST*/
+#menu-zone #site-title.on-top-of-drawer-menu , #menu-zone.onscroll #site-title.on-top-of-drawer-menu{
+    position: fixed;
+    color: #fcfce7;
+    z-index: 5;
+    font-size: 3rem;
+    transition: all 0.4s ease-in-out;
+    /*Provisoire*/
+    top:50px;
+}
+/*TEST-FIN*/
 header{
     display:flex;
     flex-direction:column;
     justify-content:space-between;
     z-index: 2;
 }
-
+#above-menu-zone{
+    height: 5vh;
+}
 #menu-zone{
     display:flex;
+    align-items: center;
 }
 #menu-zone.onscroll{
     position:fixed;
@@ -16,6 +30,10 @@ header{
     left:0;
     background-color: #fcfce7;;
 }
+#menu-zone.onscroll #title-menu_container{
+    align-items: center;
+}
+
 #title-menu_container{
     width: 100%;
     display:flex;
@@ -34,44 +52,18 @@ header{
 
 /*II - MEDIA QUERIES*/
 
+/*LES MARGES*/
 /*MARGES*/
 /*1 - MOBILES VERTICAUX*/
-@media only screen and (max-width: 430px) {
-    #menu-zone{
-        justify-content: center;
-    }
-    #title-menu_container, #menu-zone.onscroll{
-        align-items: center;
-        justify-content: center;
-    }
-    #menu-zone.onscroll, #title-menu_container{
-        height: 45px;
-    }
-    #site-title{
-        font-size:2em;
-    }
-    #menu-zone.onscroll #site-title{
-        font-size:1.6em;
+@media only screen and (max-width : 430px){
+    #menu-zone.onscroll{
+        padding: 0 3%;
     }
 }
 /*2 - MOBILES HORIZONTAUX*/
 @media only screen and (max-height : 430px){
-    #menu-zone{
-        justify-content: space-between;
-    }
     #menu-zone.onscroll{
         padding: 0 10%;
-    }
-    #title-menu_container, #menu-zone.onscroll{
-        height: 45px;
-        align-items: center;
-        justify-content: space-between;
-    }
-    #site-title{
-        font-size:2em;
-    }
-    #menu-zone.onscroll #site-title{
-        font-size:1.6em;
     }
 }
 /*3 - TABLETTES VERTICALES*/
@@ -84,11 +76,8 @@ header{
 /*Autres tablettes*/
 @media only screen and (min-height: 431px) and (min-width: 771px) and (max-width : 999px) {
     #menu-zone.onscroll{
-        padding:0 15%;
+        padding:0 10%;
     }
-}
-/*Toutes tablettes, orientation portrait*/
-@media only screen and (min-width: 431px) and (max-width : 999px) {
 }
 /*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
 @media only screen and (min-width : 1000px) {
@@ -97,41 +86,51 @@ header{
     }
 }
 
-
-/*1 - MOBILES VERTICAUX*/
-@media only screen and (max-width: 430px) {
-}
-/*2 - MOBILES HORIZONTAUX*/
-@media only screen and (max-height : 430px){
-
-}
-/*3 - TABLETTES VERTICALES*/
-@media only screen and (min-height : 431px) and (min-width: 431px) and (max-width : 1023px) {
-    #above-menu-zone{
-        height: 10vh;
-    }
+/*LE POSITIONNEMENT*/
+/*1 - Avec le menu caché et le burger-menu : le titre est centré*/
+@media only screen and (max-width : 660px) {
     #title-menu_container{
+        height: 50px;
         justify-content: center;
     }
-    #site-title{
-        font-size:4em;
-    }
-    #site-title.reduced {
-        font-size:2em;
-    }
 }
-/*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
-@media only screen and (min-width : 1024px) {
-    #above-menu-zone{
-        height: 15vh;
-    }
+/*2 - Avec le menu ouvert : titre à gauche, menu à droite*/
+@media only screen and (min-width : 661px) {
     #title-menu_container{
         justify-content: space-between;
     }
+}
+
+/*TITRE et ONGLETS DE MENU: adapter les tailles à la place disponible*/
+@media only screen and (max-width : 430px) {
     #site-title{
-        font-size:6em;
+        font-size:2.5rem;
     }
-    #site-title.reduced {
-        font-size:3em;
+    #site-title.reduced{
+        font-size:1.6rem;
+    }
+}
+@media only screen and (min-width : 431px) and (max-width : 660px) {
+    #site-title{
+        font-size:3rem;
+    }
+    #site-title.reduced{
+        font-size:1.6rem;
+    }
+}
+@media only screen and (min-width : 661px) and (max-width : 1024px) {
+    #site-title{
+        font-size:3rem;
+    }
+    #site-title.reduced{
+        font-size:1.7rem;
+    }
+}
+@media only screen and (min-width : 1024px) {
+    #site-title{
+        font-size:4rem;
+    }
+    #site-title.reduced{
+        font-size:2rem;
     }
 }

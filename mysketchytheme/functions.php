@@ -34,12 +34,14 @@ function register_and_enqueue_scripts()
     wp_register_script("artwork-popup-script", get_stylesheet_directory_uri() . '/scripts/artwork-popup-script.js');
     wp_register_script("burger-menu-script", get_stylesheet_directory_uri() . '/scripts/burger-menu-script.js');
     wp_register_script("header-onscroll-script", get_stylesheet_directory_uri() . '/scripts/header-onscroll-script.js');
+    wp_register_script("submenu-script", get_stylesheet_directory_uri() . '/scripts/submenu-script.js');
 
     wp_enqueue_script("burger-menu-script");
     if (is_archive()) {
         wp_enqueue_script("artwork-popup-script");
     }
     wp_enqueue_script("header-onscroll-script");
+    wp_enqueue_script("submenu-script");
 
 
 }

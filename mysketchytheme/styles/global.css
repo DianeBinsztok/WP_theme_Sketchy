@@ -20,9 +20,15 @@ main {
     margin: 0 auto;
     flex: 1; 
 }
+/*Cacher des éléments*/
 .hide{
     visibility: hidden;
-    display: none;
+    display: none!important;
+}
+/*Empêcher le scroll du body lorsuq'une popup est ouverte*/
+.no-scroll{
+    position: fixed;
+    overflow: hidden;
 }
 section{
     padding: 3% 0;
@@ -45,7 +51,7 @@ section{
     /*Repères temporaires - fin*/
 
     main{
-        width: 100%;
+        width: 94%;
     }
     header, footer{
         padding:0 3%;
@@ -92,10 +98,10 @@ section{
 /*Autres tablettes*/
 @media only screen and (min-height: 431px) and (min-width: 771px) and (max-width : 999px) {
     main{
-        width: 70%;
+        width: 80%;
     }
     header, footer{
-        padding:0 15%;
+        padding:0 10%;
     }
 }
 

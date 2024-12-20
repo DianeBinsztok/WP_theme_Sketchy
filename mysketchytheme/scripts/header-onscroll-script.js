@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded", function () {
     let menuZone = document.querySelector("#menu-zone");
-    let header = document.getElementsByTagName("header")[0];
-    let main = document.getElementsByTagName("main")[0];
+    let header = document.querySelector("header");
+    let main = document.querySelector("main");
     let title = document.querySelector("#site-title");
     
     let lastScrollPosition = 0; 
@@ -20,7 +20,7 @@ window.addEventListener("DOMContentLoaded", function () {
               // 2 - Fixer la zone menu en haut de la page
                   if(menuZone.getBoundingClientRect().top <= 0){
                     menuZone.classList.add("onscroll");
-                    main.style.paddingTop = "70px";
+                    main.style.paddingTop = "50px";
                   }
                 // Mettre à jour la dernière position du scroll
                 lastScrollPosition = currentScrollPosition;
@@ -28,9 +28,6 @@ window.addEventListener("DOMContentLoaded", function () {
             
             // AU SCROLL VERS LE HAUT
             else{
-              console.log(main.getBoundingClientRect().top);
-              
-
                   // 1 - Rétablir le style du header
                   if(main.getBoundingClientRect().top >= 0){
                     main.style.paddingTop = "0";
@@ -38,7 +35,7 @@ window.addEventListener("DOMContentLoaded", function () {
                   }
                   // 2 - Remettre le titre à sa taille de départ 
                   
-                  if(header.getBoundingClientRect().bottom >= 100){
+                  if(header.getBoundingClientRect().bottom >= 70){
                     title.classList.remove("reduced");
                   }
                     

@@ -22,9 +22,9 @@
 
         <div id="menu-zone">
             <div id="title-menu_container">
-                <div id="site-title_container">
-                    <a id="site-title" href="<?php echo home_url(); ?>">My Site Title</a>
-                </div>
+                <!--<div id="site-title_container">-->
+                <a id="site-title" href="<?php echo home_url(); ?>">My Site Title</a>
+                <!--</div>-->
                 <?php wp_nav_menu() ?>
             </div>
         </div>
