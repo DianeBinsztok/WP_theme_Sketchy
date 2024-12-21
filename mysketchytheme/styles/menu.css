@@ -24,6 +24,11 @@
 .menu-item:hover .sub-menu .menu-item a{
     color: white!important;
 }
+
+#sub-menu-indicator{
+    margin-left: 1rem;
+}
+
 /*II - MEDIA QUERIES*/
 /*1 - TOUS DEVICES EN DESSOUS DE 660PX*/
 @media only screen and (max-width: 660px) {
@@ -47,9 +52,19 @@
     /*Appliquer un retard à la translation des onglets de menu*/
     .menu-menu-principal-container .menu-item{
         opacity: 0;
-        transform: translateX(150px); /* Décale les items à droite initialement */
+        transform: translateX(150px);
         transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-        transition-delay: 0s; /* Défaut, remplacé par nth-child */
+        transition-delay: 0s;
+    }
+
+    /* Tourner l'icône à l'ouverture - fermeture du sous-menu*/
+    #sub-menu-indicator svg{
+        transform: rotate(0);
+        transition: transform 0.3s ease-in;
+    }
+    #sub-menu-indicator.opened svg{
+        transform: rotate(180deg);
+        transition: transform 0.3s ease-in;
     }
 
     .menu-menu-principal-container.active .menu-item{
@@ -112,12 +127,11 @@
         left: 0;
         max-height: 12rem;
         overflow: hidden;
-        transition: max-height 0.3s ease-out;
+        transition: max-height 0.2s ease-out;
     }
     .sub-menu.closed{
         max-height: 0;
-        transition: max-height 0.3s ease-out;
-        /*display: none;*/
+        transition: max-height 0.2s ease-out;
     }
     .sub-menu .menu-item{
         padding: 0.8rem 0;
@@ -126,7 +140,6 @@
         color: white!important;
         font-size: 1.1rem;
     }
-    
 }
 /*2 - MOBILES VERTICAUX*/
 @media only screen and (max-width : 430px){
