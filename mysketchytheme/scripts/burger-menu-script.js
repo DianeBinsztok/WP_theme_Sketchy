@@ -14,7 +14,7 @@ window.addEventListener("load", function() {
         menuToggleBtn.classList.toggle("active");
 
         /* empêcher le scroll de l'arrière-plan*/
-        body.classList.toggle("no-scroll");
+        //body.classList.toggle("no-scroll");
         title.classList.toggle("on-top-of-drawer-menu");
     })
 });

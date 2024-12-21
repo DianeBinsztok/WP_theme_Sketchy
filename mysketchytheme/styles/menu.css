@@ -20,12 +20,6 @@
     text-decoration: none;
     font-size: 1.1rem;
 }
-/*Le sous-menu*/
-/*
-.menu-item .sub-menu{
-    display: none;
-}
-*/
 
 .menu-item:hover .sub-menu .menu-item a{
     color: white!important;
@@ -50,6 +44,31 @@
     .menu-menu-principal-container.active{
         transform: translateX(0);
     }
+    /*Appliquer un retard à la translation des onglets de menu*/
+    .menu-menu-principal-container .menu-item{
+        opacity: 0;
+        transform: translateX(150px); /* Décale les items à droite initialement */
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        transition-delay: 0s; /* Défaut, remplacé par nth-child */
+    }
+
+    .menu-menu-principal-container.active .menu-item{
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .menu-menu-principal-container.active .menu-item:nth-child(1){
+        transition-delay: 0.2s;
+    }
+
+    .menu-menu-principal-container.active .menu-item:nth-child(2){
+        transition-delay: 0.3s;
+    }
+
+    .menu-menu-principal-container.active .menu-item:nth-child(3){
+        transition-delay: 0.4s;
+    }
+    /*Retard de translation - fin*/
 
     #menu-menu-principal{
         display: flex;
