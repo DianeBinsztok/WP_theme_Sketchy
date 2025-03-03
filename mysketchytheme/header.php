@@ -17,14 +17,26 @@
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
+
         <div id="above-menu-zone">
+            <?php
+            /*
+            if (is_home()) {
+                echo '
+                <div id="home_onload_site-title_container">
+                    <a id="home_onload_site-title" href="<?php echo home_url(); ?>">My Site Title</a>
+                </div>
+                ';
+            }
+            */
+            ?>
+
         </div>
+
 
         <div id="menu-zone">
             <div id="title-menu_container">
-                <!--<div id="site-title_container">-->
                 <a id="site-title" href="<?php echo home_url(); ?>">My Site Title</a>
-                <!--</div>-->
                 <?php wp_nav_menu() ?>
             </div>
         </div>

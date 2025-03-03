@@ -1,15 +1,4 @@
 /*I - GLOBAL*/
-/*TEST*/
-#menu-zone #site-title.on-top-of-drawer-menu , #menu-zone.onscroll #site-title.on-top-of-drawer-menu{
-    position: fixed;
-    color: #fcfce7;
-    z-index: 5;
-    font-size: 3rem;
-    transition: all 0.4s ease-in-out;
-    /*Provisoire*/
-    top:50px;
-}
-/*TEST-FIN*/
 header{
     display:flex;
     flex-direction:column;
@@ -17,7 +6,7 @@ header{
     z-index: 2;
 }
 #above-menu-zone{
-    height: 5vh;
+    height: 15vh;
 }
 #menu-zone{
     display:flex;
@@ -33,7 +22,16 @@ header{
 #menu-zone.onscroll #title-menu_container{
     align-items: center;
 }
-
+/*versions mobile : à l'ouverture du menu, repositionner le titre*/
+#menu-zone #site-title.on-top-of-drawer-menu , #menu-zone.onscroll #site-title.on-top-of-drawer-menu{
+    position: fixed;
+    color: #fcfce7;
+    z-index: 5;
+    font-size: 3rem;
+    transition: all 0.4s ease-in-out;
+    /*Provisoire*/
+    top:50px;
+}
 #title-menu_container{
     width: 100%;
     display:flex;
@@ -87,14 +85,14 @@ header{
 }
 
 /*LE POSITIONNEMENT*/
-/*1 - Avec le menu caché et le burger-menu : le titre est centré*/
+/*1 - Versions mobiles : avec le menu caché et le burger-menu : le titre est centré*/
 @media only screen and (max-width : 660px) {
     #title-menu_container{
         height: 50px;
         justify-content: center;
     }
 }
-/*2 - Avec le menu ouvert : titre à gauche, menu à droite*/
+/*2 - Tablettes et desktop : avec le menu ouvert : titre à gauche, menu à droite*/
 @media only screen and (min-width : 661px) {
     #title-menu_container{
         justify-content: space-between;

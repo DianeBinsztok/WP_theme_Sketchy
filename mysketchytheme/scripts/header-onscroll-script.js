@@ -18,7 +18,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 title.classList.add("reduced");
               }
               // 2 - Fixer la zone menu en haut de la page
-                  if(menuZone.getBoundingClientRect().top <= 0){
+                  if(menuZone.getBoundingClientRect().bottom <= 70){
                     menuZone.classList.add("onscroll");
                     main.style.paddingTop = "50px";
                   }

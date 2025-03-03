@@ -5,6 +5,7 @@
 get_header();
 
 //the_content();
+
 ?>
 
 <h1>Bienvenue sur mon sketchbook</h1>

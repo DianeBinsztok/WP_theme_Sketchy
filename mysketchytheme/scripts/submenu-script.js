@@ -30,14 +30,11 @@ window.addEventListener("load", function() {
     menuItemAndArrowContainer.appendChild(arrowSVG); 
     subMenuParent.insertAdjacentElement("afterbegin", menuItemAndArrowContainer);
 
-    console.log(subMenuParent);
+    /* Dérouler le sous-menu au clic sur l'icône*/
     arrowSVG.addEventListener("click", ()=>{
         subMenu.classList.toggle("closed");
 
         /* Pour tourner le svg quand le sous-menu est ouvert */
         arrowSVG.classList.toggle("opened");
-        console.log(subMenuParent);
     })
-
-    
 });
