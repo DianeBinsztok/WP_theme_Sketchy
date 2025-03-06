@@ -17,7 +17,7 @@ body {
 
 main {
     /* Étendre sur tout l'espace entre header et footer */
-    margin: 0 auto;
+    margin: 3% auto;
     flex: 1; 
 }
 /*Cacher des éléments*/
@@ -51,7 +51,7 @@ section{
     }
     /*Repères temporaires - fin*/
 
-    main{
+    #content-container{
         width: 94%;
     }
     header, footer{
@@ -76,7 +76,7 @@ section{
     }
     /*Repères temporaires - fin*/
 
-    main{
+    #content-container{
         width: 80%;
     }
 
@@ -90,7 +90,7 @@ section{
 /*Marges*/
 /*Petites tablettes - type iPad Mini*/
 @media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 770px) {
-    main{
+    #content-container{
         width: 90%;
     }
     header, footer{
@@ -99,7 +99,7 @@ section{
 }
 /*Autres tablettes*/
 @media only screen and (min-height: 431px) and (min-width: 771px) and (max-width : 999px) {
-    main{
+    #content-container{
         width: 80%;
     }
     header, footer{

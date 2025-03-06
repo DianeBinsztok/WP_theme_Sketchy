@@ -47,8 +47,8 @@ function artwork_custom_post_type()
         'public' => true,
         'has_archive' => 'artworks',
         /*Equivalent de :
-       'has_archive' => true,
-       'rewrite' => array('slug' => 'artworks'),*/
+        'has_archive' => true,
+        'rewrite' => array('slug' => 'artworks'),*/
     );
 
     // Enregistrement du custom post type "artisan" et ses arguments

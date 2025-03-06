@@ -2,6 +2,17 @@
 // Les fonctionnalités supportées par le thème
 add_theme_support('post-thumbnails');
 
+// L'url des pages relatives au blog
+function blog_permalinks_structure()
+{
+    // Vérifie si le type de publication est un post
+    if (is_singular('post')) {
+        add_rewrite_rule('^blog/([^/]+)/?$', 'index.php?name=$matches[1]', 'top');
+    }
+}
+//add_action('init', 'blog_permalinks_structure');
+
+
 // Prendre en compte le type de contenu personnalisé: Artisan
 require_once(get_stylesheet_directory() . '/functions/register-CPT-artwork.php');
 require_once(get_stylesheet_directory() . '/functions/display-svg.php');
@@ -21,9 +32,13 @@ function theme_enqueue_styles()
         wp_enqueue_style('archive-artwork-popup-style', get_template_directory_uri() . '/styles/archive-artwork-popup.css');
     }
 
-    // STYLES DE LA PAGE D'ACCUEIL
+    // STYLE DE LA PAGE DE BLOG
     if (is_home()) {
-        wp_enqueue_style('homepage-style', get_template_directory_uri() . '/styles/homepage.css');
+        wp_enqueue_style('home-blog-style', get_template_directory_uri() . '/styles/home-blog.css');
+    }
+    // STYLE DE LA PAGE D'ACCUEIL
+    if (is_front_page()) {
+        wp_enqueue_style('front-page-style', get_template_directory_uri() . '/styles/front-page.css');
     }
 }
 
