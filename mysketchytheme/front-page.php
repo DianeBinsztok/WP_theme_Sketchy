@@ -2,7 +2,7 @@
 /*
  * Template Name: Sketchy
  */
-get_header();
+get_header("home");
 ?>
 
 <section id="introduction">

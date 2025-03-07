@@ -23,13 +23,13 @@ function theme_enqueue_styles()
 {
     // STYLES APPLIQUÉS PARTOUT
     wp_enqueue_style('global-style', get_template_directory_uri() . '/styles/global.css');
-    wp_enqueue_style('header-style', get_template_directory_uri() . '/styles/header.css');
+    //wp_enqueue_style('header-style', get_template_directory_uri() . '/styles/header.css');
     wp_enqueue_style('footer-style', get_template_directory_uri() . '/styles/footer.css');
 
     wp_enqueue_style('menu-style', get_template_directory_uri() . '/styles/menu.css');
 
     // STYLES DE LA GALERIE
-    if (is_archive()) {
+    if (is_archive("artworks")) {
         wp_enqueue_style('archive-artwork-style', get_template_directory_uri() . '/styles/archive-artwork.css');
         wp_enqueue_style('archive-artwork-popup-style', get_template_directory_uri() . '/styles/archive-artwork-popup.css');
     }
@@ -40,7 +40,13 @@ function theme_enqueue_styles()
     }
     // STYLE DE LA PAGE D'ACCUEIL
     if (is_front_page()) {
+        wp_enqueue_style('frontpage-header-style', get_template_directory_uri() . '/styles/frontpage-header.css');
         wp_enqueue_style('front-page-style', get_template_directory_uri() . '/styles/front-page.css');
+
+    }
+    // STYLE DES AUTRES PAGES
+    else {
+        wp_enqueue_style('header-style', get_template_directory_uri() . '/styles/header.css');
     }
 }
 
@@ -59,6 +65,7 @@ function register_and_enqueue_scripts()
     if (is_archive()) {
         wp_enqueue_script("artwork-popup-script");
     }
+
     wp_enqueue_script("header-onscroll-script");
     wp_enqueue_script("submenu-script");
 
