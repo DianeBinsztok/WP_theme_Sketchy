@@ -9,6 +9,7 @@
 #galleries-introduction{
     display:flex; 
     max-width:100%;
+    background-color: #ebe4c5;
 }
 .gallery-link_container{
     margin:0 1rem;

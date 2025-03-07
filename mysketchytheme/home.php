@@ -3,7 +3,7 @@ get_header();
 
 if (have_posts()):
 
-    echo "<div class='posts_container'>";
+    echo "<section class='posts_container'>";
 
     while (have_posts()):
 
@@ -27,7 +27,7 @@ if (have_posts()):
 
     endwhile;
 
-    echo "</div>";
+    echo "</section>";
 
 endif;
 

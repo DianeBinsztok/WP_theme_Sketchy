@@ -17,7 +17,8 @@ body {
 
 main {
     /* Étendre sur tout l'espace entre header et footer */
-    margin: 3% auto;
+    width: 100%;
+    /*margin: auto;*/
     flex: 1; 
 }
 /*Cacher des éléments*/
@@ -29,9 +30,6 @@ main {
 .no-scroll{
     position: fixed;
     overflow: hidden;
-}
-section{
-    padding: 3% 0;
 }
 
 /*II - MEDIA QUERIES*/
@@ -51,11 +49,11 @@ section{
     }
     /*Repères temporaires - fin*/
 
-    #content-container{
-        width: 94%;
-    }
     header, footer{
         padding:0 3%;
+    }
+    section{
+        padding:3% 3%;
     }
 }
 
@@ -76,12 +74,11 @@ section{
     }
     /*Repères temporaires - fin*/
 
-    #content-container{
-        width: 80%;
-    }
-
     header, footer{
         padding:0 10%;
+    }
+    section{
+        padding:3% 10%;
     }
 }
 
@@ -90,20 +87,20 @@ section{
 /*Marges*/
 /*Petites tablettes - type iPad Mini*/
 @media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 770px) {
-    #content-container{
-        width: 90%;
-    }
     header, footer{
         padding:0 5%;
+    }
+    section{
+        padding:3% 5%;
     }
 }
 /*Autres tablettes*/
 @media only screen and (min-height: 431px) and (min-width: 771px) and (max-width : 999px) {
-    #content-container{
-        width: 80%;
-    }
     header, footer{
         padding:0 10%;
+    }
+    section{
+        padding:3% 10%;
     }
 }
 
@@ -138,11 +135,11 @@ section{
         }
         /*Repères temporaires - fin*/
 
-        main{
-            width: 70%;
-        }
         header, footer{
             padding:0 15%;
+        }
+        section{
+            padding:3% 15%;
         }
 }
 

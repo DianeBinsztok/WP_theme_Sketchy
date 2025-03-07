@@ -4,8 +4,9 @@
  */
 get_header();
 ?>
-<h1>Bienvenue sur mon sketchbook</h1>
+
 <section id="introduction">
+    <h1>Bienvenue sur mon sketchbook</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore enim, quaerat illo repellat dignissimos
         laudantium corporis nisi quos iure maiores rem ratione labore ad voluptatem? Eos cupiditate voluptatum sint
         qui.</p>

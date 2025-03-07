@@ -1,8 +1,15 @@
 /*I - GLOBAL*/
-    /*Positionner les vignettes par rapport à l'overlay*/
-    .clickable-artwork{
-        position: relative;
-    }
+#gallery_clickable-artworks{
+    background-color: #ebe4c5;
+}
+#gallery_artworks-popups{
+    padding: 0!important;
+    margin: 0!important;
+}
+/*Positionner les vignettes par rapport à l'overlay*/
+.clickable-artwork{
+    position: relative;
+}
 
 /*L'overlay sur les vignettes*/
 .artwork_overlay {
