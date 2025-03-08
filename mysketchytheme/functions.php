@@ -56,18 +56,28 @@ function register_and_enqueue_scripts()
     wp_register_script("artwork-popup-script", get_stylesheet_directory_uri() . '/scripts/artwork-popup-script.js');
     wp_register_script("burger-menu-script", get_stylesheet_directory_uri() . '/scripts/burger-menu-script.js');
     wp_register_script("header-onscroll-script", get_stylesheet_directory_uri() . '/scripts/header-onscroll-script.js');
-    wp_register_script("home-header-onscroll-script", get_stylesheet_directory_uri() . '/scripts/home-header-onscroll-script.js');
+    wp_register_script("frontpage-header-onscroll-script", get_stylesheet_directory_uri() . '/scripts/frontpage-header-onscroll-script.js');
     wp_register_script("submenu-script", get_stylesheet_directory_uri() . '/scripts/submenu-script.js');
 
 
-
+    /* LE MENU */
     wp_enqueue_script("burger-menu-script");
+    wp_enqueue_script("submenu-script");
+
+    /* FIXER LE HEADER AU SCROLL*/
+    // Animations pour la page d'accueil
+    if (is_front_page()) {
+        wp_enqueue_script("frontpage-header-onscroll-script");
+    }
+    // Pour les autres pages
+    else {
+        wp_enqueue_script("header-onscroll-script");
+    }
+
+
+    /* GALERIE DES ARTWORKS*/
     if (is_archive()) {
         wp_enqueue_script("artwork-popup-script");
     }
-
-    wp_enqueue_script("header-onscroll-script");
-    wp_enqueue_script("submenu-script");
-
 }
 add_action('wp_enqueue_scripts', 'register_and_enqueue_scripts');
