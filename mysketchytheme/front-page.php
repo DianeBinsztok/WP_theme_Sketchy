@@ -2,7 +2,7 @@
 /*
  * Template Name: Sketchy
  */
-get_header("home");
+get_header();
 ?>
 
 <section id="introduction" class="with-margins">
