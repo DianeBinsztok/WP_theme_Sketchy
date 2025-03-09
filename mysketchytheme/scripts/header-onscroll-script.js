@@ -1,6 +1,7 @@
 window.addEventListener("DOMContentLoaded", function () {
-    let menuZone = document.querySelector("#menu-zone");
+
     let header = document.querySelector("header");
+    let menuZone = document.querySelector("#menu-zone");
     let main = document.querySelector("main");
     let title = document.querySelector("#site-title");
     

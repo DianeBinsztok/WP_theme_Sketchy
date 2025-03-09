@@ -25,7 +25,6 @@ function theme_enqueue_styles()
     wp_enqueue_style('global-style', get_template_directory_uri() . '/styles/global.css');
     wp_enqueue_style('header-style', get_template_directory_uri() . '/styles/header.css');
     wp_enqueue_style('footer-style', get_template_directory_uri() . '/styles/footer.css');
-
     wp_enqueue_style('menu-style', get_template_directory_uri() . '/styles/menu.css');
 
     // STYLES DE LA GALERIE
@@ -50,22 +49,19 @@ function register_and_enqueue_scripts()
     wp_register_script("artwork-popup-script", get_stylesheet_directory_uri() . '/scripts/artwork-popup-script.js');
     wp_register_script("burger-menu-script", get_stylesheet_directory_uri() . '/scripts/burger-menu-script.js');
     wp_register_script("header-onscroll-script", get_stylesheet_directory_uri() . '/scripts/header-onscroll-script.js');
-    wp_register_script("frontpage-header-onscroll-script", get_stylesheet_directory_uri() . '/scripts/frontpage-header-onscroll-script.js');
+    wp_register_script("frontpage-title-translations-script", get_stylesheet_directory_uri() . '/scripts/frontpage-title-translations-script.js');
     wp_register_script("submenu-script", get_stylesheet_directory_uri() . '/scripts/submenu-script.js');
 
 
-    /* LE MENU */
+    /* HEADER ET MENU */
     wp_enqueue_script("burger-menu-script");
     wp_enqueue_script("submenu-script");
+    wp_enqueue_script("header-onscroll-script");
 
-    /* FIXER LE HEADER AU SCROLL*/
-    // Animations pour la page d'accueil
+
+    /* TRANSLATIONS DU TITRE SUR LA PAGE D'ACCUEIL */
     if (is_front_page()) {
-        wp_enqueue_script("frontpage-header-onscroll-script");
-    }
-    // Pour les autres pages
-    else {
-        wp_enqueue_script("header-onscroll-script");
+        wp_enqueue_script("frontpage-title-translations-script");
     }
 
 
