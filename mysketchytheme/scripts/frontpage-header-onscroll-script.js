@@ -1,14 +1,9 @@
 window.addEventListener("load", function() {
 
-    console.log(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent);
-
-
-
     let header = document.querySelector("header");
     let menuZone = document.querySelector("#menu-zone");
     let main = document.querySelector("main");
     let title = document.querySelector("#site-title");
-    let titleMenuContainer = document.querySelector("#title-menu_container");
 
     /*CENTRER LE TITRE AU DÉMARRAGE*/
 
@@ -19,13 +14,11 @@ window.addEventListener("load", function() {
     let horizontalTranslationToCenter = (menuZone.offsetWidth-title.offsetWidth)/2;
 
     // Sur les versions desktop, quand le conteneur est en space-between et que le titre est sur la gauche
-    if(titleMenuContainer.style.justifyContent = "space-between"){
-        console.log(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent);
+    if(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent == "space-between"){
         title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter}px)`;
     }
     // Sur les versions mobiles, quand le conteneur est en center et que le titre est centré
     else{
-        console.log(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent);
         title.style.transform = `translateY( -${verticalTranslationToCenter}px)`;
     }
 
@@ -52,13 +45,11 @@ window.addEventListener("load", function() {
                b - Ajouter la translation qui le maintient au centre pendant le scroll : -halfOfScrolledHeight (négatif car il descend sur l'axe des Y)
             */
             // Sur les versions desktop, quand le conteneur est en space-between et que le titre est sur la gauche
-            if(titleMenuContainer.style.justifyContent = "space-between"){
-                console.log(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent);
+            if(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent == "space-between"){
                 title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter-halfOfScrolledHeight}px)`;
             }
             // Sur les versions mobiles, quand le conteneur est en center et que le titre est centré
             else{
-                console.log(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent);
                 title.style.transform = `translateY(-${verticalTranslationToCenter-halfOfScrolledHeight}px)`;
             }
 
@@ -71,7 +62,10 @@ window.addEventListener("load", function() {
                 if(menuZone.getBoundingClientRect().bottom <= 70){
                 menuZone.classList.add("onscroll");
 
-                title.classList.add("soft-translate");
+                // N'appliquer de transition que sur les versions destop, quand le titre doit se décentrer horizontalement
+                if(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent == "space-between"){
+                    title.classList.add("soft-translate");
+                }
                 title.style.transform = `translate(0)`;
                 main.style.paddingTop = "50px";
                 }
@@ -87,22 +81,31 @@ window.addEventListener("load", function() {
             menuZone.classList.remove("onscroll");
             }
 
-            // II - Remettre le titre à sa taille de départ et le re-centrer horizontalement
+            // II - Remettre le titre à sa taille de départ et le re-centrer horizontalement, s'il est à gauche (version desktop, en space-between)
             if(header.getBoundingClientRect().bottom >= 70){
                 title.classList.remove("reduced");
-                title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter}px)`;
+
+                // Sur les versions desktop : recentrer le titre
+                if(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent == "space-between"){
+                    title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter}px)`;
+                }
             }
 
             // III - Remettre le titre au centre de la hauteur visible du header
             if(header.getBoundingClientRect().bottom >= 70 && !title.classList.contains("reduced")){
-                title.classList.remove("soft-translate");
                 let halfOfScrolledHeight = window.scrollY/2;
-                title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter-halfOfScrolledHeight}px)`;
+                title.classList.remove("soft-translate");
+
+                // Sur les versions desktop, quand le conteneur est en space-between et que le titre est sur la gauche
+                if(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent == "space-between"){
+                    title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter-halfOfScrolledHeight}px)`;
+                }
+                // Sur les versions mobiles, quand le conteneur est en center et que le titre est centré
+                else{
+                    title.style.transform = `translateY(-${verticalTranslationToCenter-halfOfScrolledHeight}px)`;
+                }
+                
             }
-
-            
-
-
 
             // Mettre à jour la dernière position du scroll
             lastScrollPosition = currentScrollPosition;
