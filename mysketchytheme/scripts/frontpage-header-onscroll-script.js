@@ -1,9 +1,14 @@
 window.addEventListener("load", function() {
 
+    console.log(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent);
+
+
+
     let header = document.querySelector("header");
     let menuZone = document.querySelector("#menu-zone");
     let main = document.querySelector("main");
     let title = document.querySelector("#site-title");
+    let titleMenuContainer = document.querySelector("#title-menu_container");
 
     /*CENTRER LE TITRE AU DÉMARRAGE*/
 
@@ -13,10 +18,16 @@ window.addEventListener("load", function() {
     // Horizontalement : la moitié de la largeur du header, en retranchant la moitié de la largeur de titre
     let horizontalTranslationToCenter = (menuZone.offsetWidth-title.offsetWidth)/2;
 
-    title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter}px)`;
-
-
-
+    // Sur les versions desktop, quand le conteneur est en space-between et que le titre est sur la gauche
+    if(titleMenuContainer.style.justifyContent = "space-between"){
+        console.log(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent);
+        title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter}px)`;
+    }
+    // Sur les versions mobiles, quand le conteneur est en center et que le titre est centré
+    else{
+        console.log(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent);
+        title.style.transform = `translateY( -${verticalTranslationToCenter}px)`;
+    }
 
     // Stocker la dernière position du scroll pour détecter un scroll vers le bas ou vers le haut
     let lastScrollPosition = 0; 
@@ -40,7 +51,16 @@ window.addEventListener("load", function() {
 
                b - Ajouter la translation qui le maintient au centre pendant le scroll : -halfOfScrolledHeight (négatif car il descend sur l'axe des Y)
             */
-            title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter-halfOfScrolledHeight}px)`;
+            // Sur les versions desktop, quand le conteneur est en space-between et que le titre est sur la gauche
+            if(titleMenuContainer.style.justifyContent = "space-between"){
+                console.log(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent);
+                title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter-halfOfScrolledHeight}px)`;
+            }
+            // Sur les versions mobiles, quand le conteneur est en center et que le titre est centré
+            else{
+                console.log(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent);
+                title.style.transform = `translateY(-${verticalTranslationToCenter-halfOfScrolledHeight}px)`;
+            }
 
 
             // II - Réduire la taille du titre

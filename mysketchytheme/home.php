@@ -3,7 +3,7 @@ get_header();
 
 if (have_posts()):
 
-    echo "<section class='posts_container'>";
+    echo "<section class='posts_container with-margins'>";
 
     while (have_posts()):
 

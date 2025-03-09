@@ -2,7 +2,7 @@
 get_header();
 ?>
 
-<section>
+<section class="with-margins">
     <?php
     the_content();
     ?>

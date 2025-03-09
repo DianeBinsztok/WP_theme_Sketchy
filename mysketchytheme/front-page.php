@@ -5,13 +5,13 @@
 get_header("home");
 ?>
 
-<section id="introduction">
+<section id="introduction" class="with-margins">
     <h1>Bienvenue sur mon sketchbook</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore enim, quaerat illo repellat dignissimos
         laudantium corporis nisi quos iure maiores rem ratione labore ad voluptatem? Eos cupiditate voluptatum sint
         qui.</p>
 </section>
-<section id="galleries-introduction">
+<section id="galleries-introduction" class="with-margins">
     <div class="gallery-link_container">
         <a href="<?php echo get_site_url(); ?>/artworks/?categorie=nu">
             <div class="gallery-link"
@@ -41,7 +41,7 @@ get_header("home");
         </a>
     </div>
 </section>
-<section id="about">
+<section id="about" class="with-margins">
     <h2>À propos</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni adipisci soluta, explicabo dolorem voluptates
         earum alias in dicta ea ullam est, consectetur repellat nobis eos mollitia expedita praesentium! Quibusdam,

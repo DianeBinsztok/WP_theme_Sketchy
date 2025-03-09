@@ -25,7 +25,7 @@
 
         <div id="menu-zone">
             <div id="title-menu_container">
-                <a id="site-title" href="<?php echo home_url(); ?>">My Site Title - HOME</a>
+                <a id="site-title" href="<?php echo home_url(); ?>">My Site Title</a>
                 <?php wp_nav_menu() ?>
             </div>
         </div>

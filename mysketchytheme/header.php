@@ -19,18 +19,6 @@
         </div>
 
         <div id="above-menu-zone">
-            <?php
-            /*
-            if (is_home()) {
-                echo '
-                <div id="home_onload_site-title_container">
-                    <a id="home_onload_site-title" href="<?php echo home_url(); ?>">My Site Title</a>
-                </div>
-                ';
-            }
-            */
-            ?>
-
         </div>
 
 

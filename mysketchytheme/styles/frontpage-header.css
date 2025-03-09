@@ -29,6 +29,7 @@ header{
     z-index: 5;
     font-size: 3rem;
     transition: all 0.4s ease-in-out;
+    transform: translate(0)!important;
     /*Provisoire*/
     top:50px;
 }
