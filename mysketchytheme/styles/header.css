@@ -8,6 +8,10 @@ header{
 #above-menu-zone{
     height: 15vh;
 }
+/* Pour la page d'accueil : un header plus spectaculaire */
+#above-menu-zone.front-page{
+    height: 80vh;
+}
 #menu-zone{
     display:flex;
     align-items: center;
@@ -29,6 +33,9 @@ header{
     z-index: 5;
     font-size: 3rem;
     transition: all 0.4s ease-in-out;
+    /*Pour le header de la page d'accueil : remettre le titre à sa place initiale*/
+    transform: translate(0)!important;
+
     /*Provisoire*/
     top:50px;
 }
@@ -47,7 +54,10 @@ header{
 #site-title.reduced {
     transition: font-size 0.4s ease-in-out;
 }
-
+/* Pour le header de la page d'accueil : ralentir la translation du titre*/
+#site-title.soft-translate {
+    transition: all 0.5s ease-in-out;
+}
 /*II - MEDIA QUERIES*/
 
 /*LES MARGES*/

@@ -18,7 +18,9 @@
             <span class="bar"></span>
         </div>
 
-        <div id="above-menu-zone">
+        <div id="above-menu-zone" <?php if (is_front_page()) {
+            echo 'class="front-page"';
+        } ?>>
         </div>
 
 

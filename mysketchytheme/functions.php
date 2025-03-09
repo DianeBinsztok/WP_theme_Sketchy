@@ -23,7 +23,7 @@ function theme_enqueue_styles()
 {
     // STYLES APPLIQUÉS PARTOUT
     wp_enqueue_style('global-style', get_template_directory_uri() . '/styles/global.css');
-    //wp_enqueue_style('header-style', get_template_directory_uri() . '/styles/header.css');
+    wp_enqueue_style('header-style', get_template_directory_uri() . '/styles/header.css');
     wp_enqueue_style('footer-style', get_template_directory_uri() . '/styles/footer.css');
 
     wp_enqueue_style('menu-style', get_template_directory_uri() . '/styles/menu.css');
@@ -40,13 +40,7 @@ function theme_enqueue_styles()
     }
     // STYLE DE LA PAGE D'ACCUEIL
     if (is_front_page()) {
-        wp_enqueue_style('frontpage-header-style', get_template_directory_uri() . '/styles/frontpage-header.css');
         wp_enqueue_style('front-page-style', get_template_directory_uri() . '/styles/front-page.css');
-
-    }
-    // STYLE DES AUTRES PAGES
-    else {
-        wp_enqueue_style('header-style', get_template_directory_uri() . '/styles/header.css');
     }
 }
 
