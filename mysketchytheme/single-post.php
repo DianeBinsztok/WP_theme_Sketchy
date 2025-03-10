@@ -1,7 +1,7 @@
 <?php
 $title = get_the_title();
 $excerpt = get_the_excerpt();
-$date = get_the_date();
+$date = get_the_date("j F, Y");
 
 
 get_header();

@@ -8,22 +8,37 @@ if (have_posts()):
     while (have_posts()):
 
         the_post();
-        echo "<div class='post-card_container'>";
+        ?>
 
-        echo "<div class='post-card'>";
+        <div class='post-card_container'>
+            <div class='post-card'>
+                <a href=" <?php echo get_site_url() ?>/blog/<?php echo get_post_field('post_name') ?> ">
 
-        echo "<a href=" . get_site_url() . "/blog/" . get_post_field("post_name") . ">";
+                    <!-- le conteneur de l'image -->
+                    <div class='post-card_image_container'>
+                        <?php the_post_thumbnail('medium-large') ?>
+                    </div>
 
-        // le conteneur de l'image
-        echo "<div class='post-card_image_container'>";
-        the_post_thumbnail('medium-large');
-        echo "</div>";
-        the_title('<h2>', '</h2>');
-        the_excerpt();
-        echo "</a>";
-        echo "</div>";
+                    <!-- le contenu -->
+                    <div class=" content-zone">
 
-        echo "</div>";
+                        <div class="title-zone">
+                            <?php the_title('<h2>', '</h2>') ?>
+                        </div>
+
+                        <div class='excerpt'>
+                            <?php the_excerpt() ?>
+                        </div>
+
+                        <div class='date'>
+                            <?php echo get_the_date("j F, Y") ?>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <?php
 
     endwhile;
 
@@ -32,3 +47,5 @@ if (have_posts()):
 endif;
 
 get_footer();
+
+

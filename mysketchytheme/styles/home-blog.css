@@ -13,10 +13,8 @@
     display: flex;
     flex-direction:column;
     justify-content: start;
-    border: 1px solid rgb(199, 199, 199);
+    /*border: 1px solid rgb(199, 199, 199);*/
     border-radius: 10px;
-    height:500px;
-    overflow: hidden;
 }
 .post-card:hover{
     transform: scale(1.03);
@@ -27,7 +25,7 @@
 }
 .post-card_image_container{
     width: 100%;
-    height: 200px;
+    height: 180px;
 }
 
 .post-card a{
@@ -45,8 +43,26 @@
 }
 
 /*Le padding partout sauf sur l'image*/
-.post-card h2, .post-card p{
-    padding: 0 1.7rem ;
+.post-card .content-zone{
+    padding: 1rem 1.7rem ;
+}
+.title-zone{
+    height: 5rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.excerpt {    
+    display: -webkit-box;      
+    -webkit-box-orient: vertical;  
+    -webkit-line-clamp: 3;     
+    overflow: hidden;
+}
+.date{
+    color:#74705e;
+    font-style: italic;
+    font-size: 1em;
+    margin-top: 1.5rem;  
 }
 
 
