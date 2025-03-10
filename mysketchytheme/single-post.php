@@ -7,19 +7,21 @@ $date = get_the_date("j F, Y");
 get_header();
 ?>
 
-<section class="with-margins" style="background-color:#ebe4c5;">
-    <div style="display:flex;">
-        <?php
-        (the_post_thumbnail('medium'));
-        ?>
+<section id="post-header_container" class="with-margins">
+    <div id="post-header-content">
+        <div id="post-thumbnail_container">
+            <?php
+            (the_post_thumbnail('medium large'));
+            ?>
+        </div>
 
-        <div style="display:flex;flex-direction:column; justify-content: space-between;">
-            <h1>
+        <div id="excerpt-date_container">
+            <h1 id="title">
                 <?php
                 echo $title;
                 ?>
             </h1>
-            <div id="excerpt" style="font-weight:bold; font-size: 20px;">
+            <div id="excerpt">
                 <?php
                 echo $excerpt;
                 ?>
@@ -37,9 +39,12 @@ get_header();
 </section>
 
 <section class="with-margins">
-    <?php
-    the_content();
-    ?>
+    <div id="content">
+        <?php
+        the_content();
+        ?>
+    </div>
+
 </section>
 
 <?php

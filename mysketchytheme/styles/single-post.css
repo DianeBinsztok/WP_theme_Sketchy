@@ -1,0 +1,42 @@
+#post-header_container{
+    background-color:#ebe4c5;
+}
+#post-header-content{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+}
+#post-thumbnail_container{
+    width: 50%;
+}
+#post-thumbnail_container img{
+    width: 100%;
+    height: auto;
+}
+
+#excerpt-date_container{
+    padding-left: 2rem;
+    width: 100%;
+    display:flex;
+    flex-direction:column; 
+    justify-content: start;
+}
+
+#title{
+    font-size: 2.5em;
+}
+
+#excerpt{
+    font-size: 1.6em;
+}
+
+#date{
+    font-size: 1.2em;
+    font-style: italic;
+    margin-top: 2rem;
+}
+
+#content p{
+    line-height: 2.5rem;
+    font-size: 1.2em;
+}

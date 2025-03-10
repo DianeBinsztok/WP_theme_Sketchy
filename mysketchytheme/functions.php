@@ -27,6 +27,11 @@ function theme_enqueue_styles()
     wp_enqueue_style('footer-style', get_template_directory_uri() . '/styles/footer.css');
     wp_enqueue_style('menu-style', get_template_directory_uri() . '/styles/menu.css');
 
+    // STYLE DE LA PAGE D'ACCUEIL
+    if (is_front_page()) {
+        wp_enqueue_style('front-page-style', get_template_directory_uri() . '/styles/front-page.css');
+    }
+
     // STYLES DE LA GALERIE
     if (is_archive("artworks")) {
         wp_enqueue_style('archive-artwork-style', get_template_directory_uri() . '/styles/archive-artwork.css');
@@ -37,9 +42,10 @@ function theme_enqueue_styles()
     if (is_home()) {
         wp_enqueue_style('home-blog-style', get_template_directory_uri() . '/styles/home-blog.css');
     }
-    // STYLE DE LA PAGE D'ACCUEIL
-    if (is_front_page()) {
-        wp_enqueue_style('front-page-style', get_template_directory_uri() . '/styles/front-page.css');
+
+    // STYLE DE L'ARTICLE DE BLOG
+    if (is_single()) {
+        wp_enqueue_style('single-post-style', get_template_directory_uri() . '/styles/single-post.css');
     }
 }
 
