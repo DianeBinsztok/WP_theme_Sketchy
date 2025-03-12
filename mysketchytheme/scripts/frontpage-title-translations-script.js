@@ -4,6 +4,11 @@ window.addEventListener("load", function() {
     let menuZone = document.querySelector("#menu-zone");
     let title = document.querySelector("#site-title");
 
+    /* Positionnement du titre dans son conteneur :*/
+    let titleMenuContainerStyle = getComputedStyle(document.querySelector("#title-menu_container"));
+    let titleMenuContainerJustification = titleMenuContainerStyle.justifyContent;
+
+    
 
     /* I - AU CHARGEMENT DE LA PAGE : CENTRER LE TITRE */
 
@@ -24,7 +29,7 @@ window.addEventListener("load", function() {
     let horizontalTranslationToCenter = (menuZone.offsetWidth-title.offsetWidth)/2;
 
     /* 1 - Sur desktop : translation verticale et horizontale (car la zone est en justify-content:space-between et le titre est à gauche)*/
-    if(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent == "space-between"){
+    if(titleMenuContainerJustification == "space-between"){
         title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter}px)`;
     }
     /* 2 - Sur mobile : translation verticale uniquement (car la zone est en justify-content:center et le titre est déjà centré)*/
@@ -59,7 +64,7 @@ window.addEventListener("load", function() {
             verticalTranslationToCenter = (header.offsetHeight-title.offsetHeight)/2;
            
             // a - Sur desktop, avec titre à gauche, maintenir la translation horizontale pour le maintenir au centre
-                if(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent == "space-between"){
+                if(titleMenuContainerJustification == "space-between"){
                 title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter-halfOfScrolledHeight}px)`;
             }
             // b - Sur mobile, avec titre déjà centré : le maintenir au centre avec juste la translation verticale
@@ -72,7 +77,7 @@ window.addEventListener("load", function() {
                 if(menuZone.getBoundingClientRect().bottom <= 70){
 
                 // N'appliquer de transition que sur les versions desktop 
-                if(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent == "space-between"){
+                if(titleMenuContainerJustification == "space-between"){
                     title.classList.add("soft-translate");
                 }
                 title.style.transform = `translate(0)`;
@@ -88,7 +93,7 @@ window.addEventListener("load", function() {
             if(header.getBoundingClientRect().bottom >= 70){
 
                 // Sur les versions desktop : recentrer le titre
-                if(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent == "space-between"){
+                if(titleMenuContainerJustification == "space-between"){
                     title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter}px)`;
                 }
             }
@@ -99,7 +104,7 @@ window.addEventListener("load", function() {
                 title.classList.remove("soft-translate");
 
                 // a - Sur les versions desktop, quand le titre est à gauche
-                if(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent == "space-between"){
+                if(titleMenuContainerJustification == "space-between"){
                     title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter-halfOfScrolledHeight}px)`;
                 }
                 // b - Sur les versions mobiles, quand le titre est déjà centré
