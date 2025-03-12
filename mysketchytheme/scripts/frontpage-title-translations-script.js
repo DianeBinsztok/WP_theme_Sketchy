@@ -4,10 +4,21 @@ window.addEventListener("load", function() {
     let menuZone = document.querySelector("#menu-zone");
     let title = document.querySelector("#site-title");
 
+
     /* I - AU CHARGEMENT DE LA PAGE : CENTRER LE TITRE */
 
+    /* Au chargement de la page : la translation verticale ne sera pas la même selon que le header apparaît pleinement ou s'il a déjà été un peu scrollé */
+    const headerRect = header.getBoundingClientRect();
+    let headerVisibleHeight = Math.max(0, Math.min(headerRect.bottom, window.innerHeight) - Math.max(headerRect.top, 0));
+
     // Verticalement : la moitié de la hauteur du header, en retranchant la moitié de la hauteur de titre
-    let verticalTranslationToCenter = (header.offsetHeight-title.offsetHeight)/2;
+    let verticalTranslationToCenter;
+    if(headerVisibleHeight<header.offsetHeight){
+        verticalTranslationToCenter = (headerVisibleHeight-title.offsetHeight)/2;
+    }else{
+        verticalTranslationToCenter = (header.offsetHeight-title.offsetHeight)/2;
+
+    }
 
     // Horizontalement : la moitié de la largeur du header, en retranchant la moitié de la largeur de titre
     let horizontalTranslationToCenter = (menuZone.offsetWidth-title.offsetWidth)/2;
@@ -44,6 +55,9 @@ window.addEventListener("load", function() {
                - Ajouter la translation qui le maintient au centre pendant le scroll : -halfOfScrolledHeight (négatif car il descend sur l'axe des Y)
             */
 
+            // Redéfinir verticalTranslationToCenter avec la hauteur absolue du header
+            verticalTranslationToCenter = (header.offsetHeight-title.offsetHeight)/2;
+           
             // a - Sur desktop, avec titre à gauche, maintenir la translation horizontale pour le maintenir au centre
                 if(getComputedStyle(document.querySelector("#title-menu_container")).justifyContent == "space-between"){
                 title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter-halfOfScrolledHeight}px)`;

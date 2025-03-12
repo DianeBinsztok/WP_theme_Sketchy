@@ -1,22 +1,67 @@
-#post-header_container{
+/* I - GLOBAL*/
+#post-head_container{
     background-color:#ebe4c5;
 }
-#post-header-content{
+#post-head-content{
     width: 100%;
     display:flex;
-    justify-content: center;
-}
-#post-thumbnail_container{
-    width: 50%;
-}
-#post-thumbnail_container img{
-    width: 100%;
-    height: auto;
 }
 
-#excerpt-date_container{
-    padding-left: 2rem;
-    width: 100%;
+/* II - MEDIA QUERIES*/
+
+/*1 - MOBILES VERTICAUX*/
+@media only screen and (max-width: 430px) {
+    #post-head-content{
+        flex-direction: column;
+        justify-content: center;
+    }
+    #post-thumbnail_container img{
+        width: 100%;
+        height: auto;
+    }
+}
+
+/*2 - MOBILES HORIZONTAUX*/
+@media only screen and (max-height : 430px){
+}
+
+/*3 - TABLETTES VERTICALES*/
+
+/*Petites tablettes - type iPad Mini*/
+@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 770px) {
+    #post-head-content{
+        flex-direction: column;
+        justify-content: center;
+    }
+    #post-thumbnail_container img{
+        width: 100%;
+        height: auto;
+    }
+}
+/*Autres tablettes*/
+@media only screen and (min-height: 431px) and (min-width: 771px) and (max-width : 999px) {
+}
+
+/*Toutes tablettes, orientation portrait*/
+@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 999px) {
+}
+
+/*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
+@media only screen and (min-width : 1000px) {
+    
+#post-head-content{
+    justify-content: center;
+}
+
+#post-thumbnail_container img{
+    height: 55vh;
+    width: auto;
+}
+
+#title-excerpt-date_container{
+    width: 50%;
+    margin-top: -2.5rem;
+    padding-left: 3rem;
     display:flex;
     flex-direction:column; 
     justify-content: start;
@@ -27,7 +72,9 @@
 }
 
 #excerpt{
-    font-size: 1.6em;
+    font-size: 1.4em;
+    line-height: 2.6rem;
+
 }
 
 #date{
@@ -39,4 +86,5 @@
 #content p{
     line-height: 2.5rem;
     font-size: 1.2em;
+}
 }

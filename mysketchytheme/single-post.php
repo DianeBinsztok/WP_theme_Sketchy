@@ -7,15 +7,15 @@ $date = get_the_date("j F, Y");
 get_header();
 ?>
 
-<section id="post-header_container" class="with-margins">
-    <div id="post-header-content">
+<section id="post-head_container" class="with-margins">
+    <div id="post-head-content">
         <div id="post-thumbnail_container">
             <?php
             (the_post_thumbnail('medium large'));
             ?>
         </div>
 
-        <div id="excerpt-date_container">
+        <div id="title-excerpt-date_container">
             <h1 id="title">
                 <?php
                 echo $title;
