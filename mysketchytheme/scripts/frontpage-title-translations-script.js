@@ -5,28 +5,25 @@ window.addEventListener("load", function() {
     let title = document.querySelector("#site-title");
 
     /* Positionnement du titre dans son conteneur :*/
-    let titleMenuContainerStyle = getComputedStyle(document.querySelector("#title-menu_container"));
+    let titleMenuContainer = document.querySelector("#title-menu_container");
+    let titleMenuContainerStyle = getComputedStyle(titleMenuContainer);
     let titleMenuContainerJustification = titleMenuContainerStyle.justifyContent;
-
-    
 
     /* I - AU CHARGEMENT DE LA PAGE : CENTRER LE TITRE */
 
     /* Au chargement de la page : la translation verticale ne sera pas la même selon que le header apparaît pleinement ou s'il a déjà été un peu scrollé */
     const headerRect = header.getBoundingClientRect();
     let headerVisibleHeight = Math.max(0, Math.min(headerRect.bottom, window.innerHeight) - Math.max(headerRect.top, 0));
-
     // Verticalement : la moitié de la hauteur du header, en retranchant la moitié de la hauteur de titre
     let verticalTranslationToCenter;
     if(headerVisibleHeight<header.offsetHeight){
         verticalTranslationToCenter = (headerVisibleHeight-title.offsetHeight)/2;
     }else{
         verticalTranslationToCenter = (header.offsetHeight-title.offsetHeight)/2;
-
     }
 
-    // Horizontalement : la moitié de la largeur du header, en retranchant la moitié de la largeur de titre
-    let horizontalTranslationToCenter = (menuZone.offsetWidth-title.offsetWidth)/2;
+    // Horizontalement : la moitié de la largeur du conteneur, en retranchant la moitié de la largeur de titre
+    let horizontalTranslationToCenter = (titleMenuContainer.offsetWidth-title.offsetWidth)/2;
 
     /* 1 - Sur desktop : translation verticale et horizontale (car la zone est en justify-content:space-between et le titre est à gauche)*/
     if(titleMenuContainerJustification == "space-between"){

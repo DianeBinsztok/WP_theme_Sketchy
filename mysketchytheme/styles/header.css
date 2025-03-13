@@ -26,6 +26,14 @@ header{
 #menu-zone.onscroll #title-menu_container{
     align-items: center;
 }
+/*TEST - S'ASSURER QUE LE TITRE REVIENNE À SA PLACE LORSQUE LE MENU EST FIXÉ, MÊME SI LE NAVIGATEUR N'A PAS EU LE TEMPS DE DÉTECTER LA CONDITION DANS LE SCRIPT*/
+
+#menu-zone.onscroll #site-title{
+    transform: translate(0)!important;
+    transition: all 0.4s ease-in-out;    
+}
+
+
 /*versions mobile : à l'ouverture du menu, repositionner le titre*/
 #menu-zone #site-title.on-top-of-drawer-menu , #menu-zone.onscroll #site-title.on-top-of-drawer-menu{
     position: fixed;
@@ -35,7 +43,6 @@ header{
     transition: all 0.4s ease-in-out;
     /*Pour le header de la page d'accueil : remettre le titre à sa place initiale*/
     transform: translate(0)!important;
-
     /*Provisoire*/
     top:50px;
 }
