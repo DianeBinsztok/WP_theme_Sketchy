@@ -9,6 +9,8 @@ window.addEventListener("load", function() {
     let titleMenuContainerStyle = getComputedStyle(titleMenuContainer);
     let titleMenuContainerJustification = titleMenuContainerStyle.justifyContent;
 
+    let titleOffsetWidth = title.offsetWidth;
+
     /* I - AU CHARGEMENT DE LA PAGE : CENTRER LE TITRE */
 
     /* Au chargement de la page : la translation verticale ne sera pas la même selon que le header apparaît pleinement ou s'il a déjà été un peu scrollé */
@@ -23,7 +25,7 @@ window.addEventListener("load", function() {
     }
 
     // Horizontalement : la moitié de la largeur du conteneur, en retranchant la moitié de la largeur de titre
-    let horizontalTranslationToCenter = (titleMenuContainer.offsetWidth-title.offsetWidth)/2;
+    let horizontalTranslationToCenter = (titleMenuContainer.offsetWidth-titleOffsetWidth)/2;
 
     /* 1 - Sur desktop : translation verticale et horizontale (car la zone est en justify-content:space-between et le titre est à gauche)*/
     if(titleMenuContainerJustification == "space-between"){
@@ -87,21 +89,27 @@ window.addEventListener("load", function() {
         else{
             // 1 - SUR VERSIONS DESKTOP (QUAND LE TITRE EST À GAUCHE) -> RECENTRER LE TITRE HORIZONTALEMENT
 
-            if(header.getBoundingClientRect().bottom >= 70){
+            if(titleMenuContainerJustification == "space-between"){
+                title.style.transform = `translateX(${horizontalTranslationToCenter}px`;
+            }
 
+            /*
+            if(header.getBoundingClientRect().bottom >= 70){
                 // Sur les versions desktop : recentrer le titre
                 if(titleMenuContainerJustification == "space-between"){
                     title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter}px)`;
                 }
             }
-
+            */
             // 2 - QUAND LE MENU N'EST PLUS FIXÉ, REMETTRE LE TITRE AU CENTRE DE LA HAUTEUR VISIBLE DU HEADER
-            if(header.getBoundingClientRect().bottom >= 70 && !title.classList.contains("reduced")){
+            if(header.getBoundingClientRect().bottom >= 100 && !title.classList.contains("reduced")){
                 let halfOfScrolledHeight = window.scrollY/2;
-                title.classList.remove("soft-translate");
 
                 // a - Sur les versions desktop, quand le titre est à gauche
                 if(titleMenuContainerJustification == "space-between"){
+
+                    title.classList.remove("soft-translate");
+
                     title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter-halfOfScrolledHeight}px)`;
                 }
                 // b - Sur les versions mobiles, quand le titre est déjà centré

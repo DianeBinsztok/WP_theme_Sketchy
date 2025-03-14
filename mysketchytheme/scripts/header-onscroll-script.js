@@ -36,7 +36,7 @@ window.addEventListener("DOMContentLoaded", function () {
                   }
                   // 2 - Remettre le titre à sa taille de départ 
                   
-                  if(header.getBoundingClientRect().bottom >= 70){
+                  if(header.getBoundingClientRect().bottom >= 150){
                     title.classList.remove("reduced");
                   }
                     
