@@ -93,14 +93,6 @@ window.addEventListener("load", function() {
                 title.style.transform = `translateX(${horizontalTranslationToCenter}px`;
             }
 
-            /*
-            if(header.getBoundingClientRect().bottom >= 70){
-                // Sur les versions desktop : recentrer le titre
-                if(titleMenuContainerJustification == "space-between"){
-                    title.style.transform = `translate(${horizontalTranslationToCenter}px, -${verticalTranslationToCenter}px)`;
-                }
-            }
-            */
             // 2 - QUAND LE MENU N'EST PLUS FIXÉ, REMETTRE LE TITRE AU CENTRE DE LA HAUTEUR VISIBLE DU HEADER
             if(header.getBoundingClientRect().bottom >= 100 && !title.classList.contains("reduced")){
                 let halfOfScrolledHeight = window.scrollY/2;

@@ -1,23 +1,8 @@
 <?php
-// Les fonctionnalités supportées par le thème
+// I - FONCTIONNALITÉS SUPPORTÉES PAR LE THÈME
 add_theme_support('post-thumbnails');
 
-// L'url des pages relatives au blog
-function blog_permalinks_structure()
-{
-    // Vérifie si le type de publication est un post
-    if (is_singular('post')) {
-        add_rewrite_rule('^blog/([^/]+)/?$', 'index.php?name=$matches[1]', 'top');
-    }
-}
-//add_action('init', 'blog_permalinks_structure');
-
-
-// Prendre en compte le type de contenu personnalisé: Artisan
-require_once(get_stylesheet_directory() . '/functions/register-CPT-artwork.php');
-require_once(get_stylesheet_directory() . '/functions/display-svg.php');
-
-// Les styles
+// II - STYLES
 add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
 function theme_enqueue_styles()
 {
@@ -49,7 +34,7 @@ function theme_enqueue_styles()
     }
 }
 
-// Les scripts
+// III - SCRIPTS FRONT
 function register_and_enqueue_scripts()
 {
     wp_register_script("artwork-popup-script", get_stylesheet_directory_uri() . '/scripts/artwork-popup-script.js');
@@ -77,3 +62,10 @@ function register_and_enqueue_scripts()
     }
 }
 add_action('wp_enqueue_scripts', 'register_and_enqueue_scripts');
+
+// IV - FONCTIONS CUSTOM
+// 1 - Prendre en compte le type de contenu personnalisé: Artisan
+require_once(get_stylesheet_directory() . '/functions/register-CPT-artwork.php');
+require_once(get_stylesheet_directory() . '/functions/display-svg.php');
+// 2 - Ajouter un meta et les metaboxes pour les billets de blog
+require_once(get_stylesheet_directory() . '/functions/post-meta-template.php');

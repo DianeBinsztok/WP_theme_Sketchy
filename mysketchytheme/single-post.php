@@ -3,6 +3,8 @@ $title = get_the_title();
 $excerpt = get_the_excerpt();
 $date = get_the_date("j F, Y");
 
+$post_meta_orientation = get_post_meta($post->ID, '_orientation_template', true);
+var_dump($post_meta_orientation);
 
 get_header();
 ?>
