@@ -64,8 +64,6 @@ function register_and_enqueue_scripts()
 add_action('wp_enqueue_scripts', 'register_and_enqueue_scripts');
 
 // IV - FONCTIONS CUSTOM
-// 1 - Prendre en compte le type de contenu personnalisé: Artisan
+// Prendre en compte le type de contenu personnalisé: Artisan
 require_once(get_stylesheet_directory() . '/functions/register-CPT-artwork.php');
 require_once(get_stylesheet_directory() . '/functions/display-svg.php');
-// 2 - Ajouter un meta et les metaboxes pour les billets de blog
-require_once(get_stylesheet_directory() . '/functions/post-meta-template.php');

@@ -77,7 +77,7 @@ main {
     header, footer{
         padding:0 10%;
     }
-    section.with-margins{
+    section.with-padding{
         padding:3% 10%;
     }
 }
@@ -90,7 +90,7 @@ main {
     header, footer{
         padding:0 5%;
     }
-    section.with-margins{
+    section.with-padding{
         padding:3% 5%;
     }
 }
@@ -99,7 +99,7 @@ main {
     header, footer{
         padding:0 10%;
     }
-    section.with-margins{
+    section.with-padding{
         padding:3% 10%;
     }
 }
@@ -138,7 +138,7 @@ main {
         header, footer{
             padding:0 15%;
         }
-        section.with-margins{
+        section.with-padding{
             padding:3% 15%;
         }
 }

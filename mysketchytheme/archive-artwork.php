@@ -113,7 +113,7 @@ if ($artworks_query->have_posts()) {
     // Affichage en deux parties : les images et les popups. Chaque image est cliquable et déclenche une popup qui affichera des propriétés en plus : le titre, l'année, les techniques, etc.
 
     // Les images
-    echo "<section class='with-margins' id='gallery_clickable-artworks'>";
+    echo "<section class='with-padding' id='gallery_clickable-artworks'>";
     foreach ($artworks as $artwork) {
         echo "<div class='clickable-artwork'>";
 

@@ -2,21 +2,36 @@
 $title = get_the_title();
 $excerpt = get_the_excerpt();
 $date = get_the_date("j F, Y");
-
-$post_meta_orientation = get_post_meta($post->ID, '_orientation_template', true);
-var_dump($post_meta_orientation);
-
 get_header();
 ?>
 
-<section id="post-head_container" class="with-margins">
-    <div id="post-head-content">
-        <div id="post-thumbnail_container">
+<section id="post-head_container" class="with-padding"
+    style="background-image: url(<?php echo get_the_post_thumbnail_url($post->ID) ?>);">
+    <div id="title-excerpt-date_container">
+        <h1 id="title">
             <?php
-            (the_post_thumbnail('medium large'));
+            echo $title;
+            ?>
+        </h1>
+        <div id="excerpt">
+            <?php
+            echo $excerpt;
             ?>
         </div>
+        <div id="date" style="font-style:italic">
+            <?php
+            echo $date;
+            ?>
+        </div>
+    </div>
+</section>
+<!-- 
+<section id="post-head_container">
+    <div id="post-head_img">
+        <?php the_post_thumbnail() ?>
+    </div>
 
+    <section id="post-head_info_container" class="with-padding">
         <div id="title-excerpt-date_container">
             <h1 id="title">
                 <?php
@@ -33,14 +48,62 @@ get_header();
                 echo $date;
                 ?>
             </div>
-
         </div>
-
-    </div>
-
+    </section>
 </section>
+-->
 
-<section class="with-margins">
+<!--
+<section id="post-head_container" class="with-padding"
+    style="background-image: url(<?php echo get_the_post_thumbnail_url($post->ID) ?>); background-size: cover; height:55vh">
+    <div id="title-excerpt-date_container">
+        <h1 id="title">
+            <?php
+            echo $title;
+            ?>
+        </h1>
+        <div id="excerpt">
+            <?php
+            echo $excerpt;
+            ?>
+        </div>
+        <div id="date" style="font-style:italic">
+            <?php
+            echo $date;
+            ?>
+        </div>
+    </div>
+</section>
+-->
+<!--
+<section id="post-head_container">
+    <div id="post-head_content">
+
+        <div id="post-head_img">
+            <?php the_post_thumbnail() ?>
+        </div>
+        <div id="title-excerpt-date_container">
+            <h1 id="title">
+                <?php
+                echo $title;
+                ?>
+            </h1>
+            <div id="excerpt">
+                <?php
+                echo $excerpt;
+                ?>
+            </div>
+            <div id="date" style="font-style:italic">
+                <?php
+                echo $date;
+                ?>
+            </div>
+        </div>
+    </div>
+</section>
+-->
+
+<section class="with-padding">
     <div id="content">
         <?php
         the_content();
@@ -48,6 +111,5 @@ get_header();
     </div>
 
 </section>
-
 <?php
 get_footer();
