@@ -36,44 +36,16 @@ main {
 
 /*1 - MOBILES VERTICAUX*/
 @media only screen and (max-width: 430px) {
-    /*Repères temporaires*/
-    /*
-    body{
-        background-color: blueviolet;
-    }
-    header, footer, #home-onscroll-header{
-        background-color: purple;
-    }
-    main{
-        background-color: violet;
-    }
-    /*Repères temporaires - fin*/
-
     header, footer{
         padding:0 3%;
     }
-    section.with-margins{
+    section.with-padding{
         padding:3% 3%;
     }
 }
 
 /*2 - MOBILES HORIZONTAUX*/
 @media only screen and (max-height : 430px){
-    /*Repères temporaires*/
-    /*
-    body{
-        background-color: darkcyan;
-    }
-    
-    header, footer, #home-onscroll-header{
-        background-color: cyan;
-    }
-        
-    main{
-        background-color: turquoise;
-    }
-    /*Repères temporaires - fin*/
-
     header, footer{
         padding:0 10%;
     }
@@ -104,37 +76,8 @@ main {
     }
 }
 
-/*Toutes tablettes, orientation portrait*/
-@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 999px) {
-    /*Repères temporaires*/
-    /*
-    body{
-        background-color: green;
-    }
-    header, footer{
-        background-color: yellowgreen;
-    }
-    main{
-        background-color: lightgreen;
-    }
-    /*Repères temporaires - fin*/
-}
-
 /*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
 @media only screen and (min-width : 1000px) {
-        /*Repères temporaires*/
-        /*
-        body{
-            background-color: orangered;
-        }
-        header, #home-onscroll-header, footer{
-            background-color: orange;
-        }
-        main{
-            background-color: yellow;
-        }
-        /*Repères temporaires - fin*/
-
         header, footer{
             padding:0 15%;
         }
@@ -142,20 +85,3 @@ main {
             padding:3% 15%;
         }
 }
-
-/*ÉCRANS PLIABLES - pli vertical*/
-/*
-@media (horizontal-viewport-segments: 2) and (vertical-viewport-segments: 1) {
-    body{
-        background-color: greenyellow;
-    }
-}
-*/
-/*ÉCRANS PLIABLES - pli horizontal*/
-/*
-@media (vertical-viewport-segments: 2)and (horizontal-viewport-segments: 1) {
-    body{
-        background-color: yellow;
-    }
-}
-*/

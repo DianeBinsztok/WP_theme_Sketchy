@@ -2,30 +2,34 @@
 
 /* II - MEDIA QUERIES*/
 
-/*1 - MOBILES VERTICAUX*/
-@media only screen and (max-width: 430px) {
+/*MISE EN PAGE DE L'EN-TÊTE*/
+/*EN-TÊTE VERTICAL: INFORMATIONS SOUS L'IMAGE : POUR VERSIONS MOBILES VERTICAUX*/
+@media only screen and (max-width : 770px) {
+    #post-head_large{
+        display: none;
+    }
+    #post-head_mobile{
+        padding-top: 0!important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #post-head_img{
+        width: 100vw;
+        max-height:40vh;
+        overflow: hidden;
+    }
+    #post-head_img img{
+        width: 100vw;
+    }
 }
 
-/*2 - MOBILES HORIZONTAUX*/
-@media only screen and (max-height : 430px){
-}
-
-/*3 - TABLETTES VERTICALES*/
-
-/*Petites tablettes - type iPad Mini*/
-@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 770px) {
-}
-/*Autres tablettes*/
-@media only screen and (min-height: 431px) and (min-width: 771px) and (max-width : 999px) {
-}
-
-/*Toutes tablettes, orientation portrait*/
-@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 999px) {
-}
-
-/*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
-@media only screen and (min-width : 1000px) {
-    #post-head_container{
+/*EN-TÊTE HORIZONTAL AVEC INFO PAR DESSUS : POUR TOUS LES ÉCRANS PLUS LARGES QU'IPAD MINI*/
+@media only screen and (min-height: 431px) and (min-width: 771px) {
+    #post-head_mobile{
+        display: none;
+    }
+    #post-head_large{
         display: flex;
         justify-content: end;
         align-items: center;
@@ -40,6 +44,31 @@
         height: fit-content;
         max-width: 33%;
     }
+}
+
+/*FONTES*/
+@media only screen and (max-width : 770px) {
+    #title{
+        font-size: 2em;
+    }
+
+    #excerpt{
+        font-size: 1.3em;
+        line-height: 1.5em;
+    }
+
+    #date{
+        font-size: 1em;
+        font-style: italic;
+        margin-top: 1.5rem;
+    }
+
+    #content p{
+        line-height: 1.7em;
+        font-size: 1.1em;
+    }
+}
+@media only screen and (min-width : 1000px) {
     #title{
         font-size: 2.5em;
     }
