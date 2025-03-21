@@ -8,6 +8,16 @@ if (have_posts()):
     while (have_posts()):
 
         the_post();
+
+        // La vignette custom : une image croppée à la main au format carré
+        // Si la vignette custom n'est pas définie, afficher le thumbnail défini par WP
+        $thumbnail = get_the_post_thumbnail_url($post);
+        $custom_thumbnail = get_post_meta($post->ID, "post_custom_thumbnail");
+        // Si la vignette custom est définie, afficher la vignette custom
+        if (count($custom_thumbnail) > 0) {
+            $thumbnail = $custom_thumbnail[0];
+        }
+
         ?>
 
         <div class='post-card_container'>
@@ -16,7 +26,7 @@ if (have_posts()):
 
                     <!-- le conteneur de l'image -->
                     <div class='post-card_image_container'>
-                        <?php the_post_thumbnail('medium-large') ?>
+                        <img src="<?php echo $thumbnail ?>" />
                     </div>
 
                     <!-- le contenu -->
