@@ -104,17 +104,19 @@ if ($artworks_query->have_posts()) {
             "excerpt" => $post->post_excerpt,
             "techniques" => get_post_meta($post->ID, "artwork_techniques", true),
             "tags" => get_the_tags(),
-            "categories" => get_the_terms($post, "category")
+            "categories" => get_the_terms($post, "category"),
+            "related_post_id" => get_post_meta($post->ID, "artwork_related_post_id", true)
         ];
         array_push($artworks, $artwork);
         $indexInLoop++;
     }
-
     // Affichage en deux parties : les images et les popups. Chaque image est cliquable et déclenche une popup qui affichera des propriétés en plus : le titre, l'année, les techniques, etc.
 
     // Les images
+
     echo "<section class='with-padding' id='gallery_clickable-artworks'>";
     foreach ($artworks as $artwork) {
+
         echo "<div class='clickable-artwork'>";
 
         /* En version desktop : les informations qui apparaissent au survol de la souris*/
@@ -180,45 +182,60 @@ if ($artworks_query->have_posts()) {
         // Fermer bloc 1
         echo "</div>";
 
+        // bloc 2 - popup_links : les liens de filtrage de la galerie
+        echo "<div class='popup_links'/>";
+
         // Techniques
         if ($artwork['techniques']) {
 
-            echo "<div class='popup_bloc'>";
+            //echo "<div class='popup_bloc'>";
 
-            echo "<h3 class='popup_bloc_title'>Techniques</h3>";
-            echo "<p>";
+            //echo "<h3 class='popup_bloc_title'>Techniques</h3>";
+            //echo "<p>";
             foreach ($artwork['techniques'] as $technique) {
                 echo "<a class='popup_filter_link' href=" . site_url('/artworks/?techniques=' . $technique) . ">" . displaySvg("techniques") . " " . $technique . "</a> ";
             }
-            echo "</p>";
+            //echo "</p>";
 
-            echo "</div>";
+            //echo "</div>";
         }
 
         // Catégories
         if ($artwork['categories']) {
-            echo "<div class='popup_bloc'>";
-            echo "<h3 class='popup_bloc_title'>Catégories</h3>";
-            echo "<p>";
+            //echo "<div class='popup_bloc'>";
+            //echo "<h3 class='popup_bloc_title'>Catégories</h3>";
+            //echo "<p>";
             foreach ($artwork['categories'] as $category) {
                 echo "<a class='popup_filter_link' href=" . site_url('/artworks/?categorie=' . $category->slug) . ">" . displaySvg("categories") . " " . $category->name . "</a> ";
 
             }
-            echo "</p>";
-            echo "</div>";
+            //echo "</p>";
+            //echo "</div>";
         }
 
         // Tags
         if ($artwork['tags']) {
-            echo "<div class='popup_bloc'>";
-            echo "<h3 class='popup_bloc_title'>Tags</h3>";
-            echo "<p>";
+            //echo "<div class='popup_bloc'>";
+            //echo "<h3 class='popup_bloc_title'>Tags</h3>";
+            //echo "<p>";
             foreach ($artwork['tags'] as $tag) {
                 echo "<a class='popup_filter_link' href=" . site_url('/artworks/?tags=' . $tag->slug) . ">" . displaySvg("tags") . " " . $tag->name . "</a> ";
             }
-            echo "</p>";
-            echo "</div>";
+            //echo "</p>";
+            //echo "</div>";
         }
+
+        // Le post associé
+        if ($artwork['related_post_id']) {
+            // Article associé
+            $related_post_name = get_the_title($artwork['related_post_id']);
+            echo "<a class='popup_filter_link popup_related_post_id' href='" . get_permalink($artwork['related_post_id']) . "'> -> Lire l'article: " . $related_post_name . "</a>";
+        }
+
+
+        // fermer bloc 2
+        echo "</div>";
+
         // fermer popup_info
         echo "</div>";
 

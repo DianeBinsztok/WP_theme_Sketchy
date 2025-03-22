@@ -60,6 +60,7 @@ add_action('init', 'artwork_custom_post_type', 0);
 // II - AJOUT DES CHAMPS DU CPT
 // 1 - Année de réalisation
 // 2 - Techniques
+// 3 - Post (si l'image est associée à un article)
 
 // 1 - Le champs "Année de réalisation"
 // 1.1 - Enregistrer le champs "year"
@@ -160,7 +161,7 @@ function display_artwork_techniques_metabox($post)
     echo '</fieldset>';
 }
 
-// 1.3 - Sauvegarder les techniques
+// 2.3 - Sauvegarder les techniques
 function save_artwork_techniques_meta($post_id)
 {
     // Vérifie le nonce pour la sécurité
@@ -190,3 +191,69 @@ function save_artwork_techniques_meta($post_id)
     }
 }
 add_action('save_post', 'save_artwork_techniques_meta');
+
+
+// 3 - Post associé
+// 3.1 - Enregistrer le champs "related_post_id"
+function add_artwork_related_post_id_metabox()
+{
+    add_meta_box(
+        "artwork_related_post_metabox", // ID de la metabow
+        "Article associé", // Titre de la metabox
+        "display_artwork_related_post_id_metabox", // Fonction callback
+        "artwork", // Post type cible
+        "side", // Emplacement de la metabox
+        "high" // Priorité
+    );
+}
+add_action('add_meta_boxes', 'add_artwork_related_post_id_metabox');
+
+// 3.2 - Afficher le champs en back-office :
+function display_artwork_related_post_id_metabox($post)
+{
+    // Générer un champ nonce (Number Used Once) dans un formulaire HTML
+    wp_nonce_field(basename(__FILE__), 'artwork_related_post_id_nonce');
+
+    // Récupérer le post associé, s'il y en a un
+    $artwork_related_post_id = get_post_meta($post->ID, '_artwork_related_post_id', true);
+    $posts = get_posts(array('post_type' => 'post', 'numberposts' => -1));
+
+    echo '<select name="artwork_related_post_id">';
+    echo '<option value="">-- Sélectionner un post --</option>';
+    foreach ($posts as $p) {
+        $selected = ($p->ID == $artwork_related_post_id) ? 'selected' : '';
+        echo '<option value="' . esc_attr($p->ID) . '" ' . $selected . '>' . esc_html($p->post_title) . '</option>';
+    }
+    echo '</select>';
+}
+
+// 3.3 - Sauvegarder le post
+function save_artwork_related_post_id_meta($post_id)
+{
+    // Vérifie le nonce pour la sécurité
+    if (!isset($_POST['artwork_related_post_id_nonce']) || !wp_verify_nonce($_POST['artwork_related_post_id_nonce'], basename(__FILE__))) {
+        return $post_id;
+    }
+
+    // Évite la sauvegarde automatique
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return $post_id;
+    }
+
+    // Vérifie les permissions de l'utilisateur
+    if ('artwork' === $_POST['post_type']) {
+        if (!current_user_can('edit_post', $post_id)) {
+            return $post_id;
+        }
+    }
+
+    // Vérifie si le post a été envoyée et sauvegarde la post-meta
+    if (isset($_POST['artwork_related_post_id'])) {
+        $artwork_related_post_id = sanitize_text_field($_POST['artwork_related_post_id']);
+        update_post_meta($post_id, 'artwork_related_post_id', $artwork_related_post_id);
+    } else {
+        // Si aucun post associé n'est soumis, supprime la meta
+        delete_post_meta($post_id, 'artwork_related_post_id');
+    }
+}
+add_action('save_post', 'save_artwork_related_post_id_meta');

@@ -117,16 +117,22 @@
     margin-top: 2.5rem;
     border-top: 1px solid grey;
 }
+.popup_bloc_title{
+    font-family: 'Roboto'!important;
+    font-size: 1.5rem;
+}
 .popup_title{
     font-size: 2em;
 }
 .popup_excerpt{
     line-height: 2em;
 }
-.popup_bloc_title{
-    font-family: 'Roboto'!important;
-    font-size: 1.5rem;
+.popup_links{
+    position: relative;
+    bottom:0;
+    margin-top: 5rem;
 }
+
 
 
 /*II - MEDIA QUERIES*/

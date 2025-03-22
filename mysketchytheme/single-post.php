@@ -1,6 +1,6 @@
 <?php
 $title = get_the_title();
-$excerpt = get_the_excerpt();
+$excerpt = has_excerpt() ? get_the_excerpt() : '';
 $date = get_the_date("j F, Y");
 get_header();
 ?>
@@ -18,6 +18,7 @@ get_header();
             echo $excerpt;
             ?>
         </div>
+
         <div id="date" style="font-style:italic">
             <?php
             echo $date;
