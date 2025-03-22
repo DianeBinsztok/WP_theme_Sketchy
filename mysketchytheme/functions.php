@@ -70,3 +70,12 @@ require_once(get_stylesheet_directory() . '/functions/register-CPT-artwork.php')
 require_once(get_stylesheet_directory() . '/functions/add-post-meta.php');
 // Afficher les SVG
 require_once(get_stylesheet_directory() . '/functions/display-svg.php');
+
+
+function filter_home_query($query)
+{
+    if ($query->is_home() && $query->is_main_query()) {
+        $query->set('post_type', 'post'); // Afficher uniquement les posts classiques
+    }
+}
+add_action('pre_get_posts', 'filter_home_query');
