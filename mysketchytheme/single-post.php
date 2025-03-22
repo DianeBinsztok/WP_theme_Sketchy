@@ -4,7 +4,6 @@ $excerpt = has_excerpt() ? get_the_excerpt() : '';
 $date = get_the_date("j F, Y");
 get_header();
 ?>
-
 <section id="post-head_large" class="with-padding"
     style="background-image: url(<?php echo get_the_post_thumbnail_url($post->ID) ?>);">
     <div id="title-excerpt-date_container">
