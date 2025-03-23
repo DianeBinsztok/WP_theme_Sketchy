@@ -33,30 +33,41 @@ function display_post_custom_thumbnail_metabox($post)
     ?>
     <div>
         <label for="post_custom_thumbnail_id">Vignette carrée, centrée spécifiquement</label>
+
+        <!-- Afficher l'image sélectionnée s'il y en a une-->
         <div id="custom-thumbnail-container">
             <img id="custom-thumbnail-preview" src="<?php echo esc_url($image_url); ?>"
                 style="max-width:100%; <?php echo $image_url ? '' : 'display:none;'; ?>">
         </div>
+
+        <!-- On envoie l'id de l'image sélectionnée-->
         <input type="hidden" id="post-custom-thumbnail-id" name="post_custom_thumbnail_id"
             value="<?php echo esc_attr($post_custom_thumbnail_id); ?>">
+
+        <!-- Le bouton qui déclenche l'ouverture de la bibliothèque de média-->
         <button type="button" class="button button-secondary"
             id="upload-custom-thumbnail"><?php echo $image_url ? 'Changer l\'image' : 'Choisir une image'; ?></button>
+
+        <!-- Si une image n'est pas déjà sélectionnée-->
         <button type="button" class="button button-secondary" id="remove-custom-thumbnail"
             style="<?php echo $image_url ? '' : 'display:none;'; ?>">Supprimer</button>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+
             let mediaUploader;
 
-            document.getElementById("upload-custom-thumbnail").addEventListener("click", function (e) {
-                e.preventDefault();
+            // Aller chercher le bouton pour ouvrir la bibliothèque de media
+            document.getElementById("upload-custom-thumbnail").addEventListener("click", function (event) {
+                event.preventDefault();
 
                 if (mediaUploader) {
                     mediaUploader.open();
                     return;
                 }
 
+                // Utiliser l'API wp.media
                 mediaUploader = wp.media({
                     title: "Choisir une image",
                     button: { text: "Utiliser cette image" },
@@ -64,6 +75,8 @@ function display_post_custom_thumbnail_metabox($post)
                 });
 
                 mediaUploader.on("select", function () {
+
+                    // Récupérer l'image unique ('first') dans la bilibothèque de media (le param de state() est 'livrary' par défaut)
                     let attachment = mediaUploader.state().get("selection").first().toJSON();
                     document.getElementById("post-custom-thumbnail-id").value = attachment.id;
                     let preview = document.getElementById("custom-thumbnail-preview");

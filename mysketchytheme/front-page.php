@@ -16,8 +16,10 @@ get_header();
         <a href="<?php echo get_site_url(); ?>/artworks/?categorie=nu">
             <div class="gallery-link"
                 style="background-image: url('<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/47.jpg');">
-                <h2>Des gens tous nus</h2>
-                <p>Je paie des sous pour aller dans des ateliers privés voir des gens tous nus.</p>
+                <div class="gallery-link_text">
+                    <h2>Des gens tous nus</h2>
+                    <p>Je paie des sous pour aller dans des ateliers privés voir des gens tous nus.</p>
+                </div>
             </div>
         </a>
     </div>
@@ -26,8 +28,11 @@ get_header();
         <a href="<?php echo get_site_url(); ?>/artworks/?categorie=croquis">
             <div class="gallery-link"
                 style="background-image: url('<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/56.jpg');">
-                <h2>Des croquis</h2>
-                <p>Quand je m'ennuie, je croque des trucs... Je m'ennuie souvent et partout.</p>
+
+                <div class="gallery-link_text">
+                    <h2>Des croquis</h2>
+                    <p>Quand je m'ennuie, je croque des trucs... Je m'ennuie souvent et partout.</p>
+                </div>
             </div>
         </a>
     </div>
@@ -35,8 +40,10 @@ get_header();
         <a href="<?php echo get_site_url(); ?>/artworks/?categorie=peinture">
             <div class="gallery-link" style="
                 background-image: url('<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/116-scaled.jpg');">
-                <h2>De l'huile</h2>
-                <p>Mes rares tentatives.</p>
+                <div class="gallery-link_text">
+                    <h2>De l'huile</h2>
+                    <p>Mes rares tentatives.</p>
+                </div>
             </div>
         </a>
     </div>
