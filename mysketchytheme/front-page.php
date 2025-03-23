@@ -6,11 +6,19 @@ get_header();
 ?>
 
 <section id="introduction" class="with-padding">
-    <h1>Bienvenue sur mon sketchbook</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore enim, quaerat illo repellat dignissimos
         laudantium corporis nisi quos iure maiores rem ratione labore ad voluptatem? Eos cupiditate voluptatum sint
         qui.</p>
 </section>
+
+<section id="latest-news" class="with-padding">
+
+    <?php echo "<p>un carrousel de posts choisis avec une mise en page spécifique</p>";
+    display_latest_news_in_slider();
+    ?>
+
+</section>
+
 <section id="galleries-introduction" class="with-padding">
     <div class="gallery-link_container">
         <a href="<?php echo get_site_url(); ?>/artworks/?categorie=nu">
