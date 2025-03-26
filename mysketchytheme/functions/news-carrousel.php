@@ -25,12 +25,13 @@ function display_latest_news_in_slider()
             $query->the_post();
 
             //slide
-            //echo ('<div class="slide" style="background-image:url(' . get_the_post_thumbnail_url() . ')">');
-            echo ('<div class="slide">');
-            echo the_post_thumbnail("large");
-
-            echo the_title();
+            echo ('<div class="slide" style="background-image:url(' . get_the_post_thumbnail_url() . ')">');
+            //echo ('<div class="slide">');
+            //echo the_post_thumbnail("large");
+            echo '<div id="post-infos">';
+            echo the_title('<h3>', '</h3>');
             echo the_excerpt();
+            echo '</div>';
             echo ('</div>');
         endwhile;
 
