@@ -13,7 +13,7 @@ get_header();
 
 <section id="latest-news" class="with-padding">
 
-    <?php echo "<p>un carrousel de posts choisis avec une mise en page spécifique</p>";
+    <?php
     display_latest_news_in_slider();
     ?>
 

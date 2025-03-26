@@ -12,9 +12,11 @@ function theme_enqueue_styles()
     wp_enqueue_style('footer-style', get_template_directory_uri() . '/styles/footer.css');
     wp_enqueue_style('menu-style', get_template_directory_uri() . '/styles/menu.css');
 
-    // STYLE DE LA PAGE D'ACCUEIL
+    // STYLES DE LA PAGE D'ACCUEIL
     if (is_front_page()) {
         wp_enqueue_style('front-page-style', get_template_directory_uri() . '/styles/front-page.css');
+        wp_enqueue_style('front-page-carousel-style', get_template_directory_uri() . '/styles/front-page-carousel.css');
+
     }
 
     // STYLES DE LA GALERIE
@@ -37,11 +39,18 @@ function theme_enqueue_styles()
 // III - SCRIPTS FRONT
 function register_and_enqueue_scripts()
 {
+    // Affichage des popups dans la galerie
     wp_register_script("artwork-popup-script", get_stylesheet_directory_uri() . '/scripts/artwork-popup-script.js');
+    // Ouverture-fermeture du burdger menu sur versions mobiles
     wp_register_script("burger-menu-script", get_stylesheet_directory_uri() . '/scripts/burger-menu-script.js');
+    // Comportement du header au scroll
     wp_register_script("header-onscroll-script", get_stylesheet_directory_uri() . '/scripts/header-onscroll-script.js');
+    // Sur la page d'accueil : translations du titre dans le header
     wp_register_script("frontpage-title-translations-script", get_stylesheet_directory_uri() . '/scripts/frontpage-title-translations-script.js');
+    // Ouverture-fermeture du sous-menu de la galerie
     wp_register_script("submenu-script", get_stylesheet_directory_uri() . '/scripts/submenu-script.js');
+    // Comportement du slider de news en page d'accueil
+    wp_register_script("news-slider-script", get_stylesheet_directory_uri() . '/scripts/news-slider-script.js');
 
 
     /* HEADER ET MENU */
@@ -53,6 +62,7 @@ function register_and_enqueue_scripts()
     /* TRANSLATIONS DU TITRE SUR LA PAGE D'ACCUEIL */
     if (is_front_page()) {
         wp_enqueue_script("frontpage-title-translations-script");
+        wp_enqueue_script("news-slider-script");
     }
 
 
