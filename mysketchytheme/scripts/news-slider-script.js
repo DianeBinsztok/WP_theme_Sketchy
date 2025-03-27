@@ -1,7 +1,6 @@
 window.addEventListener("DOMContentLoaded", function () {
 
-
-
+    // I - ELEMENTS DU DOM ET COMPTEURS
     // Le contenant à déplacer
     const slider = document.querySelector("#slider");
 
@@ -11,31 +10,44 @@ window.addEventListener("DOMContentLoaded", function () {
 
     // L'index de la slide courante
     let currentSlideIndex = 0;
+    // Le statut du timer (actif ou en pause)
+    let sliderTimerOn = true;
 
-    // I - Activation du carrousel au timer
-    if(slider){
+    // I - ACTIVATION DU CARROUSEL AU TIMER
+    if(slider && slides){
         setInterval(()=>{
-            currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "next");
-            slide(slider, currentSlideIndex)}, 3500);
+                if(sliderTimerOn){
+                    currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "next");
+                    slide(slider, currentSlideIndex)
+                }
+            }, 3000);
     }
 
-    // II - Activation du carrousel avec les boutons
+    // II - ACTIVATION SUR LE CARROUSEL AVEC LES BOUTON
     const nextSlideBtn = document.querySelector("#btn-next");
     const previousSlideBtn = document.querySelector("#btn-prev");
 
 
     nextSlideBtn.addEventListener('click', () => {
+        // Mettre le slide automatique en pause
+        sliderTimerOn = false;
         currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "next");
         slide(slider, currentSlideIndex);
+        // Attendre 3s avant de remettre le slider en route
+        setTimeout(()=>{sliderTimerOn = true}, 3000);
     });
 
     previousSlideBtn.addEventListener('click', () => {
+        // Mettre le slide automatique en pause
+        sliderTimerOn = false;
         currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "previous");
         slide(slider, currentSlideIndex);
+        // Attendre 3s avant de remettre le slider en route
+        setTimeout(()=>{sliderTimerOn = true}, 3000);
     });
 
 
-    // III - Pour les versions mobiles, navigation au swipe
+    // III - ACTIVATION DU CARROUSEL AU SWIPE, SUR ÉCRANS TACTILES
     // Récupération des éléments
     let startX = 0;
     let startY = 0;
@@ -85,9 +97,20 @@ function resetCurrentSlide(currentSlide, lastSlide, direction){
         return (currentSlide === lastSlide) ? 0 : currentSlide + 1;        
     }else if(direction === "previous"){
         return (currentSlide === 0) ? lastSlide : currentSlide - 1;        
+    }else{
+        return currentSlide;
     }
 }
 // 2 - Déplacer le slider
 function slide(slider, currentSlide){      
     slider.style.transform = `translateX(-${currentSlide*100}%)`;
+}
+
+// 3 - Mettre en pause et redémarrer le slide automatique
+function manageCarouselTimer(playOrPause){
+    if(playOrPause === "pause"){
+       
+    }else if(playOrPause === "play"){
+        
+    }
 }
