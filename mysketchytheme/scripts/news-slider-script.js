@@ -75,13 +75,21 @@ window.addEventListener("DOMContentLoaded", function () {
             
             // Si on swipe à droite (retour arrière)
             if (deltaX > 0) {
+                // Mettre le slide automatique en pause
+                sliderTimerOn = false;
                 currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "previous");
                 slide(slider, currentSlideIndex);
+                // Attendre 3s avant de remettre le slider en route
+                setTimeout(()=>{sliderTimerOn = true}, 3000);
             
             // Si on swipe à gauche (suivant)
             } else {
+                // Mettre le slide automatique en pause
+                sliderTimerOn = false;
                 currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "next");
                 slide(slider, currentSlideIndex);
+                // Attendre 3s avant de remettre le slider en route
+                setTimeout(()=>{sliderTimerOn = true}, 3000);
             }
 
             // Appliquer la transformation
