@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", function () {
             }, 3000);
     }
 
-    // II - ACTIVATION SUR LE CARROUSEL AVEC LES BOUTON
+    // II - ACTIVATION SUR LE CARROUSEL AVEC LES BOUTONS
     const nextSlideBtn = document.querySelector("#btn-next");
     const previousSlideBtn = document.querySelector("#btn-prev");
 
@@ -96,10 +96,23 @@ window.addEventListener("DOMContentLoaded", function () {
             slider.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
         }
     });
+
+    // IV - MISE EN PAUSE DU CARROUSEL AU SURVOL
+        // Mettre le défilement en pause quand la souris survole le slider
+        slider.addEventListener(
+            "mouseover",
+            () => {
+              sliderTimerOn = false;
+            });
+        slider.addEventListener(
+            "mouseout",
+            () => {
+                sliderTimerOn = true;
+            });
 });
 
-
-// 1 - Réaffecter la slide courante
+/* FONCTIONS */
+// 1 - Réaffecter l'index de la slide courante
 function resetCurrentSlide(currentSlide, lastSlide, direction){
     if(direction === "next"){
         return (currentSlide === lastSlide) ? 0 : currentSlide + 1;        
