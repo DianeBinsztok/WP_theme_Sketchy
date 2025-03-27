@@ -1,5 +1,7 @@
 window.addEventListener("DOMContentLoaded", function () {
 
+
+
     // Le contenant à déplacer
     const slider = document.querySelector("#slider");
 
@@ -10,7 +12,14 @@ window.addEventListener("DOMContentLoaded", function () {
     // L'index de la slide courante
     let currentSlideIndex = 0;
 
-    // Les boutons
+    // I - Activation du carrousel au timer
+    if(slider){
+        setInterval(()=>{
+            currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "next");
+            slide(slider, currentSlideIndex)}, 3500);
+    }
+
+    // II - Activation du carrousel avec les boutons
     const nextSlideBtn = document.querySelector("#btn-next");
     const previousSlideBtn = document.querySelector("#btn-prev");
 
@@ -26,7 +35,7 @@ window.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // Pour les versions mobiles, navigation au swipe
+    // III - Pour les versions mobiles, navigation au swipe
     // Récupération des éléments
     let startX = 0;
     let startY = 0;
