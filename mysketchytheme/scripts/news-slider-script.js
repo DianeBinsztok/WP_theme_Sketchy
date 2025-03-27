@@ -16,21 +16,13 @@ window.addEventListener("DOMContentLoaded", function () {
 
 
     nextSlideBtn.addEventListener('click', () => {
-        if (currentSlideIndex === slidesMaxIndex) {
-            currentSlideIndex = 0;
-        }else{
-            currentSlideIndex ++;
-        }
+        currentSlideIndex = (currentSlideIndex === slidesMaxIndex) ? 0 : currentSlideIndex + 1;        
         slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
   
     });
 
     previousSlideBtn.addEventListener('click', () => {
-        if (currentSlideIndex === 0) {
-            currentSlideIndex = slidesMaxIndex;
-        }else{
-            currentSlideIndex --;
-        }
+        currentSlideIndex = (currentSlideIndex === 0)? slidesMaxIndex : currentSlideIndex - 1;
         slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
     });
 
@@ -63,28 +55,17 @@ window.addEventListener("DOMContentLoaded", function () {
             
             // Si on swipe à droite (retour arrière)
             if (deltaX > 0) {
-                console.log("Swipe à droite");
-                if (currentSlideIndex === 0) {
-                    currentSlideIndex = slidesMaxIndex;
-                }else{
-                    currentSlideIndex --;
-                }
+                currentSlideIndex = (currentSlideIndex === 0) ? slidesMaxIndex : currentSlideIndex - 1;        
                 slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
             
             // Si on swipe à gauche (suivant)
             } else {
-                console.log("Swipe à gauche");
-                if (currentSlideIndex === slidesMaxIndex) {
-                    currentSlideIndex = 0;                  
-                }else{
-                    currentSlideIndex ++;
-                }
+                currentSlideIndex = (currentSlideIndex === slidesMaxIndex) ? 0 : currentSlideIndex + 1;        
                 slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
             }
 
             // Appliquer la transformation
             slider.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-            console.log(`Slide actif : ${currentSlideIndex}`);
         }
     });
 });
