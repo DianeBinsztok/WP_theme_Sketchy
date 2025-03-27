@@ -26,8 +26,6 @@ function display_latest_news_in_slider()
 
             //slide
             echo ('<div class="slide" style="background-image:url(' . get_the_post_thumbnail_url() . ')">');
-            //echo ('<div class="slide">');
-            //echo the_post_thumbnail("large");
             echo '<div id="post-infos">';
             echo the_title('<h3>', '</h3>');
             echo the_excerpt();
@@ -36,7 +34,6 @@ function display_latest_news_in_slider()
         endwhile;
 
         echo ('</div>');
-        //echo ('</div>');
 
         if ($query->post_count > 1) {
             echo ('<button id="btn-next" class="btn">></button>');

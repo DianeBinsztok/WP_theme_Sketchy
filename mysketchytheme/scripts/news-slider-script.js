@@ -8,31 +8,37 @@ window.addEventListener("DOMContentLoaded", function () {
     const slides = document.querySelectorAll(".slide");
     const slidesMaxIndex = slides.length-1;
 
+    // Les boutons de navigation entre les slides
+    const nextSlideBtn = document.querySelector("#btn-next");
+    const previousSlideBtn = document.querySelector("#btn-prev");
+
     // L'index de la slide courante
     let currentSlideIndex = 0;
     // Le statut du timer (actif ou en pause)
     let sliderTimerOn = true;
+
+    // 0 - DÉMARRAGE SUR LA 1ÈRE SLIDE : CACHER LE BOUTON 'PREVIOUS'
+    hideAndShowButtons(currentSlideIndex, slidesMaxIndex, nextSlideBtn, previousSlideBtn);
 
     // I - ACTIVATION DU CARROUSEL AU TIMER
     if(slider && slides){
         setInterval(()=>{
                 if(sliderTimerOn){
                     currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "next");
-                    slide(slider, currentSlideIndex)
+                    slide(slider, currentSlideIndex);
+                    hideAndShowButtons(currentSlideIndex, slidesMaxIndex, nextSlideBtn, previousSlideBtn);
                 }
             }, 3000);
     }
 
     // II - ACTIVATION SUR LE CARROUSEL AVEC LES BOUTONS
-    const nextSlideBtn = document.querySelector("#btn-next");
-    const previousSlideBtn = document.querySelector("#btn-prev");
-
 
     nextSlideBtn.addEventListener('click', () => {
         // Mettre le slide automatique en pause
         sliderTimerOn = false;
         currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "next");
         slide(slider, currentSlideIndex);
+        hideAndShowButtons(currentSlideIndex, slidesMaxIndex, nextSlideBtn, previousSlideBtn);
         // Attendre 3s avant de remettre le slider en route
         setTimeout(()=>{sliderTimerOn = true}, 3000);
     });
@@ -42,6 +48,7 @@ window.addEventListener("DOMContentLoaded", function () {
         sliderTimerOn = false;
         currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "previous");
         slide(slider, currentSlideIndex);
+        hideAndShowButtons(currentSlideIndex, slidesMaxIndex, nextSlideBtn, previousSlideBtn);
         // Attendre 3s avant de remettre le slider en route
         setTimeout(()=>{sliderTimerOn = true}, 3000);
     });
@@ -79,6 +86,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 sliderTimerOn = false;
                 currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "previous");
                 slide(slider, currentSlideIndex);
+                hideAndShowButtons(currentSlideIndex, slidesMaxIndex, nextSlideBtn, previousSlideBtn);
                 // Attendre 3s avant de remettre le slider en route
                 setTimeout(()=>{sliderTimerOn = true}, 3000);
             
@@ -88,6 +96,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 sliderTimerOn = false;
                 currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "next");
                 slide(slider, currentSlideIndex);
+                hideAndShowButtons(currentSlideIndex, slidesMaxIndex, nextSlideBtn, previousSlideBtn);
                 // Attendre 3s avant de remettre le slider en route
                 setTimeout(()=>{sliderTimerOn = true}, 3000);
             }
@@ -127,11 +136,16 @@ function slide(slider, currentSlide){
     slider.style.transform = `translateX(-${currentSlide*100}%)`;
 }
 
-// 3 - Mettre en pause et redémarrer le slide automatique
-function manageCarouselTimer(playOrPause){
-    if(playOrPause === "pause"){
-       
-    }else if(playOrPause === "play"){
-        
+// 3 - Cacher les boutons de navigation inutiles (au début et à la fin du slider)
+function hideAndShowButtons(currentSlide, lastSlide, nextBtn, previousBtn){
+    if(currentSlide === 0){
+        previousBtn.style.display = "none";
+        nextBtn.style.display = "block";
+    }else if(currentSlide === lastSlide){
+        nextBtn.style.display = "none";
+        previousBtn.style.display = "block";
+    }else{
+        previousBtn.style.display = "block";
+        nextBtn.style.display = "block";
     }
 }
