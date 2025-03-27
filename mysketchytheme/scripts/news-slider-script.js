@@ -18,22 +18,20 @@ window.addEventListener("DOMContentLoaded", function () {
     nextSlideBtn.addEventListener('click', () => {
         if (currentSlideIndex === slidesMaxIndex) {
             currentSlideIndex = 0;
-            slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
         }else{
             currentSlideIndex ++;
-            slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
         }
+        slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
   
     });
 
     previousSlideBtn.addEventListener('click', () => {
         if (currentSlideIndex === 0) {
             currentSlideIndex = slidesMaxIndex;
-            slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
         }else{
             currentSlideIndex --;
-            slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
         }
+        slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
     });
 
 
@@ -68,22 +66,20 @@ window.addEventListener("DOMContentLoaded", function () {
                 console.log("Swipe à droite");
                 if (currentSlideIndex === 0) {
                     currentSlideIndex = slidesMaxIndex;
-                    slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
                 }else{
                     currentSlideIndex --;
-                    slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
                 }
+                slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
             
             // Si on swipe à gauche (suivant)
             } else {
                 console.log("Swipe à gauche");
                 if (currentSlideIndex === slidesMaxIndex) {
-                    currentSlideIndex = 0;
-                    slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
+                    currentSlideIndex = 0;                  
                 }else{
                     currentSlideIndex ++;
-                    slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
                 }
+                slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
             }
 
             // Appliquer la transformation
