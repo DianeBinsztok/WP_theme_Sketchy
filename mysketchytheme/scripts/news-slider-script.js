@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", function () {
     const slides = document.querySelectorAll(".slide");
     const slidesMaxIndex = slides.length-1;
 
-    //L'index de la slide courante
+    // L'index de la slide courante
     let currentSlideIndex = 0;
 
     // Les boutons
@@ -16,14 +16,13 @@ window.addEventListener("DOMContentLoaded", function () {
 
 
     nextSlideBtn.addEventListener('click', () => {
-        currentSlideIndex = (currentSlideIndex === slidesMaxIndex) ? 0 : currentSlideIndex + 1;        
-        slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
-  
+        currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "next");
+        slide(slider, currentSlideIndex);
     });
 
     previousSlideBtn.addEventListener('click', () => {
-        currentSlideIndex = (currentSlideIndex === 0)? slidesMaxIndex : currentSlideIndex - 1;
-        slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
+        currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "previous");
+        slide(slider, currentSlideIndex);
     });
 
 
@@ -55,13 +54,13 @@ window.addEventListener("DOMContentLoaded", function () {
             
             // Si on swipe à droite (retour arrière)
             if (deltaX > 0) {
-                currentSlideIndex = (currentSlideIndex === 0) ? slidesMaxIndex : currentSlideIndex - 1;        
-                slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
+                currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "previous");
+                slide(slider, currentSlideIndex);
             
             // Si on swipe à gauche (suivant)
             } else {
-                currentSlideIndex = (currentSlideIndex === slidesMaxIndex) ? 0 : currentSlideIndex + 1;        
-                slider.style.transform = `translateX(-${currentSlideIndex*100}%)`;
+                currentSlideIndex = resetCurrentSlide(currentSlideIndex, slidesMaxIndex, "next");
+                slide(slider, currentSlideIndex);
             }
 
             // Appliquer la transformation
@@ -69,3 +68,17 @@ window.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
+// 1 - Réaffecter la slide courante
+function resetCurrentSlide(currentSlide, lastSlide, direction){
+    if(direction === "next"){
+        return (currentSlide === lastSlide) ? 0 : currentSlide + 1;        
+    }else if(direction === "previous"){
+        return (currentSlide === 0) ? lastSlide : currentSlide - 1;        
+    }
+}
+// 2 - Déplacer le slider
+function slide(slider, currentSlide){      
+    slider.style.transform = `translateX(-${currentSlide*100}%)`;
+}
