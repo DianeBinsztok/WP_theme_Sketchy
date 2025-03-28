@@ -36,27 +36,10 @@ function display_latest_news_in_slider()
             // Chapo d'article
             echo the_excerpt();
 
-            // Les catégories
-            /*
-            echo '<div id="post-categories" style="display:flex;">';
-            $post_categories = get_the_category($post_id);
-            foreach ($post_categories as $category) {
-                echo '<p style="border:1px solid black; padding:0.3rem 0.7rem; margin:0.5rem;">' . $category->name . '</p>';
-            }
-            echo '</div>';
-
-            // La date
-            echo '<div id="post-date">';
-            $date = get_the_date("j F, Y");
-            echo $date;
-            echo '</div>';
-            */
-
             // Lien vers l'article
             $post_url = get_permalink($post_id);
-            echo '<div id="post-link_container" style="padding:3rem 0 1rem 0;">';
-            echo '<a id="post-link" href="' . $post_url . '" style="display:flex; align-items:end;text-decoration:none; justify-content:center; border:1px solid black; width:fit-content; padding:0.3rem 1rem;">';
-            //echo '<p> Lire l\'article</p><p style="font-size: 3em; margin:0 0 0 1rem; align-self:center;">→</p>';
+            echo '<div id="post-link_container">';
+            echo '<a id="post-link" href="' . $post_url . '">';
             echo 'Lire l\'article  →';
             echo '</a>';
             echo '</div>';
