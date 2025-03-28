@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", function () {
     hideAndShowButtons(currentSlideIndex, slidesMaxIndex, nextSlideBtn, previousSlideBtn);
 
     // I - ACTIVATION DU CARROUSEL AU TIMER
-    /*
+    
     if(slider && slides){
         setInterval(()=>{
                 if(sliderTimerOn){
@@ -31,7 +31,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 }
             }, 3000);
     }
-            */
+            
 
     // II - ACTIVATION SUR LE CARROUSEL AVEC LES BOUTONS
 

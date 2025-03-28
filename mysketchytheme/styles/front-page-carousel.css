@@ -51,8 +51,14 @@
   display: flex;
   justify-content: end;
   flex-shrink:0;
-  background-size:cover;
+  background-size:100%;
+  transition: background-size 0.3s ease-in-out;
   background-repeat: no-repeat;
+}
+/*Style de la slide au survol*/
+.slide:hover{
+  background-size: 103%;
+  transition: background-size 0.3s ease-in-out;
 }
 #post-infos{
   width:30%;
@@ -70,8 +76,9 @@
 }
 /*Le lien vers l'article*/
 #post-link_container{
-  padding:3rem 0 1rem 0;
+  padding:1rem 0 1rem 0;
 }
+
 #post-link{
   display:flex; 
   align-items:end;
@@ -80,10 +87,21 @@
   border:1px solid black; 
   width:fit-content; 
   padding:0.3rem 1rem;
+  /*La couleur*/
+  background: linear-gradient(to right, black 50%, #fcfce7);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  color: #fcfce7;
+  /*Le bouton n'est pas visible quand la souris n'est pas sur la slide*/
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, background-position 0.4s ease-in-out;
 }
 
-
-/*Style de la slide au survol*/
-.slide:hover{
-
+/*Style du lien au survol de la slide*/
+.slide:hover #post-link{
+  /*Faire apparaître le bouton*/
+  opacity: 1;
+  /*La couleur d'arrière plan apparaît de gauche à droite*/
+  background-position: left bottom;
+  transition: opacity 0.2s ease-in-out, background-position 0.4s ease-in-out;
 }
