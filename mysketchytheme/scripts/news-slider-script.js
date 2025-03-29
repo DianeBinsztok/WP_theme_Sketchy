@@ -31,7 +31,6 @@ window.addEventListener("DOMContentLoaded", function () {
                 }
             }, 3000);
     }
-            
 
     // II - ACTIVATION SUR LE CARROUSEL AVEC LES BOUTONS
 

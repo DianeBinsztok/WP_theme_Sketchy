@@ -1,31 +1,10 @@
+/*I - GLOBAL*/
 #slider-section{
   display:flex; 
   width:100%;
   height:100%;
   position: relative;
   overflow:hidden;
-} 
-/*Les boutons*/
-.btn{
-  color: #817b66;
-  font-size: 2.5em;
-  align-self:center;
-  padding:0 1.3rem;
-  border: 1px solid #817b66;
-  border-radius:200px;
-  background-color: #fcfce754;
-  z-index: 1;
-  position: absolute;
-  top:45%;
-  opacity:0.8;
-  transition: all 0.2s ease-in-out;
-} 
-.btn:hover{
-  opacity:1;
-  font-size: 3em;
-  padding:0 1.5rem;
-  background-color: #fcfce7;
-  transition: all 0.2s ease-in-out;
 } 
 /* Bouton précédent à gauche */
 #btn-prev {
@@ -35,7 +14,6 @@
 #btn-next {
   right: 10px;
 }
-
 #slider_container{
   width:100%;
   overflow:hidden;
@@ -45,28 +23,27 @@
   width:100%;
   transition : transform 0.5s ease-in-out;
 } 
+  /*Les boutons*/
+  .btn{
+    color: #817b66;
+    font-size: 2.5em;
+    align-self:center;
+    padding:0 1.3rem;
+    border: 1px solid #817b66;
+    border-radius:200px;
+    background-color: #fcfce754;
+    z-index: 1;
+    position: absolute;
+    top:45%;
+    opacity:0.8;
+    transition: all 0.2s ease-in-out;
+  } 
 .slide{
   width:100%;
   height:100%;
-  display: flex;
-  justify-content: end;
-  flex-shrink:0;
-  background-size:100%;
-  transition: background-size 0.3s ease-in-out;
-  background-repeat: no-repeat;
-}
-/*Style de la slide au survol*/
-.slide:hover{
-  background-size: 103%;
-  transition: background-size 0.3s ease-in-out;
 }
 #post-infos{
-  width:30%;
-  height: auto;
-  align-self: center;
-  background-color: #fcfce7d1;
   padding: 1rem;
-  margin: 10rem 3rem 10rem auto;
 } 
 #post-infos p{
   display: -webkit-box;
@@ -74,34 +51,107 @@
   -webkit-line-clamp: 3;
   overflow: hidden;
 }
-/*Le lien vers l'article*/
-#post-link_container{
-  padding:1rem 0 1rem 0;
+
+/*II - MEDIA QUERIES*/
+
+/* MOBILES VERTICAUX*/
+@media only screen and (max-width: 430px) {
+  #latest-news{
+    background-color: black;
+    color: #fcfce7;
+  }
+  .slide{
+    display: flex;
+    flex-direction: column;
+    background-image:none!important;
+    align-items: center;
+    width: 100%;
+    flex-shrink: 0;
+  }
+  #post-image{
+    width: 100%;
+    height: auto;
+    align-items: center;
+  }
+  #post-image img{
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  #post-infos{
+    width:100%;
+    height: auto;
+    box-sizing: border-box;
+  }
+  #post-link{
+    display: none;
+  }
 }
 
-#post-link{
-  display:flex; 
-  align-items:end;
-  text-decoration:none; 
-  justify-content:center; 
-  border:1px solid black; 
-  width:fit-content; 
-  padding:0.3rem 1rem;
-  /*La couleur*/
-  background: linear-gradient(to right, black 50%, #fcfce7);
-  background-size: 200% 100%;
-  background-position: right bottom;
-  color: #fcfce7;
-  /*Le bouton n'est pas visible quand la souris n'est pas sur la slide*/
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out, background-position 0.4s ease-in-out;
-}
+/*TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
+@media only screen and (min-width : 1000px) {
+  #post-image{
+    display: none;
+  }
+  .btn:hover{
+    opacity:1;
+    font-size: 3em;
+    padding:0 1.5rem;
+    background-color: #fcfce7;
+    transition: all 0.2s ease-in-out;
+  } 
+  .slide{
+    display: flex;
+    flex-shrink:0;
+    justify-content: end;
+    background-size:100%;
+    transition: background-size 0.3s ease-in-out;
+    background-repeat: no-repeat;
+  }
+  /*Style de la slide au survol*/
+  .slide:hover{
+    background-size: 103%;
+    transition: background-size 0.3s ease-in-out;
+  }
+  #post-infos{
+    width:30%;
+    height: auto;
+    align-self: center;
+    margin: 10rem 3rem 10rem auto;
+    background-color: #fcfce7d1;
+  } 
 
-/*Style du lien au survol de la slide*/
-.slide:hover #post-link{
-  /*Faire apparaître le bouton*/
-  opacity: 1;
-  /*La couleur d'arrière plan apparaît de gauche à droite*/
-  background-position: left bottom;
-  transition: opacity 0.2s ease-in-out, background-position 0.4s ease-in-out;
+  /*Le lien vers l'article*/
+  #post-link_container{
+    padding:1rem 0 1rem 0;
+  }
+  
+  #post-link{
+    display:flex; 
+    align-items:end;
+    text-decoration:none; 
+    justify-content:center; 
+    border:1px solid black; 
+    width:fit-content; 
+    padding:0.3rem 1rem;
+    /*La couleur*/
+    background: linear-gradient(to right, black 50%, #fcfce7);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    color: #fcfce7;
+    /*Le bouton n'est pas visible quand la souris n'est pas sur la slide*/
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out, background-position 0.4s ease-in-out;
+  }
+  
+  /*Style du lien au survol de la slide*/
+  .slide:hover #post-link{
+    /*Faire apparaître le bouton*/
+    opacity: 1;
+    /*La couleur d'arrière plan apparaît de gauche à droite*/
+    background-position: left bottom;
+    transition: opacity 0.2s ease-in-out, background-position 0.4s ease-in-out;
+  }
 }
