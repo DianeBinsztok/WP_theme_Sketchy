@@ -111,7 +111,7 @@ function save_post_custom_thumbnail_meta($post_id)
 
     // Évite la sauvegarde automatique
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        error_log('L autosave est défini' . $post_id);
+        error_log('L\'autosave est défini' . $post_id);
         return;
     }
 
