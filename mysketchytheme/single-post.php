@@ -12,15 +12,6 @@ if ($post_custom_thumbnail_id) {
     $thumbnail = wp_get_attachment_image($post_custom_thumbnail_id, 'medium');
 }
 
-/*
-$custom_thumbnail_id = get_post_meta($post->ID, "post_custom_thumbnail_id");
-if (count($custom_thumbnail_id) > 0) {
-    $custom_thumbnail_url = wp_get_attachment_image_url($custom_thumbnail_id[0]);
-} else {
-    $custom_thumbnail_url = get_the_post_thumbnail_url($post->ID);
-}
-    */
-
 get_header();
 ?>
 <section id="post-head_large" class="with-padding"
@@ -47,7 +38,6 @@ get_header();
 
 <section id="post-head_mobile" class="with-padding">
     <div id="post-head_img">
-        <!--<img src="<?php echo $thumbnail ?>" alt="">-->
         <?php echo $thumbnail ?>
     </div>
 

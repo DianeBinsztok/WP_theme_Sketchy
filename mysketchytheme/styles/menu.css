@@ -24,7 +24,10 @@
 .menu-item:hover .sub-menu .menu-item a{
     color: white!important;
 }
-
+#item-arrow_container{
+    display: flex;
+    align-items: baseline;
+}
 #sub-menu-indicator{
     margin-left: 1rem;
 }

@@ -2,9 +2,9 @@
 
 /* II - MEDIA QUERIES*/
 
-/*MISE EN PAGE DE L'EN-TÊTE*/
-/*EN-TÊTE VERTICAL: INFORMATIONS SOUS L'IMAGE : POUR VERSIONS MOBILES VERTICAUX*/
-@media only screen and (max-width : 770px) {
+/* 1 - MISE EN PAGE DE L'EN-TÊTE*/
+/*     Mobiles verticaux : en-tête vertical - informations sois l'image*/
+@media only screen and (max-width : 430px) {
     #post-head_large{
         display: none;
     }
@@ -16,17 +16,22 @@
     }
     #post-head_img{
         width: 100%;
-        /*height:40vh;*/
         overflow: hidden;
     }
     #post-head_img img{
         width: 100%;
         height:auto;
     }
+    #post-head_info_container{
+        width: 100%;
+    }
+    #title{
+        text-align: center;
+    }
 }
 
-/*EN-TÊTE HORIZONTAL AVEC INFO PAR DESSUS : POUR TOUS LES ÉCRANS PLUS LARGES QU'IPAD MINI*/
-@media only screen and (min-height: 431px) and (min-width: 771px) {
+/*     Autres écrans (de mobile horizontal à desktop) : en-tête horizontal - image en arrière plan et info dans un encadré par dessus à droite*/
+@media only screen and (min-width: 431px) {
     #post-head_mobile{
         display: none;
     }
@@ -34,8 +39,9 @@
         display: flex;
         justify-content: end;
         align-items: center;
-        background-size: cover; 
-        height:55vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        /*height:55vh;*/
         overflow: hidden;
     }
     #title-excerpt-date_container{
@@ -45,8 +51,35 @@
         max-width: 33%;
     }
 }
+/* 2 - RÉGLER LA TAILLE DE L'IMAGE EN FONCTION DES SUPPORTS*/
+/*     Mobiles verticaux : en-tête vertical*/
+@media only screen and (max-width : 430px) {
+}
 
-/*FONTES*/
+/*     Autres écrans (de mobile horizontal à desktop) : en-tête horizontal*/
+/*     Mobiles horizontaux*/
+@media only screen and (max-height : 430px) and (min-width: 431px){
+    #post-head_large{
+        margin: 0 10%;
+        height:50vh;
+        width:auto;
+    }
+}
+/*     Petites tablettes*/
+@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 1024px) {
+    #post-head_large{
+        height:40vh;
+        width:auto;
+    }
+}
+/*     Grandes tablettes et desktop*/
+@media only screen and (min-height: 431px) and (min-width : 1025px) {
+    #post-head_large{
+        height:45vh;
+        width:auto;
+    }
+}
+/* 3 - FONTES*/
 @media only screen and (max-width : 770px) {
     #title{
         font-size: 2em;
