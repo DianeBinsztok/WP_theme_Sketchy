@@ -33,7 +33,7 @@ if (have_posts()):
                     </div>
 
                     <!-- le contenu -->
-                    <div class=" content-zone">
+                    <div class="content-zone">
 
                         <div class="title-zone">
                             <?php the_title('<h2>', '</h2>') ?>
