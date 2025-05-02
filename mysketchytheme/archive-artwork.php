@@ -1,5 +1,4 @@
 <?php
-
 get_header();
 
 // I - LES ARGUMENTS DE LA QUERY, EN FONCTION DE PARAMÈTRES D'URL

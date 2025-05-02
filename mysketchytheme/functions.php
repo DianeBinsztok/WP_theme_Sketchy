@@ -34,6 +34,10 @@ function theme_enqueue_styles()
     if (is_single()) {
         wp_enqueue_style('single-post-style', get_template_directory_uri() . '/styles/single-post.css');
     }
+    // STYLE DE LA PAGE À PROPOS
+    if (is_page("about")) {
+        wp_enqueue_style('about-style', get_template_directory_uri() . '/styles/about.css');
+    }
 }
 
 // III - SCRIPTS FRONT
