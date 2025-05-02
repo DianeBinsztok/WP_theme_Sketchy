@@ -1,3 +1,4 @@
+/*I - GLOBAL*/
 #about-head{
     width: 100%;
     display: flex;
@@ -5,13 +6,71 @@
     align-items: center;
 }
 #about-head img{
-    width: 30%;
-    height: 30%;
     border-radius: 50%;
 }
 #about-head h1{
-font-size: 2em;
+    text-align: center;
 }
-#about-content{
-    padding: 0 20%;
+
+/*II - MEDIA QUERIES*/
+
+/*1 - MOBILES VERTICAUX*/
+@media only screen and (max-width: 430px) {
+    #about-head{
+        margin: 1rem 0;
+    }
+    #about-head img{
+        width: 75%;
+        height: 75%;
+    }
+    #about-head,#about-content{
+        padding: 0 5%;
+        box-sizing: border-box;
+    }
+    #about-head h1{
+        font-size: 1.8em;
+    }
+    
 }
+
+/*2 - MOBILES HORIZONTAUX*/
+@media only screen and (max-height : 430px){
+    #about-head{
+        flex-direction: row;
+        align-items: flex-start;
+        margin: 1rem 0;
+    }
+    #about-head img{
+        margin-right: 1rem;
+        width: 35%;
+        height: 35%;
+    }
+    #about-head,#about-content{
+        padding: 0 7%;
+        box-sizing: border-box;
+    }
+    #about-head h1{
+        font-size: 2em;
+        line-height: 2em;
+        text-align: left;
+    }
+}
+
+/*TABLETTES ET DESKTOP*/
+@media only screen and (min-height: 431px) and (min-width: 431px){
+    #about-head{
+        margin: 1rem 0;
+    }
+    #about-head img{
+        width: 50%;
+        height: 45%;
+    }
+    #about-head,#about-content{
+        padding: 0 10%;
+        box-sizing: border-box;
+    }
+    #about-head h1{
+        font-size: 2em;
+    }
+}
+
