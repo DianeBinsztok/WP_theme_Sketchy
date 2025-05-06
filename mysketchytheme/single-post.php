@@ -6,7 +6,7 @@ $date = get_the_date("j F, Y");
 // Pour les versions mobile : aller chercher le thumbnail custom: une image croppée à la main au format carré
 // Si la vignette custom n'est pas définie, afficher le thumbnail défini par WP
 $thumbnail = get_the_post_thumbnail($post->ID);
-$post_custom_thumbnail_id = get_post_meta($post->ID, 'post_custom_thumbnail_id', true);
+$post_custom_thumbnail_id = get_post_meta($post->ID, 'post_img_custom_large_id', true);
 
 if ($post_custom_thumbnail_id) {
     $thumbnail = wp_get_attachment_image($post_custom_thumbnail_id, 'medium');
@@ -15,7 +15,7 @@ if ($post_custom_thumbnail_id) {
 get_header();
 ?>
 <section id="post-head_large" class="with-padding"
-    style="background-image: url(<?php echo get_the_post_thumbnail_url($post->ID) ?>);">
+    style="background-image: url(<?php echo wp_get_attachment_image_url($post_custom_thumbnail_id, "large") ?>);">
     <div id="title-excerpt-date_container">
         <h1 id="title">
             <?php

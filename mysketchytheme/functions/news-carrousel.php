@@ -27,6 +27,7 @@ function display_latest_news_in_slider()
             // Lien vers l'article
             $post_url = get_permalink($post_id);
 
+            // VERSION MOBILE : IMAGE CARRÉE
             // Récupérer le post-meta "post_img_custom_square_id" s'il existe
             $post_custom_img_square_id = get_post_meta($post_id, "post_img_custom_square_id", true);
 
@@ -38,11 +39,21 @@ function display_latest_news_in_slider()
                 $post_custom_img_square = get_the_post_thumbnail($post_id, "medium");
             }
 
+            // VERSIONS LARGES : IMAGE LARGE
+            $post_custom_img_large_id = get_post_meta($post_id, "post_img_custom_large_id", true);
+
+            // Voir si un custom_img_large est enregistré
+            if ($post_custom_img_large_id) {
+                $post_custom_img_large_url = wp_get_attachment_image_url($post_custom_img_large_id, 'large');
+                // Si custom_img_large n'a pas été renseigné, utiliser la featured image par défaut  
+            } else {
+                $post_custom_img_large_url = get_the_post_thumbnail_url($post_id, 'large');
+            }
 
             //slide
 
             // Sur grands écrans : l'image affichée est get_the_post_thumbnail - l'image en format bannière
-            echo '<div class="slide" style="background-image:url(' . get_the_post_thumbnail_url() . ')">';
+            echo '<div class="slide" style="background-image:url(' . $post_custom_img_large_url . ')">';
 
             // Sur les versions mobiles, l'image n'est pas en arrière-plan
             echo '<div id="post-image">';
