@@ -88,3 +88,5 @@ require_once(get_stylesheet_directory() . '/functions/news-carrousel.php');
 // Ajout des post-meta pour des formats d'images spécifiques : 
 // post_img_custom_square - format carré, centré spécifiquement
 require_once(get_stylesheet_directory() . '/functions/add-post-meta-custom-square-img.php');
+// post_img_custom_large - format bandeau, centré spécifiquement
+require_once(get_stylesheet_directory() . '/functions/add-post-meta-custom-large-img.php');
