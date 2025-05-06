@@ -27,13 +27,27 @@ function display_latest_news_in_slider()
             // Lien vers l'article
             $post_url = get_permalink($post_id);
 
+            // Récupérer le post-meta "post_img_custom_square_id" s'il existe
+            $post_custom_img_square_id = get_post_meta($post_id, "post_img_custom_square_id", true);
+
+            // Voir si un custom_img_square est enregistré
+            if ($post_custom_img_square_id) {
+                $post_custom_img_square = wp_get_attachment_image($post_custom_img_square_id, "medium");
+                // Si custom_img_square n'a pas été renseigné, utiliser le thumbnail par défaut     
+            } else {
+                $post_custom_img_square = get_the_post_thumbnail($post_id, "medium");
+            }
+
+
             //slide
+
+            // Sur grands écrans : l'image affichée est get_the_post_thumbnail - l'image en format bannière
             echo '<div class="slide" style="background-image:url(' . get_the_post_thumbnail_url() . ')">';
 
             // Sur les versions mobiles, l'image n'est pas en arrière-plan
             echo '<div id="post-image">';
             echo '<a href="' . $post_url . '">';
-            echo get_the_post_thumbnail();
+            echo $post_custom_img_square;
             echo '</a>';
             echo '</div>';
 

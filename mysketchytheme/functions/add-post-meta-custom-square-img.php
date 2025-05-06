@@ -5,51 +5,53 @@
  */
 
 // I - Enregistrer la meta vignette custom
-function add_custom_thumbnail_metabox()
+
+// post_custom_thumbnail_id
+function add_custom_img_square_metabox()
 {
     add_meta_box(
-        "post_custom_thumbnail_id", // ID de la metabox
+        "post_img_custom_square_id", // ID de la metabox
         "Vignette carrée, centrée spécifiquement", // Titre de la metabox
-        "display_post_custom_thumbnail_metabox", // Fonction callback
+        "display_post_img_custom_square_metabox", // Fonction callback
         "post", // Post type cible
         "side", // Emplacement de la metabox
         "high" // Priorité
     );
 }
-add_action('add_meta_boxes', 'add_custom_thumbnail_metabox');
+add_action('add_meta_boxes', 'add_custom_img_square_metabox');
 
 // II - Afficher le champs de vignette custom en back-office :
-function display_post_custom_thumbnail_metabox($post)
+function display_post_img_custom_square_metabox($post)
 {
     // Générer un champ nonce pour la sécurité
-    wp_nonce_field(basename(__FILE__), 'post_custom_thumbnail_id_nonce');
+    wp_nonce_field(basename(__FILE__), 'post_img_custom_square_id_nonce');
 
     // Récupérer l'image déjà enregistrée, s'il y en a une
-    $post_custom_thumbnail_id = get_post_meta($post->ID, 'post_custom_thumbnail_id', true);
+    $post_img_custom_square_id = get_post_meta($post->ID, 'post_img_custom_square_id', true);
 
     // Récupérer l'URL de l'image si un ID est enregistré
-    $image_url = $post_custom_thumbnail_id ? wp_get_attachment_url($post_custom_thumbnail_id) : '';
+    $image_url = $post_img_custom_square_id ? wp_get_attachment_url($post_img_custom_square_id) : '';
 
     ?>
     <div>
-        <label for="post_custom_thumbnail_id">Vignette carrée, centrée spécifiquement</label>
+        <label for="post_img_custom_square_id">Vignette carrée, centrée spécifiquement</label>
 
         <!-- Afficher l'image sélectionnée s'il y en a une-->
-        <div id="custom-thumbnail-container">
-            <img id="custom-thumbnail-preview" src="<?php echo esc_url($image_url); ?>"
+        <div id="img-custom-square-container">
+            <img id="img-custom-square-preview" src="<?php echo esc_url($image_url); ?>"
                 style="max-width:100%; <?php echo $image_url ? '' : 'display:none;'; ?>">
         </div>
 
         <!-- On envoie l'id de l'image sélectionnée-->
-        <input type="hidden" id="post-custom-thumbnail-id" name="post_custom_thumbnail_id"
-            value="<?php echo esc_attr($post_custom_thumbnail_id); ?>">
+        <input type="hidden" id="post-img-custom-square-id" name="post_img_custom_square_id"
+            value="<?php echo esc_attr($post_img_custom_square_id); ?>">
 
         <!-- Le bouton qui déclenche l'ouverture de la bibliothèque de média-->
         <button type="button" class="button button-secondary"
-            id="upload-custom-thumbnail"><?php echo $image_url ? 'Changer l\'image' : 'Choisir une image'; ?></button>
+            id="upload-img-custom-square"><?php echo $image_url ? 'Changer l\'image' : 'Choisir une image'; ?></button>
 
         <!-- Si une image n'est pas déjà sélectionnée-->
-        <button type="button" class="button button-secondary" id="remove-custom-thumbnail"
+        <button type="button" class="button button-secondary" id="remove-img-custom-square"
             style="<?php echo $image_url ? '' : 'display:none;'; ?>">Supprimer</button>
     </div>
 
@@ -59,7 +61,7 @@ function display_post_custom_thumbnail_metabox($post)
             let mediaUploader;
 
             // Aller chercher le bouton pour ouvrir la bibliothèque de media
-            document.getElementById("upload-custom-thumbnail").addEventListener("click", function (event) {
+            document.getElementById("upload-img-custom-square").addEventListener("click", function (event) {
                 event.preventDefault();
 
                 if (mediaUploader) {
@@ -78,21 +80,21 @@ function display_post_custom_thumbnail_metabox($post)
 
                     // Récupérer l'image unique ('first') dans la bilibothèque de media (le param de state() est 'livrary' par défaut)
                     let attachment = mediaUploader.state().get("selection").first().toJSON();
-                    document.getElementById("post-custom-thumbnail-id").value = attachment.id;
-                    let preview = document.getElementById("custom-thumbnail-preview");
+                    document.getElementById("post-img-custom-square-id").value = attachment.id;
+                    let preview = document.getElementById("img-custom-square-preview");
                     preview.src = attachment.url;
                     preview.style.display = "block";
-                    document.getElementById("upload-custom-thumbnail").textContent = "Changer l'image";
-                    document.getElementById("remove-custom-thumbnail").style.display = "inline-block";
+                    document.getElementById("upload-img-custom-square").textContent = "Changer l'image";
+                    document.getElementById("remove-img-custom-square").style.display = "inline-block";
                 });
 
                 mediaUploader.open();
             });
 
-            document.getElementById("remove-custom-thumbnail").addEventListener("click", function () {
-                document.getElementById("post-custom-thumbnail-id").value = "";
-                document.getElementById("custom-thumbnail-preview").style.display = "none";
-                document.getElementById("upload-custom-thumbnail").textContent = "Choisir une image";
+            document.getElementById("remove-img-custom-square").addEventListener("click", function () {
+                document.getElementById("post-img-custom-square-id").value = "";
+                document.getElementById("img-custom-square-preview").style.display = "none";
+                document.getElementById("upload-img-custom-square").textContent = "Choisir une image";
                 this.style.display = "none";
             });
         });
@@ -101,10 +103,10 @@ function display_post_custom_thumbnail_metabox($post)
 }
 
 // III - Sauvegarder la vignette
-function save_post_custom_thumbnail_meta($post_id)
+function save_post_img_custom_square_meta($post_id)
 {
     // Vérifie le nonce pour la sécurité
-    if (!isset($_POST['post_custom_thumbnail_id_nonce']) || !wp_verify_nonce($_POST['post_custom_thumbnail_id_nonce'], basename(__FILE__))) {
+    if (!isset($_POST['post_img_custom_square_id_nonce']) || !wp_verify_nonce($_POST['post_img_custom_square_id_nonce'], basename(__FILE__))) {
         error_log('Le nonce ne correspond pas' . $post_id);
         return;
     }
@@ -121,21 +123,21 @@ function save_post_custom_thumbnail_meta($post_id)
         return;
     }
 
-    // Vérifie si la valeur de post_custom_thumbnail_id a été envoyée
-    if (!empty($_POST['post_custom_thumbnail_id'])) {
+    // Vérifie si la valeur de post_img_custom_square_id a été envoyée
+    if (!empty($_POST['post_img_custom_square_id'])) {
         // Assurer que l'id de l'image sélectionnée est bien un entier valide
-        $post_custom_thumbnail_id = intval($_POST['post_custom_thumbnail_id']);
-        if ($post_custom_thumbnail_id > 0) {
+        $post_img_custom_square_id = intval($_POST['post_img_custom_square_id']);
+        if ($post_img_custom_square_id > 0) {
 
-            error_log('Valeur reçue pour post_custom_thumbnail_id : ' . $_POST['post_custom_thumbnail_id']);
+            error_log('Valeur reçue pour post_img_custom_square_id : ' . $_POST['post_img_custom_square_id']);
 
-            update_post_meta($post_id, 'post_custom_thumbnail_id', $post_custom_thumbnail_id);
+            update_post_meta($post_id, 'post_img_custom_square_id', $post_img_custom_square_id);
         } else {
-            delete_post_meta($post_id, 'post_custom_thumbnail_id');
+            delete_post_meta($post_id, 'post_img_custom_square_id');
         }
     } else {
         // Si aucun ID n'est soumis, supprimer la meta
-        delete_post_meta($post_id, 'post_custom_thumbnail_id');
+        delete_post_meta($post_id, 'post_img_custom_square_id');
     }
 }
-add_action('save_post', 'save_post_custom_thumbnail_meta');
+add_action('save_post', 'save_post_img_custom_square_meta');

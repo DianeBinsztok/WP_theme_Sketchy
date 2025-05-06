@@ -14,11 +14,16 @@ if (have_posts()):
 
         // La vignette custom : une image croppée à la main au format carré
         // Si la vignette custom n'est pas définie, afficher le thumbnail défini par WP
-        $thumbnail = get_the_post_thumbnail($post->ID);
-        $post_custom_thumbnail_id = get_post_meta($post->ID, 'post_custom_thumbnail_id', true);
 
-        if ($post_custom_thumbnail_id) {
-            $thumbnail = wp_get_attachment_image($post_custom_thumbnail_id, 'medium');
+        // Récupérer le post-meta "post_img_custom_square_id" s'il existe
+        $post_custom_img_square_id = get_post_meta($post->ID, "post_img_custom_square_id", true);
+
+        // Voir si un custom_img_square est enregistré
+        if ($post_custom_img_square_id) {
+            $post_custom_img_square = wp_get_attachment_image($post_custom_img_square_id, "medium");
+            // Si custom_img_square n'a pas été renseigné, utiliser le thumbnail par défaut     
+        } else {
+            $post_custom_img_square = get_the_post_thumbnail($post_id, "medium");
         }
         ?>
 
@@ -29,7 +34,7 @@ if (have_posts()):
 
                     <!-- le conteneur de l'image -->
                     <div class='post-card_image_container'>
-                        <?php echo $thumbnail ?>
+                        <?php echo $post_custom_img_square ?>
                     </div>
 
                     <!-- le contenu -->

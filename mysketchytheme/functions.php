@@ -80,9 +80,11 @@ add_action('wp_enqueue_scripts', 'register_and_enqueue_scripts');
 // IV - FONCTIONS CUSTOM
 // Prendre en compte le type de contenu personnalisé: Artisan
 require_once(get_stylesheet_directory() . '/functions/register-CPT-artwork.php');
-// Ajout des post-meta post_head_img et post_custom_thumbnail
-require_once(get_stylesheet_directory() . '/functions/add-post-meta.php');
 // Afficher les SVG
 require_once(get_stylesheet_directory() . '/functions/display-svg.php');
 // Afficher un slider pour les derniers posts
 require_once(get_stylesheet_directory() . '/functions/news-carrousel.php');
+
+// Ajout des post-meta pour des formats d'images spécifiques : 
+// post_img_custom_square - format carré, centré spécifiquement
+require_once(get_stylesheet_directory() . '/functions/add-post-meta-custom-square-img.php');

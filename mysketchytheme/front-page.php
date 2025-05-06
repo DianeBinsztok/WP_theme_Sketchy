@@ -56,12 +56,6 @@ get_header();
         </a>
     </div>
 </section>
-<section id="about" class="with-padding">
-    <h2>À propos</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni adipisci soluta, explicabo dolorem voluptates
-        earum alias in dicta ea ullam est, consectetur repellat nobis eos mollitia expedita praesentium! Quibusdam,
-        necessitatibus.</p>
-</section>
 <?php
 get_footer();
 ?>

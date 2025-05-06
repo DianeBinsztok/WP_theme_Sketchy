@@ -41,6 +41,7 @@
 .slide{
   width:100%;
   height:100%;
+  background-repeat: no-repeat;
 }
 #post-infos{
   padding: 1rem;
@@ -55,7 +56,7 @@
 /*II - MEDIA QUERIES*/
 
 /* MOBILES VERTICAUX*/
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 770px) {
   #latest-news{
     background-color: black;
     color: #fcfce7;
@@ -91,7 +92,7 @@
 }
 
 /*TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
-@media only screen and (min-width : 1000px) {
+@media only screen and (min-width : 771px) {
   #post-image{
     display: none;
   }
