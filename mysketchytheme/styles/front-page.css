@@ -8,8 +8,13 @@
 /*section galeries*/
 #galleries-introduction{
     display:flex; 
+    flex-direction: column;
     max-width:100%;
     background-color: #ebe4c5;
+}
+.gallery-links{
+    display:flex; 
+    max-width:100%;
 }
 .gallery-link_container{
     margin:0 1rem;
@@ -22,13 +27,11 @@
 }
 .gallery-link_text {
     background-color: #fcfce7a9;
-   /* background: linear-gradient(#fcfce700, #fcfce7);*/
     height: 25%;
     padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: start;
-    
 }
 .gallery-link{
     background-size: cover;
@@ -50,11 +53,21 @@
     }
 
     /*section galeries*/
-    #galleries-introduction{
+    .gallery-links{
         flex-direction: column;    
     }
     .gallery-link{
-        height:200px;
+        height:180px;
+        margin-bottom:1rem
+    }
+    .gallery-link_text {
+        height: 25%;
+        padding: 0 2rem;
+        text-align: center;
+        justify-content: center;
+    }
+    .gallery-link_description{
+        display: none;
     }
 }
 
@@ -67,20 +80,41 @@
     .gallery-link{
         height:200px;
     }
+    .gallery-link_text {
+        height: 33%;
+        padding: 0 1rem;
+        text-align: center;
+        justify-content: center;
+    }
+    .gallery-link_description{
+        display: none;
+    }
 }
 
 /*3 - TABLETTES VERTICALES*/
 @media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 999px) {
-        /*section intro*/
-        #introduction p{
-            font-size: 1.2em;
-        }
+    /*section intro*/
+    #introduction p{
+        font-size: 1.2em;
+    }
     /*section galeries*/
     #galleries-introduction{
         flex-direction: column;    
     }
+    .gallery-link_container{
+        width: 50%;
+    }
     .gallery-link{
-        height:200px;
+        height: 300px;
+    }
+    .gallery-link_text {
+        height: 33%;
+        padding: 0 1rem;
+        text-align: center;
+        justify-content: center;
+    }
+    .gallery-link_description{
+        display: none;
     }
 }
 
@@ -97,6 +131,10 @@
     /*section galeries*/
     .gallery-link{
         height:600px;
+    }
+    .gallery-link_text {
+        height: 25%;
+        padding: 2rem;
     }
 
 }
