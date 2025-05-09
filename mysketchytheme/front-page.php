@@ -20,7 +20,7 @@ get_header();
 </section>
 
 <section id="galleries-introduction" class="with-padding">
-    <h2>Visitez la galerie</h2>
+    <h2>Travaux</h2>
     <div class="gallery-links">
         <div class="gallery-link_container">
             <a href="<?php echo get_site_url(); ?>/artworks/?categorie=nu">
@@ -55,8 +55,20 @@ get_header();
                 <div class="gallery-link" style="
                 background-image: url('<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/116-scaled.jpg');">
                     <div class="gallery-link_text">
-                        <h3 class="gallery-link_title">De l'huile</h3>
-                        <p class="gallery-link_description">Mes rares tentatives.</p>
+                        <h3 class="gallery-link_title">Peintures</h3>
+                        <p class="gallery-link_description">Mes rares tentatives de tableau à l'huile</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="gallery-link_container">
+            <a href="<?php echo get_site_url(); ?>/artworks/?categorie=nu">
+                <div class="gallery-link"
+                    style="background-image: url('<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/45.jpg');">
+                    <div class="gallery-link_text">
+                        <h3 class="gallery-link_title">Carnets de voyage</h3>
+                        <p class="gallery-link_description">J'aime faire des road trips et croquer de nouveaux paysages.
+                        </p>
                     </div>
                 </div>
             </a>
