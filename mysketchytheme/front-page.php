@@ -26,8 +26,17 @@ get_header();
         <!-- Modèle vivant-->
         <div class="gallery-link_container">
             <a href="<?php echo get_site_url(); ?>/artworks/?categorie=nu">
-                <img class="gallery-link_img" src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/47.jpg'"
-                    alt="">
+                <!-- Images, selon device-->
+                <!-- mobile vertical : image horizontale-->
+                <img class="gallery-link_img horizontal"
+                    src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/47.jpg'" alt="">
+                <!-- mobile horizontal et tablettes : image carrée-->
+                <img class="gallery-link_img square"
+                    src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/47.jpg'" alt="">
+                <!-- grandes tablettes et desktop : image verticale-->
+                <img class="gallery-link_img vertical"
+                    src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/47.jpg'" alt="">
+
                 <div class="gallery-link_text">
                     <h3 class="gallery-link_title">Modèle vivant</h3>
                     <!--<p class="gallery-link_description">Je paie des sous pour aller dans des ateliers privés voir
@@ -40,8 +49,17 @@ get_header();
         <!-- Sketchbooks-->
         <div class="gallery-link_container">
             <a href="<?php echo get_site_url(); ?>/artworks/?categorie=croquis">
-                <img class="gallery-link_img" src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/56.jpg'"
-                    alt="">
+                <!-- Images, selon device-->
+                <!-- mobile vertical : image horizontale-->
+                <img class="gallery-link_img horizontal"
+                    src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/56.jpg'" alt="">
+                <!-- mobile horizontal et tablettes : image carrée-->
+                <img class="gallery-link_img square"
+                    src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/56.jpg'" alt="">
+                <!-- grandes tablettes et desktop : image verticale-->
+                <img class="gallery-link_img vertical"
+                    src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/56.jpg'" alt="">
+
                 <div class="gallery-link_text">
                     <h3 class="gallery-link_title">Sketchbooks</h3>
                     <!--<p class="gallery-link_description">Quand je m'ennuie, je croque.</p>-->
@@ -52,8 +70,17 @@ get_header();
         <!-- Peinture -->
         <div class="gallery-link_container">
             <a href="<?php echo get_site_url(); ?>/artworks/?categorie=croquis">
-                <img class="gallery-link_img"
+                <!-- Images, selon device-->
+                <!-- mobile vertical : image horizontale-->
+                <img class="gallery-link_img horizontal"
                     src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/116-scaled.jpg'" alt="">
+                <!-- mobile horizontal et tablettes : image carrée-->
+                <img class="gallery-link_img square"
+                    src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/116-scaled.jpg'" alt="">
+                <!-- grandes tablettes et desktop : image verticale-->
+                <img class="gallery-link_img vertical"
+                    src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/116-scaled.jpg'" alt="">
+
                 <div class="gallery-link_text">
                     <h3 class="gallery-link_title">Peintures</h3>
                     <!--<p class="gallery-link_description">Mes rares tentatives de tableau à l'huile</p>-->
@@ -64,8 +91,17 @@ get_header();
         <!-- Carnets de voyage -->
         <div class="gallery-link_container">
             <a href="<?php echo get_site_url(); ?>/artworks/?categorie=croquis">
-                <img class="gallery-link_img" src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/45.jpg'"
-                    alt="">
+                <!-- Images, selon device-->
+                <!-- mobile vertical : image horizontale-->
+                <img class="gallery-link_img horizontal"
+                    src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/45.jpg'" alt="">
+                <!-- mobile horizontal et tablettes : image carrée-->
+                <img class="gallery-link_img square"
+                    src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/45.jpg'" alt="">
+                <!-- grandes tablettes et desktop : image verticale-->
+                <img class="gallery-link_img vertical"
+                    src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/45.jpg'" alt="">
+
                 <div class="gallery-link_text">
                     <h3 class="gallery-link_title">Carnets de voyage</h3>
                     <!--<p class="gallery-link_description">J'aime faire des road trips et croquer de nouveaux paysages.
