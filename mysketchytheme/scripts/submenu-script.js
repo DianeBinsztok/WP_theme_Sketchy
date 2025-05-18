@@ -7,7 +7,7 @@ window.addEventListener("load", function() {
 
     let svgColor;
     /* Pour les versions mobile : menu en blanc sur fond noir */
-    if(window.innerWidth<=660){
+    if(window.innerWidth<=1024){
         svgColor = "white";
 
     /* Pour les versions desktop : menu en noir sur fond beige */

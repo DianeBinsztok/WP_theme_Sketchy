@@ -1,4 +1,36 @@
 /*I - GLOBAL*/
+/*Fontes*/
+@font-face {
+    font-family: Gobsmacked;
+    src: url("../fonts/Gobsmacked\ DEMO.otf");
+}
+@font-face {
+    font-family: Raleway-regular;
+    src: url("../fonts/raleway/Raleway-Regular.ttf");
+}
+@font-face {
+    font-family: Raleway-bold;
+    src: url("../fonts/raleway/Raleway-Bold.ttf");
+}
+h1, h2, #site-title{
+    font-family: Gobsmacked;
+}
+body{
+    font-family: Raleway-regular;
+}
+h1, h2, #site-title{
+    font-size: 3.5em;
+    
+}
+h2{
+    font-size: 1.7em;
+}
+h3{
+    font-family: Raleway-bold;
+    font-size: 1.3em;
+}
+
+
 body, html {
     /* Éviter que le scroll horizontal sur le burger-menu*/
     overflow-x: hidden; 

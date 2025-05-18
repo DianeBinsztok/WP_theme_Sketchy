@@ -24,7 +24,7 @@ if ($post_custom_img_large_id) {
     $post_custom_img_large_url = wp_get_attachment_image_url($post_custom_img_large_id, 'large');
     // Si custom_img_large n'a pas été renseigné, utiliser la featured image par défaut  
 } else {
-    $post_custom_img_large_url = get_the_post_thumbnail_url($post_id, 'large');
+    $post_custom_img_large_url = get_the_post_thumbnail_url($post->ID, 'large');
 }
 
 get_header();

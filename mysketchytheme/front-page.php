@@ -18,64 +18,7 @@ get_header();
     ?>
 
 </section>
-<!--
-<section id="galleries-introduction" class="with-padding">
-    <h2>Travaux</h2>
-    <div class="gallery-links">
-        <div class="gallery-link_container">
-            <a href="<?php echo get_site_url(); ?>/artworks/?categorie=nu">
-                <div class="gallery-link"
-                    style="background-image: url('<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/47.jpg');">
-                    <div class="gallery-link_text">
-                        <h3 class="gallery-link_title">Des gens tous nus</h3>
-                        <p class="gallery-link_description">Je paie des sous pour aller dans des ateliers privés voir
-                            des
-                            gens tous nus.</p>
-                    </div>
-                </div>
-            </a>
-        </div>
 
-        <div class="gallery-link_container">
-            <a href="<?php echo get_site_url(); ?>/artworks/?categorie=croquis">
-                <div class="gallery-link"
-                    style="background-image: url('<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/56.jpg');">
-
-                    <div class="gallery-link_text">
-                        <h3 class="gallery-link_title">Des croquis</h3>
-                        <p class="gallery-link_description">Quand je m'ennuie, je croque des trucs... Je m'ennuie
-                            souvent et
-                            partout.</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="gallery-link_container">
-            <a href="<?php echo get_site_url(); ?>/artworks/?categorie=peinture">
-                <div class="gallery-link" style="
-                background-image: url('<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/116-scaled.jpg');">
-                    <div class="gallery-link_text">
-                        <h3 class="gallery-link_title">Peintures</h3>
-                        <p class="gallery-link_description">Mes rares tentatives de tableau à l'huile</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="gallery-link_container">
-            <a href="<?php echo get_site_url(); ?>/artworks/?categorie=nu">
-                <div class="gallery-link"
-                    style="background-image: url('<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/45.jpg');">
-                    <div class="gallery-link_text">
-                        <h3 class="gallery-link_title">Carnets de voyage</h3>
-                        <p class="gallery-link_description">J'aime faire des road trips et croquer de nouveaux paysages.
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
--->
 <section id="artworks" class="with-padding">
     <h2>Travaux</h2>
     <div id="gallery-links">
@@ -87,9 +30,9 @@ get_header();
                     alt="">
                 <div class="gallery-link_text">
                     <h3 class="gallery-link_title">Modèle vivant</h3>
-                    <p class="gallery-link_description">Je paie des sous pour aller dans des ateliers privés voir
+                    <!--<p class="gallery-link_description">Je paie des sous pour aller dans des ateliers privés voir
                         des
-                        gens tous nus.</p>
+                        gens tous nus.</p>-->
                 </div>
             </a>
         </div>
@@ -101,7 +44,7 @@ get_header();
                     alt="">
                 <div class="gallery-link_text">
                     <h3 class="gallery-link_title">Sketchbooks</h3>
-                    <p class="gallery-link_description">Quand je m'ennuie, je croque.</p>
+                    <!--<p class="gallery-link_description">Quand je m'ennuie, je croque.</p>-->
                 </div>
             </a>
         </div>
@@ -113,7 +56,7 @@ get_header();
                     src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/10/116-scaled.jpg'" alt="">
                 <div class="gallery-link_text">
                     <h3 class="gallery-link_title">Peintures</h3>
-                    <p class="gallery-link_description">Mes rares tentatives de tableau à l'huile</p>
+                    <!--<p class="gallery-link_description">Mes rares tentatives de tableau à l'huile</p>-->
                 </div>
             </a>
         </div>
@@ -125,26 +68,11 @@ get_header();
                     alt="">
                 <div class="gallery-link_text">
                     <h3 class="gallery-link_title">Carnets de voyage</h3>
-                    <p class="gallery-link_description">J'aime faire des road trips et croquer de nouveaux paysages.
-                    </p>
+                    <!--<p class="gallery-link_description">J'aime faire des road trips et croquer de nouveaux paysages.
+                    </p>-->
                 </div>
             </a>
         </div>
-
-        <!-- Test : photo -->
-        <!-- 
-        <div class="gallery-link_container">
-            <a href="<?php echo get_site_url(); ?>/artworks/?categorie=croquis">
-                <img class="gallery-link_img"
-                    src="https://i.pinimg.com/564x/1d/4a/86/1d4a86d5f9c1cace4aa72557ad0f490a.jpg" alt="">
-                <div class="gallery-link_text">
-                    <h3 class="gallery-link_title">Photo</h3>
-                    <p class="gallery-link_description">Je prends des photos
-                    </p>
-                </div>
-            </a>
-        </div>
-         -->
 
     </div>
 </section>
