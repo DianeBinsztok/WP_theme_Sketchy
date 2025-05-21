@@ -10,6 +10,11 @@ function display_latest_news_in_slider()
 
     $query = new WP_Query($args);
     if ($query->have_posts()) {
+
+        //Ouvrir la section "latest-news"
+        echo ('<section id="latest-news" class="with-padding">
+    <h2>Quoi de neuf?</h2>');
+
         echo ('<section id="slider-section">');
 
         if ($query->post_count > 1) {
@@ -90,5 +95,8 @@ function display_latest_news_in_slider()
         echo ("</section>");
 
         wp_reset_postdata();
+
+        // Fermer la section "latest-news"
+        echo "</section>";
     }
 }

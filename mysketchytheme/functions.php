@@ -49,8 +49,11 @@ function register_and_enqueue_scripts()
     wp_register_script("burger-menu-script", get_stylesheet_directory_uri() . '/scripts/burger-menu-script.js');
     // Comportement du header au scroll
     wp_register_script("header-onscroll-script", get_stylesheet_directory_uri() . '/scripts/header-onscroll-script.js');
+
     // Sur la page d'accueil : translations du titre dans le header
+    /*
     wp_register_script("frontpage-title-translations-script", get_stylesheet_directory_uri() . '/scripts/frontpage-title-translations-script.js');
+    */
     // Ouverture-fermeture du sous-menu de la galerie
     wp_register_script("submenu-script", get_stylesheet_directory_uri() . '/scripts/submenu-script.js');
     // Comportement du slider de news en page d'accueil
@@ -65,7 +68,7 @@ function register_and_enqueue_scripts()
 
     /* TRANSLATIONS DU TITRE SUR LA PAGE D'ACCUEIL */
     if (is_front_page()) {
-        wp_enqueue_script("frontpage-title-translations-script");
+        /*wp_enqueue_script("frontpage-title-translations-script");*/
         wp_enqueue_script("news-slider-script");
     }
 

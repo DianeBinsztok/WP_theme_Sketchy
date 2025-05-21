@@ -28,10 +28,24 @@
 }
 .gallery-link_container{
     position: relative;
+    background-color: #fff8da;
+}
+
+.box {
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  background-image: url('https://picsum.photos/300');
+}
+
+.background-tint {
+  background-color: rgba(200,100,0,.5);
+  background-blend-mode: multiply;
 }
 .gallery-link_img{
     width: 100%;
     height: 100%;
+    mix-blend-mode: multiply;
 }
 .gallery-link_text{
     background-color: #ebe4c5b7;
@@ -45,33 +59,7 @@
 .gallery-link_title{
     text-align: center;
 }
-/*
-.gallery-links{
-    display:flex; 
-    justify-content: space-between;
-    width:100%;
-}
 
-.gallery-link_container a{
-    color: black;
-    text-decoration: none;
-}
-.gallery-link_text {
-    background-color: #fcfce7a9;
-    height: 25%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-}
-.gallery-link{
-    background-size: cover;
-    background-repeat: no-repeat;
-    width:100%; 
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-}
-*/
 /*II - MEDIA QUERIES*/
 
 /*1 - MOBILES VERTICAUX*/
@@ -163,6 +151,37 @@
         grid-template-columns: repeat(4, 1fr);
         grid-auto-rows: 100%;
     }
+    .gallery-link_container{
+        max-height: 80vh;
+        overflow: hidden;
+    }
+    /*Styles au survol : */
+    /* 1 - Zoomer l'image */
+    .gallery-link_container .gallery-link_img{ 
+        transform: scale(1);
+        transition : transform 0.3s ease-in-out;
+    }
+    .gallery-link_container:hover .gallery-link_img{ 
+        transform: scale(1.05);
+        transition : transform 0.3s ease-in-out;
+    }
+    /* 2 - faire apparaître le texte */
+    .gallery-link_text{
+        /*La couleur*/
+        background: linear-gradient(to right, #ebe4c5b7 50%, rgba(0, 0, 0, 0));
+        background-size: 200% 100%;
+        background-position: right bottom;
+        color: black;
+        /*Le texte n'est pas visible quand la souris n'est pas sur l'image*/
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out, background-position 0.3s ease-in-out;
+    }
+    .gallery-link_container:hover .gallery-link_text{ 
+        opacity : 1;
+        /*La couleur d'arrière plan apparaît de gauche à droite*/
+        background-position: left bottom;
+        transition : opacity 0.3s ease-in-out background-position 0.3s ease-in-out;
+    }
     /*Changer l'image selon device : sur mobile vertical : image carrées*/
     .horizontal{
         display: none;
@@ -170,7 +189,6 @@
     .square{
         display: none;
     }
-
 
 }
 

@@ -9,9 +9,11 @@ header{
     height: 15vh;
 }
 /* Pour la page d'accueil : un header plus spectaculaire */
+/*
 #above-menu-zone.front-page{
     height: 80vh;
 }
+*/
 #menu-zone{
     display:flex;
     align-items: center;
