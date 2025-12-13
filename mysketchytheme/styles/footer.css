@@ -1,0 +1,16 @@
+footer{
+    background-color: black;
+    color: white;
+}
+.footer_section{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+#footer_top-section{
+    border-bottom: 1px solid white;
+}
+.social_link{
+    margin : 0 1rem;
+}

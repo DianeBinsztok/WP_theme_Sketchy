@@ -1,0 +1,119 @@
+/*I - GLOBAL*/
+/*Fontes*/
+@font-face {
+    font-family: Gobsmacked;
+    src: url("../fonts/Gobsmacked\ DEMO.otf");
+}
+@font-face {
+    font-family: Raleway-regular;
+    src: url("../fonts/raleway/Raleway-Regular.ttf");
+}
+@font-face {
+    font-family: Raleway-bold;
+    src: url("../fonts/raleway/Raleway-Bold.ttf");
+}
+h1, h2, #site-title{
+    font-family: Gobsmacked;
+}
+body{
+    font-family: Raleway-regular;
+}
+h1, h2, #site-title{
+    font-size: 3.5em;
+    
+}
+h2{
+    font-size: 1.7em;
+}
+h3{
+    font-family: Raleway-bold;
+    font-size: 1.3em;
+}
+
+
+body, html {
+    /* Éviter que le scroll horizontal sur le burger-menu*/
+    overflow-x: hidden; 
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fcfce7;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+main {
+    /* Étendre sur tout l'espace entre header et footer */
+    width: 100%;
+    /*margin: auto;*/
+    flex: 1; 
+}
+/*Cacher des éléments*/
+.hide{
+    visibility: hidden;
+    display: none!important;
+}
+/*Empêcher le scroll du body lorsuq'une popup est ouverte*/
+.no-scroll{
+    position: fixed;
+    overflow: hidden;
+}
+
+/*II - MEDIA QUERIES*/
+
+/*1 - MOBILES VERTICAUX*/
+@media only screen and (max-width: 430px) {
+    header, footer{
+        padding:0 3%;
+    }
+    section.with-padding{
+        padding:3% 3%;
+    }
+}
+
+/*2 - MOBILES HORIZONTAUX*/
+@media only screen and (max-height : 430px){
+    header, footer{
+        padding:0 10%;
+    }
+    section.with-padding{
+        padding:3% 10%;
+    }
+}
+
+/*3 - TABLETTES VERTICALES*/
+
+/*Marges*/
+/*Petites tablettes - type iPad Mini*/
+@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 770px) {
+    header, footer{
+        padding:0 5%;
+    }
+    section.with-padding{
+        padding:3% 5%;
+    }
+}
+/*Autres tablettes*/
+@media only screen and (min-height: 431px) and (min-width: 771px) and (max-width : 999px) {
+    header, footer{
+        padding:0 10%;
+    }
+    section.with-padding{
+        padding:3% 10%;
+    }
+}
+
+/*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
+@media only screen and (min-width : 1000px) {
+        header, footer{
+            padding:0 15%;
+        }
+        section.with-padding{
+            padding:3% 15%;
+        }
+}

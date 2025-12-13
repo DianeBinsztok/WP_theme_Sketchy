@@ -1,0 +1,124 @@
+/* I - GLOBAL*/
+
+/* II - MEDIA QUERIES*/
+
+/* 1 - MISE EN PAGE DE L'EN-TÊTE*/
+/*     Mobiles verticaux : en-tête vertical - informations sois l'image*/
+@media only screen and (max-width : 430px) {
+    #post-head_large{
+        display: none;
+    }
+    #post-head_mobile{
+        padding-top: 0!important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #post-head_img{
+        width: 100%;
+        overflow: hidden;
+    }
+    #post-head_img img{
+        width: 100%;
+        height:auto;
+    }
+    #post-head_info_container{
+        width: 100%;
+    }
+    #title{
+        text-align: center;
+    }
+}
+
+/*     Autres écrans (de mobile horizontal à desktop) : en-tête horizontal - image en arrière plan et info dans un encadré par dessus à droite*/
+@media only screen and (min-width: 431px) {
+    #post-head_mobile{
+        display: none;
+    }
+    #post-head_large{
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        /*height:55vh;*/
+        overflow: hidden;
+    }
+    #title-excerpt-date_container{
+        padding: 2rem;
+        background-color: rgba(245, 245, 220, 0.6);
+        height: fit-content;
+        max-width: 33%;
+    }
+}
+/* 2 - RÉGLER LA TAILLE DE L'IMAGE EN FONCTION DES SUPPORTS*/
+/*     Mobiles verticaux : en-tête vertical*/
+@media only screen and (max-width : 430px) {
+}
+
+/*     Autres écrans (de mobile horizontal à desktop) : en-tête horizontal*/
+/*     Mobiles horizontaux*/
+@media only screen and (max-height : 430px) and (min-width: 431px){
+    #post-head_large{
+        margin: 0 10%;
+        height:50vh;
+        width:auto;
+    }
+}
+/*     Petites tablettes*/
+@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 1024px) {
+    #post-head_large{
+        height:40vh;
+        width:auto;
+    }
+}
+/*     Grandes tablettes et desktop*/
+@media only screen and (min-height: 431px) and (min-width : 1025px) {
+    #post-head_large{
+        height:45vh;
+        width:auto;
+    }
+}
+/* 3 - FONTES*/
+@media only screen and (max-width : 770px) {
+    #title{
+        font-size: 2em;
+    }
+
+    #excerpt{
+        font-size: 1.3em;
+        line-height: 1.5em;
+    }
+
+    #date{
+        font-size: 1em;
+        font-style: italic;
+        margin-top: 1.5rem;
+    }
+
+    #content p{
+        line-height: 1.7em;
+        font-size: 1.1em;
+    }
+}
+@media only screen and (min-width : 1000px) {
+    #title{
+        font-size: 2.5em;
+    }
+
+    #excerpt{
+        font-size: 1.4em;
+        line-height: 2.6rem;
+    }
+
+    #date{
+        font-size: 1.2em;
+        font-style: italic;
+        margin-top: 2rem;
+    }
+
+    #content p{
+        line-height: 2.5rem;
+        font-size: 1.2em;
+    }
+}
