@@ -90,6 +90,7 @@ if ($artworks_query->have_posts()) {
                         data-year="<?= esc_attr($artwork['year']) ?>"
                         data-excerpt="<?= esc_attr($artwork['excerpt']) ?>"
                         data-techniques='<?= esc_attr(json_encode($artwork['techniques'])) ?>'
+                        data-nb-of-artworks-of-the-same-year="<?= count(array_filter($artworks, function($a) use ($artwork) { return $a['year'] === $artwork['year']; })) ?>"
                         <!--data-tags='<?= esc_attr(json_encode(array_map(function($tag) { return $tag->name; }, (array)$artwork['tags']))) ?>'> -->
                         <img src="<?= esc_url($artwork['image']) ?>" alt="<?= esc_attr($artwork['title']) ?>">
                     </div>
@@ -116,9 +117,15 @@ if ($artworks_query->have_posts()) {
         </div>
 
         <div class="slider__dots">
+            <!--
             <?php foreach ($artworks as $index => $artwork): ?>
                 <button class="slider__dot" data-index="<?= $index ?>" aria-label="Aller à l'image <?= $index + 1 ?>"></button>
             <?php endforeach; ?>
+            <?php 
+            for ($index = 0; $index < $nb_of_artwoks_of_the_same_year; $index++): ?>
+                <button class="slider__dot" data-index="<?= $index ?>" aria-label="Aller à l'image <?= $index + 1 ?>"></button>
+            <?php endfor; ?>
+            -->
         </div>
     </div>
 </section> 
