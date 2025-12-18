@@ -55,7 +55,7 @@ function register_and_enqueue_scripts()
     wp_register_script("frontpage-title-translations-script", get_stylesheet_directory_uri() . '/scripts/frontpage-title-translations-script.js');
     */
     // Ouverture-fermeture du sous-menu de la galerie
-    wp_register_script("submenu-script", get_stylesheet_directory_uri() . '/scripts/submenu-script.js');
+    //wp_register_script("submenu-script", get_stylesheet_directory_uri() . '/scripts/submenu-script.js');
     // Comportement du slider de news en page d'accueil
     wp_register_script("news-slider-script", get_stylesheet_directory_uri() . '/scripts/news-slider-script.js');
 

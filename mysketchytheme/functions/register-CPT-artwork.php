@@ -36,6 +36,7 @@ function artwork_custom_post_type()
 
         // Taxonomies liée à un artworks
         // 'taxonomies' => array('category', 'post_tag'),
+        'taxonomies' => array('post_tag'),
 
         // Fonctionnalités disponibles dans l'éditeur d'Artwork'
         'supports' => array('title', 'thumbnail', 'excerpt', 'comments', 'custom-fields'),

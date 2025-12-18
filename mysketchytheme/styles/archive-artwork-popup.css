@@ -1,250 +1,240 @@
-/*I - GLOBAL*/
+/* Styles généraux */
+#slider-container {
+    display: none; /* Caché par défaut, géré par JS */
+    position: fixed; /* Positionné par rapport à la fenêtre du navigateur */
+    top: 0; /* Aligné en haut */
+    left: 0; /* Aligné à gauche */
+    width: 100vw; /* Prend toute la largeur de la fenêtre */
+    height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999; /* Valeur très élevée pour garantir qu'il est au-dessus de tout */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
-/*LE FOND NOIR DE LA POPUP*/
-.popup_overlay {
-    z-index: 3;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+.slider-content-wrapper { /* Nouveau conteneur pour le contenu du slider */
+    width: 100%;
+    max-width: 100%;
+    /* height: 100vh;  /* Hauteur fixée à 100% de la hauteur de l'écran */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+}
+
+.slider {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    flex-grow: 1; /* Permet au slider de prendre toute la hauteur disponible */
+    border-radius: 7px;
+    background-color: black;
+}
+
+/* Partie gauche : les images */
+.slider__slides {
+    flex: 1; /* Prend la moitié de l'espace disponible */
+    position: relative;
+    display: flex; /* Aligne les slides horizontalement */
+    transition: transform 0.5s ease-in-out; /* Ajoute l'animation de transition */
+}
+
+.slider__slide {
+    min-width: 100%;  /*Assure que chaque slide prend toute la largeur */
+    flex-shrink: 0;
+    width: 100%;
+    padding: 1rem; /* Ajoute un espace autour de l'image */
+    box-sizing: border-box; /* S'assure que le padding est inclus dans la largeur totale */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Partie droite : les informations */
+.slider__info {
+    color: #fff;
+    flex: 1; /* Prend l'autre moitié */
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: auto;
-    overflow: scroll!important;
+    position: relative;
+    background-color: black
 }
 
-/* Bouton pour fermer la popup*/
-.popup_close {
-    position: fixed;
-    z-index: 3;
-    top: 0.6rem;
-    right: 0.6rem;
-    font-size: 40px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #ffffff;
+/* Séparateur vertical pour desktop */
+.slider__info::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10%;
+    bottom: 10%;
+    width: 1px;
+    background-color: #fff;
 }
 
-.popup_content_container{
+.slider__title {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0 0 1rem;
+}
+
+.slider__excerpt {
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.slider__meta {
     display: flex;
     justify-content: space-between;
-    margin: auto;
-}
-
-.popup_nav{
-    width: 3rem;
-    text-align: center;
     align-items: center;
-    justify-content: center;
-}
-.popup_arrow{
-    position: fixed;
-    text-align: center;
-    top:50%;
-    z-index: 3;
-    font-size: 40px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #ffffff;
+    border-top: 1px solid #fff;
+    padding-top: 1rem;
 }
 
-.popup_content{
+.slider__techniques {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
-    height: 100%;
+    gap: 0.5rem;
+}
+
+.slider__techniques li {
+    background-color: #333;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* Navigation et points */
+.slider__nav {
+    position: absolute; /* Positionnement absolu par rapport au .slider-container */
+    top: 50%;
+    left: 0;
+    right: 0;
     width: 100%;
-}
-/*L'IMAGE*/
-.popup_image_container{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    height: 100%;
+    justify-content: space-between; /* Place les flèches aux extrémités */
+    transform: translateY(-50%);
+    pointer-events: none; /* Laisse passer les clics vers les éléments en dessous */
 }
-
-.popup_image{
-    max-width: 95%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-.popup_info{
-    color: white;
-    max-height: 100%;
-}
-
-/*Les blocs de contenu : tags, categories, techniques*/
-.popup_bloc{
-    margin: 3rem 0;
-}
-/*Les liens qui mènent à la galerie filtrée*/
-
-.popup_filter_link, .popup_close{
-    color: #ffffff;
-    display: inline-block;
-    text-align: center;
-    align-items: baseline;
-    box-sizing: content-box;
-    border: 1px solid #ffffff23;
-    border-radius: 7px;
-    padding: 0.2rem 0.5rem;
-    text-decoration: none;
-}
-
-.popup_filter_link svg{
-    margin-right: 0.7rem;
-    margin-top: 0.3rem;
-}
-
-/*L'année*/
-.popup_year{
-    font-size: 1.5em;
-    font-weight: bold;
-}
-/*Les bloc techniques et tags*/
-.popup_bloc_title{
-    font-weight: bold;
-    margin-bottom: 1rem;
-    background-color: rgb(25, 25, 25);
-    width:fit-content;
-    padding:0 1rem;  
-    margin-top: -1.3rem;
-}
-
-.popup_bloc{
-    margin-top: 2.5rem;
-    border-top: 1px solid grey;
-}
-.popup_bloc_title{
-    font-family: 'Roboto'!important;
+/* Navigation et fermeture */
+.slider__nav-button, .slider__close-button {
+    pointer-events: all; /* Réactive les clics sur les boutons */
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
     font-size: 1.5rem;
+    margin: 0 1rem;
 }
-.popup_title{
-    font-size: 2em;
-}
-.popup_excerpt{
-    line-height: 2em;
-}
-.popup_links{
-    position: relative;
-    bottom:0;
-    margin-top: 5rem;
+/* Fixer le bouton de fermeture en haut à droite de l'écran*/
+.slider__close-button {
+    position: fixed;
+    top: 0.5rem;
+    right: 0.1rem;
+    z-index: 10000; /* Au-dessus de tout le reste */
 }
 
+.slider__dots {
+    text-align: center;
+    padding: 1rem;
+}
 
+.slider__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #555;
+    border: 1px solid #fff;
+    margin: 0 5px;
+    cursor: pointer;
+}
 
-/*II - MEDIA QUERIES*/
-/*1 - MOBILES VERTICAUX*/
-@media only screen and (max-width: 430px) {
-    .popup_overlay{
-        background-color: rgb(25, 25, 25);
-    }
-    .popup_content_container{
-        margin-top: 1rem;
-        align-items: center;        
-        height: 100%;
-        width: 100%;
-    }
-    .popup_content{
+.slider__dot.active {
+    background-color: #fff;
+}
+
+/* Responsive pour mobile et tablette */
+@media (max-width: 768px) {
+    .slider {
         flex-direction: column;
     }
-    .popup_info{
-        padding: 0 1.5rem;
+
+    .slider__info {
+        padding: 1.5rem;
     }
-    
-    .popup_title{
-        text-align: center;
+
+    /* Séparateur horizontal pour mobile */
+    .slider__info::before {
+        top: 0;
+        left: 10%;
+        right: 10%;
+        width: auto;
+        height: 1px;
+    }
+
+    .slider__nav-button {
+        top: calc(50% - 40px); /* Ajuster la position des flèches */
+    }
+
+    .slider {
+        overflow-y: auto; /* Permet le scroll vertical du contenu */
+    }
+
+    .slider__dots {
+        position: sticky; /* Fixé par rapport à son conteneur scrollable */
+        bottom: 0; /* Collé en bas */
+        background-color: black; /* Assure un fond uni derrière les points */
     }
 }
 
-/*2 - MOBILES HORIZONTAUX*/
-@media only screen and (max-height : 430px){
-    .popup_overlay{
-        background-color: rgb(25, 25, 25);
-    }
-    .popup_content_container{
-        height: 100%;
-        width: 100%;
-    }
-    /*L'IMAGE*/
-    .popup_image_container{
-        width: 50%;
-    }
+/* Styles pour la galerie d'images cliquables */
+#clickable-artworks {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    /* Version mobile : 2 images par ligne par défaut */
+    grid-template-columns: repeat(2, 1fr);
+}
 
-    .popup_info{
-        width: 50%;
-        overflow-y: scroll;
-        border-left: 1px solid grey;
-        padding: 0 1.5rem;
+#clickable-artworks img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que les images remplissent l'espace sans se déformer */
+    aspect-ratio: 1 / 1; /* Maintient un format carré pour toutes les images */
+    cursor: pointer; /* Ajoute un curseur pour indiquer que les images sont cliquables */
+}
+
+/* Version tablette : 3 images par ligne */
+@media (min-width: 768px) {
+    #clickable-artworks {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/*3 - TABLETTES VERTICALES*/
-@media only screen and (min-height: 431px) and (min-width: 431px) and (max-width : 999px) {
-    .popup_overlay{
-        background-color: rgba(25, 25, 25);
+/* Version desktop : 4 images par ligne */
+@media (min-width: 1024px) {
+    #clickable-artworks {
+        grid-template-columns: repeat(4, 1fr);
     }
-    .popup_content_container{
-        align-items: flex-start;
-        height: 100%;
-        width: 100%;
-    }
-    .popup_content{
-        flex-direction: column;
-    }
-    .popup_info{
-        padding: 0 2rem;
-    }
-    .popup_title{
-        text-align: center;
-    }
-}
-
-/*4 - TABLETTES HORIZONTALES - LAPTOPS - DESKTOPS*/
-@media only screen and (min-width : 1000px) {
-    .popup_overlay {
-        background-color: rgba(25, 25, 25, 0.50);
+    #slider-container {
+        box-sizing: border-box;
         padding: 4rem;
-        align-items: center;
-    }
-
-    .popup_content_container{
-        align-items: center;
-        width: 100%;
-        height: 100%;
-    }
-
-    /*TEST*/
-    
-    .popup_content_container {
-        transform: translateX(100%) 1s
-    }
-        
-    /*TEST - FIN*/
-
-    .popup_content{
-        background-color: rgba(25, 25, 25);
-        border-radius: 10px;
-    }
-
-    /*Répartir popup_content entre l'image à gauche et les infos à droite*/
-    .popup_image-container{
-        width: 70%;
-    }
-    .popup_image{
-        width: 100%;
-        box-sizing: border-box;
-    }
-    .popup_info{
-        width: 30%;
-        overflow-y: scroll;
-        border-left: 1px solid grey;
-        padding: 3rem;
-        box-sizing: border-box;
-    }
-    .popup_filter_link:hover, .popup_close:hover, .popup_arrow:hover{
-        background-color: #ffffff33;
+        margin: auto;
     }
 }

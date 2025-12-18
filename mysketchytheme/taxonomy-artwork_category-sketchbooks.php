@@ -9,14 +9,15 @@ $args = array(
     'post_taxonomy' => 'artwork_category',
     'artwork_category' => 'sketchbooks',
     'post_status' => 'publish',
-    'orderby' => 'rand',
     'posts_per_page' => -1,
+    /* Requête des artworks, dans l'ordre de leur année de réalisation */
+    'meta_key' => 'artwork_year', // Clé du champ personnalisé pour l'année
+    'orderby' => 'meta_value_num', // Ordonner par la valeur numérique du champ
+    'order' => 'DESC', // Du plus récent au plus ancien
 );
-
 
 // II - LA QUERY
 $artworks_query = new WP_Query($args);
-//var_dump($artworks_query);
 
 // III - LE TEMPLATE
 // Parcourir les résultats
@@ -46,152 +47,81 @@ if ($artworks_query->have_posts()) {
     }
     // Affichage en deux parties : les images et les popups. Chaque image est cliquable et déclenche une popup qui affichera des propriétés en plus : le titre, l'année, les techniques, etc.
 
-    // Les images
-
-    echo "<section class='with-padding' id='gallery_clickable-artworks'>";
+    // Pour chaque date, n'afficher qu'une image (la première rencontrée)
+    $seen_years = [];
+    $artworks_filtered_one_by_year = [];
     foreach ($artworks as $artwork) {
-
-        echo "<div class='clickable-artwork'>";
-
-        /* En version desktop : les informations qui apparaissent au survol de la souris*/
-        echo "<img id ='" . esc_attr($artwork['slug'] . "-" . $artwork['id']) . "' src='" . esc_url($artwork['image']) . "' alt='" . esc_attr($artwork['title']) . "'/>";
-
-        /* En version desktop : les informations qui apparaissent au survol de la souris. Portent aussi la class 'open-', pour ouvrir la poupu en cas de clic sur le texte*/
-        echo "<div class='opens-" . $artwork['indexInLoop'] . " artwork_overlay'>";
-        echo "<p class='opens-" . $artwork['indexInLoop'] . " artwork_title'>" . $artwork['title'] . "</p>";
-        echo "<p class='opens-" . $artwork['indexInLoop'] . " artwork_year'>" . $artwork['year'] . "</p>";
-        echo "</div>";
-
-        echo "</div>";
+        if (!in_array($artwork['year'], $seen_years)) {
+            $seen_years[] = $artwork['year'];
+            $artworks_filtered_one_by_year[] = $artwork;
+        }
     }
-    echo "</section>";
-
-
-    // Les popups
-    echo "<section id='gallery_artworks-popups'>";
-    foreach ($artworks as $artwork) {
-
-
-        // POPUP_OVERLAY : pour le fond noir
-        echo "<div id='" . $artwork['indexInLoop'] . "' class='popup-artwork popup_overlay hide " . esc_attr($artwork['slug'] . "-" . $artwork['id']) . "'>";
-
-
-        // I - POPUP_HEAD : l'en-tête qui contient l'onglet de fermeture
-
-        // popup_close : pour fermer la popup
-        echo "<div class='popup_close'>&times;</div>";
-
-        // POPUP_CONTENT_CONTAINER
-        echo "<div class='popup_content_container'>";
-
-        // II.1 - popup_nav - pour l'image précédente
-        echo "<section class='popup_nav'>";
-        // goto
-        echo "<div id='goto-" . ($artwork['indexInLoop'] - 1) . "' class='popup_arrow'>&lt;</div>";
-        // Fermer popup_nav
-        echo "</section>";
-
-        // II.2 - popup_content
-        echo "<section class='popup_content'>";
-
-        // 1 - popup_image : l'image
-        echo "<div class='popup_image_container'/>";
-        echo "<img class='popup_image' src='" . esc_url($artwork['image']) . "' alt='" . esc_attr($artwork['title']) . "'/>";
-        echo "</div>";
-
-        // 2 - popup_info : les infos
-        echo "<div class='popup_info'/>";
-        // bloc 1 : titre, année de réalisation et excerpt
-        echo "<div class='popup_head_bloc'>";
-
-        // Titre
-        echo "<h2 class='popup_title'>" . $artwork['title'] . "</h2>";
-
-        // Année de réalisation
-        echo "<a class='popup_filter_link popup_year' href='" . site_url('/artworks/?annee=' . $artwork['year']) . "'>" . displaySvg("year") . " " . $artwork['year'] . "</a>";
-
-        // Court descriptif
-        echo "<p class='popup_excerpt'>" . $artwork['excerpt'] . "</p>";
-
-        // Fermer bloc 1
-        echo "</div>";
-
-        // bloc 2 - popup_links : les liens de filtrage de la galerie
-        echo "<div class='popup_links'/>";
-
-        // Techniques
-        if ($artwork['techniques']) {
-
-            //echo "<div class='popup_bloc'>";
-
-            //echo "<h3 class='popup_bloc_title'>Techniques</h3>";
-            //echo "<p>";
-            foreach ($artwork['techniques'] as $technique) {
-                echo "<a class='popup_filter_link' href=" . site_url('/artworks/?techniques=' . $technique) . ">" . displaySvg("techniques") . " " . $technique . "</a> ";
-            }
-            //echo "</p>";
-
-            //echo "</div>";
-        }
-
-        // Catégories
-        if ($artwork['categories']) {
-            //echo "<div class='popup_bloc'>";
-            //echo "<h3 class='popup_bloc_title'>Catégories</h3>";
-            //echo "<p>";
-            foreach ($artwork['categories'] as $category) {
-                echo "<a class='popup_filter_link' href=" . site_url('/artworks/?categorie=' . $category->slug) . ">" . displaySvg("categories") . " " . $category->name . "</a> ";
-
-            }
-            //echo "</p>";
-            //echo "</div>";
-        }
-
-        // Tags
-        if ($artwork['tags']) {
-            //echo "<div class='popup_bloc'>";
-            //echo "<h3 class='popup_bloc_title'>Tags</h3>";
-            //echo "<p>";
-            foreach ($artwork['tags'] as $tag) {
-                echo "<a class='popup_filter_link' href=" . site_url('/artworks/?tags=' . $tag->slug) . ">" . displaySvg("tags") . " " . $tag->name . "</a> ";
-            }
-            //echo "</p>";
-            //echo "</div>";
-        }
-
-        // Le post associé
-        if ($artwork['related_post_id']) {
-            // Article associé
-            $related_post_name = get_the_title($artwork['related_post_id']);
-            echo "<a class='popup_filter_link popup_related_post_id' href='" . get_permalink($artwork['related_post_id']) . "'> -> Lire l'article: " . $related_post_name . "</a>";
-        }
-
-
-        // fermer bloc 2
-        echo "</div>";
-
-        // fermer popup_info
-        echo "</div>";
-
-        // Fermer popup_content
-        echo "</section>";
-
-
-        // II.3 popup_nav - pour l'image suivante
-        echo "<section class='popup_nav'>";
-        // goto
-        echo "<div id='goto-" . ($artwork['indexInLoop'] + 1) . "' class='popup_arrow'>&gt;</div>";
-        // Fermer popup_nav
-        echo "</section>";
-
-        // Fermer popup_container 
-        echo "</div>";
-
-        // Fermer popup_overlay 
-        echo "</div>";
-    }
-    echo "</section>";
 }
 
-get_footer();
+?>
+
+<!-- SECTION : GALERIE D'ARTWORKS CLIQUABLES -->
+<section class='with-padding' id='gallery_clickable-artworks'>
+    <?php foreach ($artworks_filtered_one_by_year as $artwork) { ?>
+        <div class='clickable-artwork'>
+            <img src="<?php echo esc_url($artwork['image'])?>" alt=""/>
+            <div class='artwork_overlay'>
+                <p class='artwork_title'><?php echo esc_html($artwork['title'])?></p>
+                <p class='artwork_year'><?php echo esc_html($artwork['year'])?></p>
+            </div>
+        </div>
+    <?php } ?>
+</section>
+
+<!-- SECTION : POPUP_OVERLAY POUR CHAQUE ARTWORK -->
+<section id='slider-container' class='hide'>
+    <button class="slider__close-button" aria-label="Fermer">&times;</button>
+    <div class="slider-content-wrapper">
+        <div class="slider">
+
+            <!-- Les slides ne contiennent que les images (les infos seront fixes dans la pages, mises à jour par le script côté front)-->
+            <!-- LES IMAGES -->
+            <div class="slider__slides">
+                <!-- Pour chaque artwork, ajouter ses infos dans les datasets. Elles pourront ensuite être récupérées par le script côté front-->
+                <?php foreach ($artworks as $index => $artwork): ?>
+                    <div class="slider__slide" 
+                        data-index="<?= $index ?>"
+                        data-title="<?= esc_attr($artwork['title']) ?>"
+                        data-year="<?= esc_attr($artwork['year']) ?>"
+                        data-excerpt="<?= esc_attr($artwork['excerpt']) ?>"
+                        data-techniques='<?= esc_attr(json_encode($artwork['techniques'])) ?>'
+                        <!--data-tags='<?= esc_attr(json_encode(array_map(function($tag) { return $tag->name; }, (array)$artwork['tags']))) ?>'> -->
+                        <img src="<?= esc_url($artwork['image']) ?>" alt="<?= esc_attr($artwork['title']) ?>">
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <!-- LES INFOS -->
+            <!-- Pas de PHP ici : les images seront récupérées dans les datasets et mises à jour par le script JS-->
+            <div class="slider__info">
+                <h2 class="slider__title"></h2>
+                <p class="slider__excerpt"></p>
+
+                <div class="slider__meta">
+                    <p class="slider__year"></p>
+                    <ul class="slider__techniques"></ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="slider__nav">
+            <button class="slider__nav-button slider__nav-button--prev" aria-label="Précédent">&lt;</button>
+            <button class="slider__nav-button slider__nav-button--next" aria-label="Suivant">&gt;</button>
+        </div>
+
+        <div class="slider__dots">
+            <?php foreach ($artworks as $index => $artwork): ?>
+                <button class="slider__dot" data-index="<?= $index ?>" aria-label="Aller à l'image <?= $index + 1 ?>"></button>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section> 
+<?php
+    get_footer();
 ?>
