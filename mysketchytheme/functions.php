@@ -21,8 +21,16 @@ function theme_enqueue_styles()
 
     // STYLES DE LA GALERIE
     if (is_archive("artworks")) {
-        wp_enqueue_style('archive-artwork-style', get_template_directory_uri() . '/styles/archive-artwork.css');
         wp_enqueue_style('archive-artwork-popup-style', get_template_directory_uri() . '/styles/archive-artwork-popup.css');
+    }
+    // STYLES DES CATÉGORIES D'ARTWORKS
+    // Nu
+    if (is_tax('artwork_category', 'nu')) {
+        wp_enqueue_style('taxonomy-artwork-category-nu-style', get_template_directory_uri() . '/styles/taxonomy-artwork-category-nu.css');
+    }else if (is_tax('artwork_category', 'sketchbook')) {
+        // Sketchbook
+        wp_enqueue_style('archive-artwork-style', get_template_directory_uri() . '/styles/archive-artwork.css');
+        //wp_enqueue_style('taxonomy-artwork-category-sketchbook-style', get_template_directory_uri() . '/styles/taxonomy-artwork-category-sketchbook.css');
     }
 
     // STYLE DE LA PAGE DE BLOG
