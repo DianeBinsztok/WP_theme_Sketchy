@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+    console.log("Artwork popup script loaded.");
+
     // On vérifie si les éléments nécessaires existent avant de continuer
     const sliderContainer = document.getElementById('slider-container');
     const galleryItems = document.querySelectorAll('#gallery_clickable-artworks .clickable-artwork');
@@ -16,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const closeButton = document.querySelector('.slider__close-button');
     const prevButton = sliderContainer.querySelector('.slider__nav-button--prev');
     const nextButton = sliderContainer.querySelector('.slider__nav-button--next');
-    //const dots = sliderContainer.querySelectorAll('.slider__dot');
+    const dots = sliderContainer.querySelectorAll('.slider__dot');
 
     // Éléments d'information du slider
     const sliderTitle = sliderContainer.querySelector('.slider__title');
@@ -30,21 +33,25 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fonction pour mettre à jour le contenu du slider
     function updateSlider(index) {
 
-        // Reset des dots à chaque mise à jour
-        sliderContainer.querySelector('.slider__dots').innerHTML=''; 
-
         // Déplacement des slides
         slidesContainer.style.transform = `translateX(-${index * 100}%)`;
 
         // Récupération des données depuis les attributs data-* de la slide
         const currentSlide = slides[index];
         if (currentSlide) {
+            const artworkCategory = currentSlide.dataset.category || '';
             const artworkTitle = currentSlide.dataset.title || '';
             const artworkExcerpt = currentSlide.dataset.excerpt || '';
             const artworkYear = currentSlide.dataset.year || '';
             const artworkTechniques = currentSlide.dataset.techniques ? JSON.parse(currentSlide.dataset.techniques) : [];
             const artworkTags = currentSlide.dataset.tags ? JSON.parse(currentSlide.dataset.tags) : [];
             const artworkNbOfArtworksOfTheSameYear = currentSlide.dataset.nbOfArtworksOfTheSameYear || '';
+
+            // Uniquement pour les artworks de catégorie "sketchbooks"
+            if(artworkCategory.includes('Sketchbook')) {
+                // Reset des dots à chaque mise à jour
+                sliderContainer.querySelector('.slider__dots').innerHTML=''; 
+            }
 
             // Mise à jour des informations
             sliderTitle.textContent = artworkTitle;
@@ -73,40 +80,52 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            // Trouver l'index de la première slide de cette année pour le calcul de l'offset
-            let firstIndexOfYear = 0;
-            for (let k = 0; k < slides.length; k++) {
-                if (slides[k].dataset.year === artworkYear) {
-                    firstIndexOfYear = k;
-                    break;
+            // Uniquement pour les artworks de catégorie "sketchbooks"
+            if(artworkCategory.includes('Sketchbook')) {
+
+                // Trouver l'index de la première slide de cette année pour le calcul de l'offset
+                let firstIndexOfYear = 0;
+                for (let k = 0; k < slides.length; k++) {
+                    if (slides[k].dataset.year === artworkYear) {
+                        firstIndexOfYear = k;
+                        break;
+                    }
                 }
+
+                // Afficher autant de dots que d'artworks de la même année
+                for(let i=0; i<artworkNbOfArtworksOfTheSameYear; i++) {
+                    let dotButton = document.createElement('button');
+                    dotButton.classList.add('slider__dot');
+                    dotButton.setAttribute('data-index', i);
+                    dotButton.setAttribute('aria-label', `Aller à l'image ${i + 1}`);
+                    sliderContainer.querySelector('.slider__dots').appendChild(dotButton);
+
+                    // Ajouter la classe 'active' au dot correspondant à l'index actuel
+                    if (firstIndexOfYear + i === index) {
+                        dotButton.classList.add('active');
+                    }
+                    
+                    // Ajout de l'écouteur d'événement pour chaque dot
+                    dotButton.addEventListener('click', function () {
+                        updateSlider(firstIndexOfYear + i);
+                    });
+                }
+            }else{
+                // Si ce n'est pas un sketchbook
+                // Ajouter la classe 'active' au dot correspondant à l'index actuel
+                if (dots) {
+                    dots.forEach(dot => {
+                        dot.classList.remove('active');
+                    });
+                    const activeDot = sliderContainer.querySelector(`.slider__dot[data-index="${index}"]`);
+                    if (activeDot) {
+                        activeDot.classList.add('active');
+                    }
+                }
+            
             }
 
-            // Afficher autant de dots que d'artworks de la même année
-            for(let i=0; i<artworkNbOfArtworksOfTheSameYear; i++) {
-                let dotButton = document.createElement('button');
-                dotButton.classList.add('slider__dot');
-                dotButton.setAttribute('data-index', i);
-                dotButton.setAttribute('aria-label', `Aller à l'image ${i + 1}`);
-                sliderContainer.querySelector('.slider__dots').appendChild(dotButton);
-                if (firstIndexOfYear + i === index) {
-                    dotButton.classList.add('active');
-                }
-                
-                // Ajout de l'écouteur d'événement pour chaque dot
-                dotButton.addEventListener('click', function () {
-                    updateSlider(firstIndexOfYear + i);
-                });
-                
-            }
-                
         }
-
-        // Mise à jour des points de navigation (dots)
-        // dots.forEach((dot, dotIndex) => {
-        //     dot.classList.toggle('active', dotIndex === index);
-        // });
-
         currentIndex = index;
     }
 
@@ -147,14 +166,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Clic sur les points de navigation
-    /*
-    dots.forEach(dot => {
-        dot.addEventListener('click', function () {
-            const index = parseInt(this.dataset.index, 10);
-            updateSlider(index);
+    if(dots){
+        dots.forEach(dot => {
+            dot.addEventListener('click', function () {
+                const index = parseInt(this.dataset.index, 10);
+                updateSlider(index);
+            });
         });
-    });
-    */
+    }
+
+    
 
     // Fermeture du slider en cliquant sur le fond (en dehors du contenu)
     sliderContainer.addEventListener('click', function (e) {

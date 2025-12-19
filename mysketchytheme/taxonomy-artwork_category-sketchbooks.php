@@ -86,6 +86,7 @@ if ($artworks_query->have_posts()) {
                 <?php foreach ($artworks as $index => $artwork): ?>
                     <div class="slider__slide" 
                         data-index="<?= $index ?>"
+                        data-category='<?= esc_attr(json_encode(array_map(function($cat) { return $cat->name; }, (array)$artwork['categories']))) ?>'
                         data-title="<?= esc_attr($artwork['title']) ?>"
                         data-year="<?= esc_attr($artwork['year']) ?>"
                         data-excerpt="<?= esc_attr($artwork['excerpt']) ?>"
@@ -117,15 +118,7 @@ if ($artworks_query->have_posts()) {
         </div>
 
         <div class="slider__dots">
-            <!--
-            <?php foreach ($artworks as $index => $artwork): ?>
-                <button class="slider__dot" data-index="<?= $index ?>" aria-label="Aller à l'image <?= $index + 1 ?>"></button>
-            <?php endforeach; ?>
-            <?php 
-            for ($index = 0; $index < $nb_of_artwoks_of_the_same_year; $index++): ?>
-                <button class="slider__dot" data-index="<?= $index ?>" aria-label="Aller à l'image <?= $index + 1 ?>"></button>
-            <?php endfor; ?>
-            -->
+                    <!-- Ici, l'affichage des points de navigation sera géré par le script JS -->
         </div>
     </div>
 </section> 
