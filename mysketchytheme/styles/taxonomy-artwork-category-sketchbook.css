@@ -1,7 +1,7 @@
 /*I - GLOBAL*/
-#gallery_clickable-artworks{
+/*#gallery_clickable-artworks{
     background-color: #ebe4c5;
-}
+}*/
 
 /* Remplacer column-count par grid pour un meilleur contrôle */
 #gallery_clickable-artworks {
@@ -15,11 +15,19 @@
 /*Positionner les vignettes par rapport à l'overlay*/
 .clickable-artwork{
     position: relative;
+    border: 1px solid #6e4918;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.clickable-artwork img:hover{
+    transform: scale(1.05);
+    transition : transform 0.3s ease-in-out;
 }
 
 .clickable-artwork img {
     width: 100%;
     height: 100%;
+    border-radius: 10px;
     object-fit: cover; /* Assure que les images remplissent l'espace sans se déformer */
     aspect-ratio: 1 / 1; /* Maintient un format carré pour toutes les images */
 }
@@ -27,14 +35,12 @@
 /*L'overlay sur les vignettes*/
 .artwork_overlay {
     position: absolute;
+    background-color: #fcfce78a;
     top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
+    border-bottom: 1px solid #6e491881;
+    height: 15%;
+    /*height: 100%;*/
     width: 100%;
-    opacity: 0;
-    background-color: rgba(0, 0, 0, 0.85);
     /*Apparaîtra au hover sur le conteneur*/
     transition: .5s ease;
     /*Disposer le texte*/

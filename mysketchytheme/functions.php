@@ -19,7 +19,9 @@ function theme_enqueue_styles()
 
     }
 
-    // STYLES DE LA GALERIE
+    // STYLES DES GALERIES D'ARTWORKS
+
+    // Style du slider popup des artworks
     if (is_archive("artworks")) {
         wp_enqueue_style('archive-artwork-popup-style', get_template_directory_uri() . '/styles/archive-artwork-popup.css');
     }
@@ -27,10 +29,10 @@ function theme_enqueue_styles()
     // Nu
     if (is_tax('artwork_category', 'nu')) {
         wp_enqueue_style('taxonomy-artwork-category-nu-style', get_template_directory_uri() . '/styles/taxonomy-artwork-category-nu.css');
-    }else if (is_tax('artwork_category', 'sketchbook')) {
-        // Sketchbook
-        wp_enqueue_style('archive-artwork-style', get_template_directory_uri() . '/styles/archive-artwork.css');
-        //wp_enqueue_style('taxonomy-artwork-category-sketchbook-style', get_template_directory_uri() . '/styles/taxonomy-artwork-category-sketchbook.css');
+
+    // Sketchbook
+    }else if (is_tax('artwork_category', 'sketchbooks')) {
+        wp_enqueue_style('taxonomy-artwork-category-sketchbook-style', get_template_directory_uri() . '/styles/taxonomy-artwork-category-sketchbook.css');
     }
 
     // STYLE DE LA PAGE DE BLOG
@@ -51,8 +53,10 @@ function theme_enqueue_styles()
 // III - SCRIPTS FRONT
 function register_and_enqueue_scripts()
 {
+    // 1 - REGISTERER LES SCRIPTS
     // Affichage des popups dans la galerie
-    wp_register_script("artwork-popup-script", get_stylesheet_directory_uri() . '/scripts/artwork-popup-script.js');
+    wp_register_script("sketchbooks-popup-script", get_stylesheet_directory_uri() . '/scripts/sketchbooks-popup-script.js');
+    wp_register_script("nude-popup-script", get_stylesheet_directory_uri() . '/scripts/nude-popup-script.js');
     // Ouverture-fermeture du burdger menu sur versions mobiles
     wp_register_script("burger-menu-script", get_stylesheet_directory_uri() . '/scripts/burger-menu-script.js');
     // Comportement du header au scroll
@@ -68,6 +72,7 @@ function register_and_enqueue_scripts()
     wp_register_script("news-slider-script", get_stylesheet_directory_uri() . '/scripts/news-slider-script.js');
 
 
+    // 2 - ENQUEUE LES SCRIPTS
     /* HEADER ET MENU */
     wp_enqueue_script("burger-menu-script");
     wp_enqueue_script("submenu-script");
@@ -82,8 +87,15 @@ function register_and_enqueue_scripts()
 
 
     /* GALERIE DES ARTWORKS*/
-    if (is_archive()) {
-        wp_enqueue_script("artwork-popup-script");
+
+    // SCRIPTS DES CATÉGORIES D'ARTWORKS
+    // Nu
+    if (is_tax('artwork_category', 'nu')) {
+        wp_enqueue_script('nude-popup-script');
+
+    // Sketchbooks
+    }else if (is_tax('artwork_category', 'sketchbooks')) {
+        wp_enqueue_script('sketchbooks-popup-script');
     }
 }
 add_action('wp_enqueue_scripts', 'register_and_enqueue_scripts');

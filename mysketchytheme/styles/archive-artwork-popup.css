@@ -34,7 +34,7 @@
 
 /* Partie gauche : les images */
 .slider__slides {
-    flex: 1; /* Prend la moitié de l'espace disponible */
+    flex: 4; /* 4/5 de l'espace disponible */
     position: relative;
     display: flex; /* Aligne les slides horizontalement */
     transition: transform 0.5s ease-in-out; /* Ajoute l'animation de transition */
@@ -61,7 +61,7 @@
 /* Partie droite : les informations */
 .slider__info {
     color: #fff;
-    flex: 1; /* Prend l'autre moitié */
+    flex: 1; /* Prend le dernier 5e de la largeur disponible */
     padding: 2rem;
     display: flex;
     flex-direction: column;

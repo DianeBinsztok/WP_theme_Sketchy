@@ -30,7 +30,7 @@ get_header();
 
         <!-- Modèle vivant-->
         <div class="gallery-link_container">
-            <a href="<?php echo get_site_url(); ?>/artworks/?categorie=nu">
+            <a href="<?php echo get_site_url(); ?>/artworks/nu">
                 <!-- Images, selon device-->
                 <!-- mobile vertical : image horizontale-->
                 <img class="gallery-link_img horizontal"
@@ -56,7 +56,7 @@ get_header();
 
         <!-- Sketchbooks-->
         <div class="gallery-link_container">
-            <a href="<?php echo get_site_url(); ?>/artworks/?categorie=croquis">
+            <a href="<?php echo get_site_url(); ?>/artworks/sketchbooks">
                 <!-- Images, selon device-->
                 <!-- mobile vertical : image horizontale-->
                 <img class="gallery-link_img horizontal"
@@ -80,7 +80,7 @@ get_header();
 
         <!-- Peinture -->
         <div class="gallery-link_container">
-            <a href="<?php echo get_site_url(); ?>/artworks/?techniques=Huile">
+            <a href="<?php echo get_site_url(); ?>/artworks/paintings/">
                 <!-- Images, selon device-->
                 <!-- mobile vertical : image horizontale-->
                 <img class="gallery-link_img horizontal"
@@ -101,10 +101,10 @@ get_header();
                 </div>
             </a>
         </div>
-
-        <!-- Carnets de voyage -->
+		
+		<!-- Carnets de voyage -->
         <div class="gallery-link_container">
-            <a href="<?php echo get_site_url(); ?>/artworks/?categorie=carnet-de-voyage">
+            <a>
                 <!-- Images, selon device-->
                 <!-- mobile vertical : image horizontale-->
                 <img class="gallery-link_img horizontal"
@@ -126,6 +126,7 @@ get_header();
                 </div>
             </a>
         </div>
+
 
     </div>
 </section>

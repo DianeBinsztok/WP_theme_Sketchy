@@ -39,7 +39,7 @@ body, html {
 }
 
 body {
-    background-color: #fcfce7;
+    background-color: #f1f1d4;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
