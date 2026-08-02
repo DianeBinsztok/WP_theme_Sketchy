@@ -62,7 +62,7 @@ add_action('init', 'artwork_custom_post_type', 0);
 // 1 - Catégories (spécifiques aux artworks)
 // 2 - Année de réalisation
 // 3 - Techniques
-// 4 - Post (si l'image est associée à un article)
+// 4 - Post associé (si l'image est associée à un article)
 
 // 1 - Les catégories (spécifiques aux artworks)
 function register_artwork_taxonomies() {
@@ -89,8 +89,8 @@ function register_artwork_taxonomies() {
 add_action('init', 'register_artwork_taxonomies');
 
 
-// 1 - Le champs "Année de réalisation"
-// 1.1 - Enregistrer le champs "year"
+// 2 - Le champs "Année de réalisation"
+// 2.1 - Enregistrer le champs "year"
 function add_artwork_year_metabox()
 {
     add_meta_box(
@@ -104,7 +104,7 @@ function add_artwork_year_metabox()
 }
 add_action('add_meta_boxes', 'add_artwork_year_metabox');
 
-// 1.2 - Afficher le champs en back-office :
+// 2.2 - Afficher le champs en back-office :
 function display_artwork_year_metabox($post)
 {
     // Générer un champ nonce (Number Used Once) dans un formulaire HTML
@@ -117,7 +117,7 @@ function display_artwork_year_metabox($post)
     echo '<input id="artwork_year_metabox" type="number" min="1900" max="2099" step="1" name="artwork_year" value="' . esc_attr($artwork_year) . '"/>';
 }
 
-// 1.3 - Sauvegarder la date
+// 2.3 - Sauvegarder la date
 function save_artwork_year_meta($post_id)
 {
     // Vérifie le nonce pour la sécurité
@@ -148,8 +148,8 @@ function save_artwork_year_meta($post_id)
 }
 add_action('save_post', 'save_artwork_year_meta');
 
-// 2 - Le champs "Techniques"
-// 2.1 - Enregistrer le champs "techniques"
+// 3 - Le champs "Techniques"
+// 3.1 - Enregistrer le champs "techniques"
 function add_artwork_techniques_metabox()
 {
     add_meta_box(
@@ -163,7 +163,7 @@ function add_artwork_techniques_metabox()
 }
 add_action('add_meta_boxes', 'add_artwork_techniques_metabox');
 
-// 2.2 - Afficher le champs en back-office :
+// 3.2 - Afficher le champs en back-office :
 function display_artwork_techniques_metabox($post)
 {
     // Générer un champ nonce (Number Used Once) dans un formulaire HTML
@@ -188,7 +188,7 @@ function display_artwork_techniques_metabox($post)
     echo '</fieldset>';
 }
 
-// 2.3 - Sauvegarder les techniques
+// 3.3 - Sauvegarder les techniques
 function save_artwork_techniques_meta($post_id)
 {
     // Vérifie le nonce pour la sécurité
@@ -220,8 +220,8 @@ function save_artwork_techniques_meta($post_id)
 add_action('save_post', 'save_artwork_techniques_meta');
 
 
-// 3 - Post associé
-// 3.1 - Enregistrer le champs "related_post_id"
+// 4 - Post associé
+// 4.1 - Enregistrer le champs "related_post_id"
 function add_artwork_related_post_id_metabox()
 {
     add_meta_box(
@@ -235,7 +235,7 @@ function add_artwork_related_post_id_metabox()
 }
 add_action('add_meta_boxes', 'add_artwork_related_post_id_metabox');
 
-// 3.2 - Afficher le champs en back-office :
+// 4.2 - Afficher le champs en back-office :
 function display_artwork_related_post_id_metabox($post)
 {
     // Générer un champ nonce (Number Used Once) dans un formulaire HTML
@@ -254,7 +254,7 @@ function display_artwork_related_post_id_metabox($post)
     echo '</select>';
 }
 
-// 3.3 - Sauvegarder le post
+// 4.3 - Sauvegarder le post associé
 function save_artwork_related_post_id_meta($post_id)
 {
     // Vérifie le nonce pour la sécurité
