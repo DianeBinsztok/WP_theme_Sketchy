@@ -53,7 +53,7 @@ if ($artworks_query->have_posts()) {
     }
     // Affichage en deux parties : les images et les popups. Chaque image est cliquable et déclenche une popup qui affichera des propriétés en plus : le titre, l'année, les techniques, etc.
 
-    // Pour chaque année, n'afficher qu'une image (la première rencontrée)
+    // Pour chaque date, n'afficher qu'une image (la première rencontrée)
     $seen_years = [];
     $artworks_filtered_one_by_year = [];
     foreach ($artworks as $artwork) {
@@ -71,7 +71,7 @@ if ($artworks_query->have_posts()) {
     <?php foreach ($artworks_filtered_one_by_year as $artwork) { ?>
         <div class='clickable-artwork' id="<?php echo esc_html($artwork['indexInLoop']) ?>">
             
-            <img src="<?php echo esc_url("http://localhost/sketchy/wp-content/uploads/2026/08/sketchbook-icon-" . $artwork['year'] . ".png") ?>" alt=""/>
+            <img src="<?php echo esc_url($artwork['image_thumb'])?>" alt=""/>
             
             <div class='artwork_overlay'>
                 <h2><?php echo esc_html($artwork['year'])?></h2>

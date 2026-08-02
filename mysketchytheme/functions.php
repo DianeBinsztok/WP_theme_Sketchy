@@ -113,3 +113,9 @@ require_once(get_stylesheet_directory() . '/functions/news-carrousel.php');
 require_once(get_stylesheet_directory() . '/functions/add-post-meta-custom-square-img.php');
 // post_img_custom_large - format bandeau, centré spécifiquement
 require_once(get_stylesheet_directory() . '/functions/add-post-meta-custom-large-img.php');
+
+// V - GESTION DES IMAGES
+// Utiliser la bibli GD au lieu d'Imagick pour le redimentionnement des images, car Imagick peut causer des problèmes de mémoire sur certains serveurs.
+add_filter('wp_image_editors', function($editors) {
+    return array('WP_Image_Editor_GD');
+});
